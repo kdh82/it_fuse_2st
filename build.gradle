@@ -28,7 +28,7 @@ version = 1.0
 
 mainClassName = 'kr.or.dgit.book_project.frame.PageMain'
 jar {
-	baseName = 'GradleTest'
+	baseName = 'PageMain'
 	appendix = 'bin'
 	manifest{
 		attributes 'Title':baseName, 'Version':version, 'Main-Class':mainClassName
