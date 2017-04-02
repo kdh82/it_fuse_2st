@@ -8,7 +8,7 @@ public class BookInfo {		 		// 도서
 	private String bName;			// 도서명	
 	private String author;			// 저자
 	private int price;				// 가격
-	private Date insert_date;		// 도서등록일
+	private String insertDate;		// 도서등록일
 	private boolean isDel;			// 도서폐기여부
 	private Coden cName;			// 분류
 	private PublisherInfo pCode;	// 출판사 코드
@@ -16,13 +16,13 @@ public class BookInfo {		 		// 도서
 	public BookInfo() {		}
 
 	public BookInfo(String bCode, String bSubCode, String bName, String author,
-					int price, Date insert_date, boolean isDel, Coden cName, PublisherInfo pCode) {
+					int price, String insertDate, boolean isDel, Coden cName, PublisherInfo pCode) {
 		this.bCode = bCode;
 		this.bSubCode = bSubCode;
 		this.bName = bName;
 		this.author = author;
 		this.price = price;
-		this.insert_date = insert_date;
+		this.insertDate = insertDate;
 		this.isDel = isDel;
 		this.cName = cName;
 		this.pCode = pCode;
@@ -68,12 +68,12 @@ public class BookInfo {		 		// 도서
 		this.price = price;
 	}
 
-	public Date getInsert_date() {
-		return insert_date;
+	public Date getInsertDate() {
+		return insertDate;
 	}
 
-	public void setInsert_date(Date insert_date) {
-		this.insert_date = insert_date;
+	public void setInsertDate(String insertDate) {
+		this.insertDate = insertDate;
 	}
 
 	public boolean isDel() {
