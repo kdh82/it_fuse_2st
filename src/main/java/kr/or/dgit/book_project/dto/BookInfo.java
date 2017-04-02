@@ -104,6 +104,6 @@ public class BookInfo {		 		// 도서
 	public String toString() {
 		return String.format(
 				"%s, %s, %s, %s, %s, %s, %s, %s,%s",
-				bCode, bSubCode, bName, author, price, insert_date, isDel, cName, pCode);
+				bCode, bSubCode, bName, author, price, insertDate, isDel, cName, pCode);
 	}
 }
