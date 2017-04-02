@@ -68,7 +68,7 @@ public class BookInfo {		 		// 도서
 		this.price = price;
 	}
 
-	public Date getInsertDate() {
+	public String getInsertDate() {
 		return insertDate;
 	}
 
