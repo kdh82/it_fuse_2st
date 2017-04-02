@@ -25,7 +25,7 @@ public class PageSub extends JFrame implements ActionListener {
 	public PageSub() {
 		setTitle("도서관리프로그램");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 1000, 660);
+		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

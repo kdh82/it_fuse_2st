@@ -1,5 +1,7 @@
 package kr.or.dgit.book_project.dao;
 
-public interface MemberInfoMapper {
+import kr.or.dgit.book_project.dto.MemberInfo;
 
+public interface MemberInfoMapper {
+	
 }
