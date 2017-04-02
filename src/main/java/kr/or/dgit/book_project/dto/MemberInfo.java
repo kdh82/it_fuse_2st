@@ -76,7 +76,7 @@ public class MemberInfo {
 		return mGroup;
 	}
 
-	public void setManager(char mGroup) {
+	public void setmGroup(char mGroup) {
 		this.mGroup = mGroup;
 	}
 
