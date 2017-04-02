@@ -1,4 +1,4 @@
-package kr.or.dgit.book_project.view_panel;
+package kr.or.dgit.book_project.frame;
 
 import javax.swing.JPanel;
 import javax.swing.JTree;
