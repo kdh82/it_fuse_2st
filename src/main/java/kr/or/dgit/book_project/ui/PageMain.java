@@ -33,14 +33,14 @@ public class PageMain extends JFrame {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
 
-		}catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		PageMain frame = new PageMain();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					PageMain frame = new PageMain();
 					frame.setVisible(true);
-
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,19 +88,22 @@ public class PageMain extends JFrame {
 		btnMenu3.setBounds(671, 193, 190, 190);
 		contentPane.add(btnMenu3);
 	}
+
 	protected void actionPerformedBtnMenu1(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage1());
 		sub.setVisible(true);
 	}
+
 	protected void actionPerformedBtnMenu2(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage2());
-		sub.setVisible(true);	
+		sub.setVisible(true);
 	}
+
 	protected void actionPerformedBtnMenu3(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage3());
-		sub.setVisible(true);	
+		sub.setVisible(true);
 	}
 }

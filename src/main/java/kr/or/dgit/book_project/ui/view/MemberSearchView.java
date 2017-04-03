@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
 import kr.or.dgit.book_project.ui.component.MemberSearchPanel;
+import java.awt.GridLayout;
 
 public class MemberSearchView extends AbsViewPanel {
 
@@ -16,14 +17,14 @@ public class MemberSearchView extends AbsViewPanel {
 	 * Create the panel.
 	 */
 	public MemberSearchView() {
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{775, 0};
-		gridBagLayout.rowHeights = new int[] {200, 400, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		
+		JPanel panel_2 = new JPanel();
+		pMain.add(panel_2);
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+		
 		
 		CheckSearchDesign panel = new CheckSearchDesign();
+		panel_2.add(panel);
 		GridBagLayout gridBagLayout_1 = (GridBagLayout) panel.getLayout();
 		gridBagLayout_1.rowHeights = new int[] {200, 0};
 		MemberSearchPanel msp = new MemberSearchPanel();
@@ -35,16 +36,16 @@ public class MemberSearchView extends AbsViewPanel {
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
-		add(panel, gbc_panel);
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.weighty = 2.0;
-		gbc_panel_1.weightx = 1.0;
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 1;
-		add(panel_1, gbc_panel_1);
+		JPanel pTable = new JPanel();
+		panel_2.add(pTable);
+		GridBagConstraints gbc_pTable = new GridBagConstraints();
+		gbc_pTable.weighty = 2.0;
+		gbc_pTable.weightx = 1.0;
+		gbc_pTable.fill = GridBagConstraints.BOTH;
+		gbc_pTable.gridx = 0;
+		gbc_pTable.gridy = 1;
+		pTable.setLayout(new GridLayout(1, 0, 0, 0));
 
 	}
 }
