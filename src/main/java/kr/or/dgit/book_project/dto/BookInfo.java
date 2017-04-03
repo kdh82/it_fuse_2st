@@ -1,47 +1,19 @@
 package kr.or.dgit.book_project.dto;
 
-import java.util.Date;
+import java.util.List;
 
-public class BookInfo {		 		// 도서
-	private String bCode;			// 도서코드
-	private String bSubCode;		// 도서 중복 코드
-	private String bName;			// 도서명	
-	private String author;			// 저자
-	private int price;				// 가격
-	private String insertDate;		// 도서등록일
-	private boolean isDel;			// 도서폐기여부
-	private Coden cName;			// 분류
-	private PublisherInfo pCode;	// 출판사 코드
-	
-	public BookInfo() {		}
+public class BookInfo { // 도서
+	private BookLend bookLend;
+	private String bName; // 도서명
+	private String author; // 저자
+	private int price; // 가격
+	private String insertDate; // 도서등록일
+	private boolean isDel; // 도서폐기여부
+	private Coden coden; // 분류
+	private PublisherInfo publisherInfo; // 출판사 코드
+	private List<PaymentIO> bookPaymentIO;
 
-	public BookInfo(String bCode, String bSubCode, String bName, String author,
-					int price, String insertDate, boolean isDel, Coden cName, PublisherInfo pCode) {
-		this.bCode = bCode;
-		this.bSubCode = bSubCode;
-		this.bName = bName;
-		this.author = author;
-		this.price = price;
-		this.insertDate = insertDate;
-		this.isDel = isDel;
-		this.cName = cName;
-		this.pCode = pCode;
-	}
-
-	public String getbCode() {
-		return bCode;
-	}
-
-	public void setbCode(String bCode) {
-		this.bCode = bCode;
-	}
-
-	public String getbSubCode() {
-		return bSubCode;
-	}
-
-	public void setbSubCode(String bSubCode) {
-		this.bSubCode = bSubCode;
+	public BookInfo() {
 	}
 
 	public String getbName() {
@@ -84,26 +56,45 @@ public class BookInfo {		 		// 도서
 		this.isDel = isDel;
 	}
 
-	public Coden getcName() {
-		return cName;
+	public Coden getCoden() {
+		return coden;
 	}
 
-	public void setcName(Coden cName) {
-		this.cName = cName;
+	public void setCoden(Coden coden) {
+		this.coden = coden;
 	}
 
-	public PublisherInfo getpCode() {
-		return pCode;
+	public PublisherInfo getPublisherInfo() {
+		return publisherInfo;
 	}
 
-	public void setpCode(PublisherInfo pCode) {
-		this.pCode = pCode;
+	public void setPublisherInfo(PublisherInfo publisherInfo) {
+		this.publisherInfo = publisherInfo;
+	}
+
+	public List<PaymentIO> getBookPaymentIO() {
+		return bookPaymentIO;
+	}
+
+	public void setBookPaymentIO(List<PaymentIO> bookPaymentIO) {
+		this.bookPaymentIO = bookPaymentIO;
+	}
+
+	public BookLend getBookLend() {
+		return bookLend;
+	}
+
+	public void setBookLend(BookLend bookLend) {
+		this.bookLend = bookLend;
 	}
 
 	@Override
 	public String toString() {
 		return String.format(
-				"%s, %s, %s, %s, %s, %s, %s, %s,%s",
-				bCode, bSubCode, bName, author, price, insertDate, isDel, cName, pCode);
+				"%s %s %s %s %s %s %s %s %s",
+				bookLend, bName, author, price, insertDate, isDel, coden, publisherInfo, bookPaymentIO);
 	}
+
+	
+	
 }
