@@ -26,7 +26,7 @@ dependencies {
 
 version = 1.0
 
-mainClassName = 'kr.or.dgit.book_project.frame.PageMain'
+mainClassName = 'kr.or.dgit.book_project.ui.PageMain'
 jar {
 	baseName = 'PageMain'
 	appendix = 'bin'
