@@ -1,7 +1,7 @@
 package kr.or.dgit.book_project.ui.view;
 
+import kr.or.dgit.book_project.ui.common.InformDetailPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
-import kr.or.dgit.book_project.ui.component.InformDetailPanel;
 
 
 public class BookSearchBookDetailViewFrame extends InformDetailPanel {

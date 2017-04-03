@@ -21,10 +21,13 @@ private JPanel pCoden;
 
 	public SubMenuPage1() {		
 		pBook = new JPanel();		
-		addTab("도서관리", null, pBook, null);
+		addTab("도서등록", null, pBook, null);
 		pBook.setLayout(new GridLayout(0, 1, 0, 0));
 		BookInsertView bookInsertview = new BookInsertView();
 		pBook.add(bookInsertview);
+		
+		JPanel pBookManager = new JPanel();
+		addTab("도서관리", null, pBookManager, null);
 		
 		pMember = new JPanel();
 		addTab("회원등록", null, pMember, null);		

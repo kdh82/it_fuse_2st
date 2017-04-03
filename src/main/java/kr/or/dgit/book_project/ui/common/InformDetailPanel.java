@@ -1,8 +1,6 @@
-package kr.or.dgit.book_project.ui.component;
+package kr.or.dgit.book_project.ui.common;
 
 import javax.swing.JPanel;
-
-import kr.or.dgit.book_project.ui.common.InformSizePanel;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -13,6 +11,9 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class InformDetailPanel extends InformSizePanel {
 
@@ -26,28 +27,44 @@ public class InformDetailPanel extends InformSizePanel {
 	 */
 	public InformDetailPanel() {
 		setBounds(new Rectangle(0, 0, 650, 450));
-		setLayout(null);
+		setLayout(new BorderLayout(10, 10));
+		
+		JPanel panel = new JPanel();
+		add(panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{610, 0};
+		gbl_panel.rowHeights = new int[] {100, 400, 100, 0};
+		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
 		JPanel pTitle = new JPanel();
-		pTitle.setBounds(0, 0, 650, 41);
+		GridBagConstraints gbc_pTitle = new GridBagConstraints();
+		gbc_pTitle.weighty = 1.0;
+		gbc_pTitle.weightx = 1.0;
+		gbc_pTitle.fill = GridBagConstraints.BOTH;
+		gbc_pTitle.insets = new Insets(0, 0, 5, 0);
+		gbc_pTitle.gridx = 0;
+		gbc_pTitle.gridy = 0;
+		panel.add(pTitle, gbc_pTitle);
 		FlowLayout flowLayout = (FlowLayout) pTitle.getLayout();
 		flowLayout.setVgap(10);
 		flowLayout.setHgap(20);
-		add(pTitle);
 		
 		lblTitle = new JLabel("New label");
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 18));
 		lblTitle.setBounds(new Rectangle(20, 20, 0, 0));
 		pTitle.add(lblTitle);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 51, 650, 389);
-		add(panel_1);
-		panel_1.setLayout(null);
-		
 		pContent = new JPanel();
-		pContent.setBounds(0, 0, 650, 319);
-		panel_1.add(pContent);
+		GridBagConstraints gbc_pContent = new GridBagConstraints();
+		gbc_pContent.weighty = 1.0;
+		gbc_pContent.weightx = 1.0;
+		gbc_pContent.fill = GridBagConstraints.BOTH;
+		gbc_pContent.insets = new Insets(0, 0, 5, 0);
+		gbc_pContent.gridx = 0;
+		gbc_pContent.gridy = 1;
+		panel.add(pContent, gbc_pContent);
 		pContent.setLayout(new GridLayout(1, 0, 0, 0));
 		pContent.setLayout(new GridLayout(1, 0, 0, 0));
 		pContent.setLayout(new BorderLayout(0, 0));
@@ -55,8 +72,13 @@ public class InformDetailPanel extends InformSizePanel {
 		pContent.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(0, 329, 650, 50);
-		panel_1.add(panel_7);
+		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
+		gbc_panel_7.weighty = 1.0;
+		gbc_panel_7.weightx = 1.0;
+		gbc_panel_7.fill = GridBagConstraints.BOTH;
+		gbc_panel_7.gridx = 0;
+		gbc_panel_7.gridy = 2;
+		panel.add(panel_7, gbc_panel_7);
 		panel_7.setLayout(new GridLayout(1, 1, 10, 0));
 		
 		JPanel panel_4 = new JPanel();
@@ -78,6 +100,18 @@ public class InformDetailPanel extends InformSizePanel {
 		
 		JPanel panel_5 = new JPanel();
 		panel_7.add(panel_5);
+		
+		JPanel panel_2 = new JPanel();
+		add(panel_2, BorderLayout.NORTH);
+		
+		JPanel panel_8 = new JPanel();
+		add(panel_8, BorderLayout.SOUTH);
+		
+		JPanel panel_9 = new JPanel();
+		add(panel_9, BorderLayout.WEST);
+		
+		JPanel panel_10 = new JPanel();
+		add(panel_10, BorderLayout.EAST);
 
 	}
 	
@@ -85,5 +119,4 @@ public class InformDetailPanel extends InformSizePanel {
 		lblTitle.setText(title);
 		btnDel.setText(button);
 	}
-
 }

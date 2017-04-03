@@ -21,7 +21,7 @@ public class PublisherView extends AbsViewPanel {
 	public PublisherView() {
 		
 		JPanel panel = new JPanel();
-		add(panel);
+		pMain.add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{775, 0};
 		gbl_panel.rowHeights = new int[]{300, 300, 0};

@@ -24,7 +24,7 @@ public class BookLendView extends AbsViewPanel {
 		gridLayout.setVgap(10);
 		
 		JPanel panel = new JPanel();
-		add(panel);
+		pMain.add(panel);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		BookInfoBasic panel_3 = new BookInfoBasic();
@@ -64,6 +64,6 @@ public class BookLendView extends AbsViewPanel {
 		panel_2.add(btnLend);
 		
 		JPanel panel_1 = new JPanel();
-		add(panel_1);
+		pMain.add(panel_1);
 	}
 }
