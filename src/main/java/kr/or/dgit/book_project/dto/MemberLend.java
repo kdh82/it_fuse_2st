@@ -3,7 +3,7 @@ package kr.or.dgit.book_project.dto;
 import java.util.Date;
 
 public class MemberLend {
-	private MemberInfo mCode;		// 회원코드
+	private MemberInfo memberinfo;	// 회원코드
 	private boolean isPosbl;		// 대여가능여부
 	private int delayCount;			// 연체 횟수
 	private int mLendCount;			// 총 대여 횟수	
@@ -12,21 +12,38 @@ public class MemberLend {
 	
 	public MemberLend() {	}
 
-	public MemberLend(MemberInfo mCode, boolean isPosbl, int delayCount, int mLendCount, int mNowCount,	Date blackDate) {
+	/*public MemberLend(MemberInfo mCode, boolean isPosbl, int delayCount, int mLendCount, int mNowCount,	Date blackDate) {
 		this.mCode = mCode;
 		this.isPosbl = isPosbl;
 		this.delayCount = delayCount;
 		this.mLendCount = mLendCount;
 		this.mNowCount = mNowCount;
 		this.blackDate = blackDate;
+	}*/
+	public MemberLend(boolean isPosbl, int delayCount, int mLendCount, int mNowCount, Date blackDate) {
+		super();
+		this.isPosbl = isPosbl;
+		this.delayCount = delayCount;
+		this.mLendCount = mLendCount;
+		this.mNowCount = mNowCount;
+		this.blackDate = blackDate;
 	}
+	
 
-	public MemberInfo getmCode() {
+/*	public MemberInfo getmCode() {
 		return mCode;
 	}
 
 	public void setmCode(MemberInfo mCode) {
 		this.mCode = mCode;
+	}*/
+
+	public MemberInfo getMemberinfo() {
+		return memberinfo;
+	}
+
+	public void setMemberinfo(MemberInfo memberinfo) {
+		this.memberinfo = memberinfo;
 	}
 
 	public boolean isPosbl() {
@@ -71,6 +88,6 @@ public class MemberLend {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s", mCode, isPosbl, delayCount, mLendCount, mNowCount, blackDate);
+		return String.format("%s, %s, %s, %s, %s, %s", isPosbl, delayCount, mLendCount, mNowCount, blackDate);
 	}
 }

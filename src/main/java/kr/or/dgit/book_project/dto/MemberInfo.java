@@ -9,9 +9,10 @@ public class MemberInfo {
 	private String mAddress;	// 주소
 	private char mGroup;		// A/B/C : 관리자/사서/일반회원
 	private boolean isSecsn;	// 탈퇴여부
+	private MemberLend memberLend;
 	
-	public MemberInfo() {	}
-
+	public MemberInfo() {	}	
+	
 	public MemberInfo(String mCode, String mPass, String mName, String mTel,
 						int mZipCode, String mAddress, char mGroup, boolean isSecsn) {
 		this.mCode = mCode;
@@ -22,6 +23,29 @@ public class MemberInfo {
 		this.mAddress = mAddress;
 		this.mGroup = mGroup;
 		this.isSecsn = isSecsn;
+	}	
+
+	public MemberInfo(String mPass, String mName, String mTel, int mZipCode, String mAddress) {
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+	}
+	
+
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, int mZipCode, String mAddress, char mGroup,
+			boolean isSecsn, MemberLend memberLend) {
+		super();
+		this.mCode = mCode;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+		this.mGroup = mGroup;
+		this.isSecsn = isSecsn;
+		this.memberLend = memberLend;
 	}
 
 	public String getmCode() {
@@ -88,9 +112,21 @@ public class MemberInfo {
 		this.isSecsn = isSecsn;
 	}
 
+	public MemberLend getMemberLend() {
+		return memberLend;
+	}
+	
+	public void setMemberLend(MemberLend memberLend) {
+		this.memberLend = memberLend;
+	}
+
+	public char getmGroup() {
+		return mGroup;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s, %s, %s", 
-							mCode, mPass, mName, mTel, mZipCode, mAddress, mGroup, isSecsn);
+		return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s", 
+							mCode, mPass, mName, mTel, mZipCode, mAddress, mGroup, isSecsn, memberLend);
 	}
 }

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.book_project.dao.MemberLendMapper">
+
+ 	<resultMap id="MemberLendResult" type="memberLend" >
+		<!-- <id property="mCode" column="m_code"/> -->
+		<result property="isPosbl" column="is_posbl"/>
+		<result property="delayCount" column="delay_count"/>
+		<result property="mLendCount" column="m_lend_count"/>
+		<result property="mNowCount" column="m_now_count"/>
+		<result property="blackDate" column="black_date"/>
+	</resultMap>
 </mapper>
