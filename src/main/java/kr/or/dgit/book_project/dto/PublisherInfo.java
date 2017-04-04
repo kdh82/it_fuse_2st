@@ -66,7 +66,7 @@ public class PublisherInfo {
 	public void setpAddress(String pAddress) {
 		this.pAddress = pAddress;
 	}
-
+	
 	@Override
 	public String toString() {
 		return String.format("%s, %s, %s, %s, %s, %s", pCode, publisher, pName, pTel, pZipCode, pAddress);
