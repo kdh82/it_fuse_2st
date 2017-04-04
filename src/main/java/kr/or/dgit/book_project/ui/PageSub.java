@@ -43,7 +43,7 @@ public class PageSub extends JFrame implements ActionListener {
 		pTabSub = new JPanel();	
 		pTabSub.setBounds(147, 10, 825, 600);
 		contentPane.add(pTabSub);
-		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));				
+		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));
 	}
 	
 	public void actionPerformed(ActionEvent e) {

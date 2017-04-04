@@ -1,3 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.dgit.book_project.dao.BookInfoMapper"></mapper>
+<mapper namespace="kr.or.dgit.book_project.dao.BookInfoMapper">
+
+	<resultMap type="BookInfo" id="BookInfoResult">
+		<id property="bCode" column="b_code" />
+		<id property="bSubCode" column="b_sub_code" />
+		<result property="bName" column="b_name" />
+		<result property="author" column="author" />
+		<result property="price" column="price" />
+		<result property="insertDate" column="insert_date" />
+		<result property="isDel" column="is_del" />
+		<association property="coden"
+			resultMap="kr.or.dgit.book_project.dao.CodenMapper.CodenResult"/>
+		<association property="publisherInfo"
+			resultMap="kr.or.dgit.book_project.dao.PublisherInfoMapper.PublisherInfoResult" />
+		<collection property="bookPaymentIO"
+			resultMap="kr.or.dgit.book_project.dao.PublisherInfoMapper.PublisherInfoResult"/>
+	</resultMap>
+
+
+	<!-- ################################# sql 구문 위치 ################################# -->
+
+	<sql id="insertSql">
+		insert into bookInfo(b_code, b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, is_del) values
+		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},#{insertDate},#{isDel});
+	</sql>
+	<sql id="selectCountSql">
+		select count(*) from bookInfo b
+		<choose>
+			<when test="searchBy=='Coden'">
+				where c_name = #{cName}
+			</when>
+			<when test="searchBy=='bCode'">
+				where b_code = #{bCode}
+			</when>
+			<otherwise>
+
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="selectSql">
+		select b.*, p.*, 
+		from bookInfo b 
+		full outer join publisherInfo p on b.p_code = p.p_code
+		full outer join bookLend bl on b.b_code = bl.b_code and b.b_sub_code = bl.b_sub_code
+	</sql>
+	<sql id="updateSql">
+		UPDATE bookinfo
+		<set>
+			<if test="coden != null">c_name=#{coden.cName},</if>
+			<if test="bName != null">b_name=#{bName},</if>
+			<if test="author != null">author=#{author},</if>
+			<if test="publisherInfo != null">p_code=#{publisherInfo.pCode}</if>
+			<if test="price != 0">price=#{price}</if>
+		</set>
+
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="bCode != null">
+				b_code= #{bCode}
+			</if>
+			<if test="bSubCode != null">
+				and b_sub_code =#{bSubCode}
+			</if>
+
+		</where>
+	</sql>
+
+
+	<!-- ################################# 연결부분 ################################# -->
+
+	<insert id="insertBookInfo" parameterType="BookInfo">
+		<include refid="insertSql" />
+	</insert>
+	<select id="selectBookInfoCountBy" parameterType="hashmap"
+		resultType="int">
+		<!-- <include refid="selectCountSql" /> -->
+		select count(*) from bookInfo
+		<choose>
+			<when test="searchBy=='Coden'">
+				where c_name = #{cName}
+			</when>
+			<when test="searchBy=='bCode'">
+				where b_code = #{bCode}
+			</when>
+		</choose>
+	</select>
+
+	<select id="selectBookInfoByAll" parameterType="BookInfo"
+		resultMap="BookInfoResult">
+		<include refid="selectSql" />
+		where is_del = false
+	</select>
+
+	<select id="selectBookInfoByAllBook" parameterType="boolean"
+		resultMap="BookInfoResult">
+		<include refid="selectSql" />
+		where is_del = #{isDel};
+	</select>
+
+	<select id="selectBookInfo" parameterType="hashmap" resultMap="BookInfoResult">
+		<include refid="selectSql" />
+		<where>
+			<if test="isDel != null">
+				is_del = #{isDel}
+			</if>
+			<if test="bCode != null">
+				and b.b_code = #{bCode}
+			</if>
+			<if test="bSubCode != null">
+				and b.b_sub_code = #{bSubCode}
+			</if>
+		</where>
+
+	</select>
+	<select id="selectBookInfoOne" parameterType="BookInfo"
+		resultMap="BookInfoResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
+
+	<update id="updateBookInfo" parameterType="BookInfo">
+		<include refid="updateSql" />
+		<include refid="whereSql" />
+	</update>
+
+	<update id="delBookInfo" parameterType="BookInfo">
+		update bookinfo set is_del = true
+		<include refid="whereSql" />
+	</update>
+</mapper>

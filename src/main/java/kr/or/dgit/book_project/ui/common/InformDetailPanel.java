@@ -71,47 +71,47 @@ public class InformDetailPanel extends InformSizePanel {
 		pContent.setLayout(new BorderLayout(0, 0));
 		pContent.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JPanel panel_7 = new JPanel();
+		JPanel idp1 = new JPanel();
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
 		gbc_panel_7.weighty = 1.0;
 		gbc_panel_7.weightx = 1.0;
 		gbc_panel_7.fill = GridBagConstraints.BOTH;
 		gbc_panel_7.gridx = 0;
 		gbc_panel_7.gridy = 2;
-		panel.add(panel_7, gbc_panel_7);
-		panel_7.setLayout(new GridLayout(1, 1, 10, 0));
+		panel.add(idp1, gbc_panel_7);
+		idp1.setLayout(new GridLayout(1, 1, 10, 0));
 		
-		JPanel panel_4 = new JPanel();
-		panel_7.add(panel_4);
+		JPanel idp2 = new JPanel();
+		idp1.add(idp2);
 		
-		JPanel panel_3 = new JPanel();
-		panel_7.add(panel_3);
-		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel id3 = new JPanel();
+		idp1.add(id3);
+		id3.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		btnModify = new JButton("수정");
-		panel_3.add(btnModify);
+		id3.add(btnModify);
 		
-		JPanel panel_6 = new JPanel();
-		panel_7.add(panel_6);
-		panel_6.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel idp4 = new JPanel();
+		idp1.add(idp4);
+		idp4.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		btnDel = new JButton("버튼");
-		panel_6.add(btnDel);
+		idp4.add(btnDel);
 		
-		JPanel panel_5 = new JPanel();
-		panel_7.add(panel_5);
+		JPanel idp5 = new JPanel();
+		idp1.add(idp5);
 		
-		JPanel panel_2 = new JPanel();
-		add(panel_2, BorderLayout.NORTH);
+		JPanel idp6 = new JPanel();
+		add(idp6, BorderLayout.NORTH);
 		
-		JPanel panel_8 = new JPanel();
-		add(panel_8, BorderLayout.SOUTH);
+		JPanel idp7 = new JPanel();
+		add(idp7, BorderLayout.SOUTH);
 		
-		JPanel panel_9 = new JPanel();
-		add(panel_9, BorderLayout.WEST);
+		JPanel idp8 = new JPanel();
+		add(idp8, BorderLayout.WEST);
 		
-		JPanel panel_10 = new JPanel();
-		add(panel_10, BorderLayout.EAST);
+		JPanel idp9 = new JPanel();
+		add(idp9, BorderLayout.EAST);
 
 	}
 	

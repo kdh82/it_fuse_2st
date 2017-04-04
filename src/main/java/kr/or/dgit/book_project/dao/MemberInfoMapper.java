@@ -1,6 +1,5 @@
 package kr.or.dgit.book_project.dao;
 
-
 import java.util.List;
 import java.util.Map;
 
@@ -11,5 +10,5 @@ public interface MemberInfoMapper {
 	int insertMemberInfo(MemberInfo memberInfo);		//회원삽입
 	List<MemberInfo> selectMemberByAll();				//목록출력
 	MemberInfo FindMemberInfoByCode(MemberInfo code);	//회원검색
-	
+
 }

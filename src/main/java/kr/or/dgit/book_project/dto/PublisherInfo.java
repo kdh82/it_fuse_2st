@@ -1,14 +1,15 @@
 package kr.or.dgit.book_project.dto;
 
 public class PublisherInfo {
-	private String pCode;			// 출판사코드
-	private String publisher;		// 출판사명
-	private String pName;			// 담당자 명
-	private String pTel;			// 연락처
-	private int pZipCode;			// 우편번호
-	private String pAddress;		// 주소
-	
-	public PublisherInfo() {	}
+	private String pCode; // 출판사코드
+	private String publisher; // 출판사명
+	private String pName; // 담당자 명
+	private String pTel; // 연락처
+	private int pZipCode; // 우편번호
+	private String pAddress; // 주소
+
+	public PublisherInfo() {
+	}
 
 	public PublisherInfo(String pCode, String publisher, String pName, String pTel, int pZipCode, String pAddress) {
 		this.pCode = pCode;
@@ -69,7 +70,7 @@ public class PublisherInfo {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s", pCode, publisher, pName, pTel, pZipCode, pAddress);
+		return String.format("%s(%s)", publisher, pCode);
 	}
-	
+
 }

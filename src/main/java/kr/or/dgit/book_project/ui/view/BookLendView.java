@@ -20,24 +20,24 @@ public class BookLendView extends AbsViewPanel {
 
 	
 	public BookLendView() {
-		GridLayout gridLayout = (GridLayout) getLayout();
-		gridLayout.setVgap(10);
+		/*GridLayout gridLayout = (GridLayout) getLayout();
+		gridLayout.setVgap(10);*/
 		
-		JPanel panel = new JPanel();
-		pMain.add(panel);
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
+		JPanel blv1 = new JPanel();
+		pMain.add(blv1);
+		blv1.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		BookInfoBasic panel_3 = new BookInfoBasic();
-		panel.add(panel_3);
+		blv1.add(panel_3);
 		
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5);
+		JPanel blv2 = new JPanel();
+		blv1.add(blv2);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[] {350, 10};
 		gbl_panel_5.rowHeights = new int[] {150, 100, 0};
 		gbl_panel_5.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		panel_5.setLayout(gbl_panel_5);
+		blv2.setLayout(gbl_panel_5);
 		
 		BookLendMemberDetail panel_4 = new BookLendMemberDetail();
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
@@ -47,23 +47,28 @@ public class BookLendView extends AbsViewPanel {
 		gbc_panel_4.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_4.gridx = 0;
 		gbc_panel_4.gridy = 0;
-		panel_5.add(panel_4, gbc_panel_4);
+		blv2.add(panel_4, gbc_panel_4);
 		
-		JPanel panel_2 = new JPanel();
+		JPanel blv3 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.weighty = 1.0;
 		gbc_panel_2.weightx = 1.0;
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 0;
 		gbc_panel_2.gridy = 1;
-		panel_5.add(panel_2, gbc_panel_2);
-		panel_2.setLayout(null);
+		blv2.add(blv3, gbc_panel_2);
+		blv3.setLayout(new GridLayout(1, 1, 10, 0));
+		
+		JPanel blv5 = new JPanel();
+		blv3.add(blv5);
 		
 		JButton btnLend = new JButton("대여");
-		btnLend.setBounds(147, 20, 100, 50);
-		panel_2.add(btnLend);
+		blv3.add(btnLend);
 		
-		JPanel panel_1 = new JPanel();
-		pMain.add(panel_1);
+		JPanel blv6 = new JPanel();
+		blv3.add(blv6);
+		
+		JPanel blv4 = new JPanel();
+		pMain.add(blv4);
 	}
 }

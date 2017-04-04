@@ -33,12 +33,12 @@ public class PageMain extends JFrame {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
 
-		} catch (Exception e) {
-		}
-		PageMain frame = new PageMain();
+		} catch (Exception e) {	}		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					PageMain frame = new PageMain();
 					frame.setVisible(true);
 
