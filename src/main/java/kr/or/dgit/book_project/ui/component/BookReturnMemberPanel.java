@@ -18,18 +18,18 @@ public class BookReturnMemberPanel extends JPanel {
 		BookLendMemberDetail panel = new BookLendMemberDetail();
 		add(panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+		JPanel brmp1 = new JPanel();
+		brmp1.setLayout(new BoxLayout(brmp1, BoxLayout.Y_AXIS));
 		
 		InputComp pLendDate = new InputComp();
 		pLendDate.setTitle("대 여 일");
-		panel_1.add(pLendDate);
+		brmp1.add(pLendDate);
 		
 		InputComp pReturnDate = new InputComp();
 		pReturnDate.setTitle("반 납 일");
-		panel_1.add(pReturnDate);
+		brmp1.add(pReturnDate);
 		
-		add(panel_1);
+		add(brmp1);
 		
 		
 		

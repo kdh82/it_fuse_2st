@@ -1,57 +1,83 @@
 package kr.or.dgit.book_project.ui.view;
 
-import javax.swing.JPanel;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.swing.JPanel;
+
+import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookSearchPanel;
 import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
-
-import javax.swing.JButton;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import kr.or.dgit.book_project.ui.table.AbsTable;
 
 public class BookSearchView extends AbsViewPanel {
 
+	private AbsTable<BookInfo> pTable;
+
 	public BookSearchView() {
-		
-		JPanel panel_2 = new JPanel();
-		pMain.add(panel_2);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] {400, 0};
-		gbl_panel_2.rowHeights = new int[] {200, 300, 0};
-		gbl_panel_2.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		panel_2.setLayout(gbl_panel_2);
-		
-		CheckSearchDesign panel = new CheckSearchDesign();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.weighty = 1.0;
-		gbc_panel.weightx = 1.0;
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.insets = new Insets(0, 0, 5, 0);
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		panel_2.add(panel, gbc_panel);
-		GridBagLayout gridBagLayout_1 = (GridBagLayout) panel.getLayout();
-		gridBagLayout_1.rowHeights = new int[] {227};
-		
+
+		JPanel pMainSub = new JPanel();
+		pMain.add(pMainSub);
+		GridBagLayout gbl_pMainSub = new GridBagLayout();
+		gbl_pMainSub.columnWidths = new int[] { 300, 0 };
+		gbl_pMainSub.rowHeights = new int[] { 200, 200, 0 };
+		gbl_pMainSub.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gbl_pMainSub.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		pMainSub.setLayout(gbl_pMainSub);
+
+		CheckSearchDesign pContent = new CheckSearchDesign();
+		GridBagConstraints gbc_pContent = new GridBagConstraints();
+		gbc_pContent.weighty = 1.0;
+		gbc_pContent.weightx = 1.0;
+		gbc_pContent.fill = GridBagConstraints.BOTH;
+		gbc_pContent.insets = new Insets(0, 0, 5, 0);
+		gbc_pContent.gridx = 0;
+		gbc_pContent.gridy = 0;
+		pMainSub.add(pContent, gbc_pContent);
+		GridBagLayout gbl_pContent = (GridBagLayout) pContent.getLayout();
+		gbl_pContent.rowHeights = new int[] { 227 };
+
 		BookSearchPanel bsp = new BookSearchPanel();
-		panel.getpContent().add(bsp);
-		
-		
-		
-		JPanel pTable = new JPanel();
+		pContent.getpContent().add(bsp);
+
+	//	pTable = new BookInfoTable();
+
 		GridBagConstraints gbc_pTable = new GridBagConstraints();
-		gbc_pTable.weighty = 1.0;
+		gbc_pTable.weighty = 1.5;
 		gbc_pTable.weightx = 1.0;
 		gbc_pTable.fill = GridBagConstraints.BOTH;
 		gbc_pTable.gridx = 0;
 		gbc_pTable.gridy = 1;
-		panel_2.add(pTable, gbc_pTable);
-		pTable.setLayout(new GridLayout(1, 0, 0, 0));
+		pTable.loadData();
+		pMainSub.add(pTable, gbc_pTable);
+	}
+
+
+	public void setMyMouseListener(BookInsertView bookInsertView) {
+		pTable.getTable().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				BookInfo bi = pTable.getSelectedObject();
+				BookInfoService bis = new BookInfoService();
+				Map<String, Object> param = new HashMap<>();
+				param.put("searchBy", "bCode");
+				param.put("bCode", bi.getbCode());
+				int cnt = bis.selectBookInfoCountBy(param);
+			/*	bookInsertView.getpContent().getpBCode().setTfBCode(bi.getbCode());
+				bookInsertView.getpContent().getpBCode().setEnabled(false);
+				bookInsertView.getpContent().getpBCode().setTfBSubCode(cnt+"");*/
+				setVisible(false);
+			}
+
+		});
 	}
 
 }

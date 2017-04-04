@@ -30,7 +30,7 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		pMain.add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[] { 600, 0 };
-		gbl_panel_5.rowHeights = new int[] {300, 50, 200, 0};
+		gbl_panel_5.rowHeights = new int[] { 300, 50, 200, 0 };
 		gbl_panel_5.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_panel_5.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_5.setLayout(gbl_panel_5);
@@ -111,8 +111,10 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
 		// 도서 검색창 새창으로
 		JFrame bookSearch = new JFrame("도서검색");
+		BookSearchView bsv = new BookSearchView();
+		bsv.setMyMouseListener(this);
 		bookSearch.setBounds(600, 100, 500, 600);
-		bookSearch.getContentPane().add(new BookSearchView());
+		bookSearch.getContentPane().add(bsv);
 		bookSearch.setVisible(true);
 		// 도서코드 세팅후 enable
 	}
@@ -122,19 +124,26 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "추가할 내용이 없습니다.");
 		} else {
 			// insert문
-			/*PublisherInfoService pis = new PublisherInfoService();
+			PublisherInfoService pis = new PublisherInfoService();
 			PublisherInfo ps = new PublisherInfo();
 			ps.setPublisher(pContent.getTfAddPublisher().getText());
 			pis.insertPubliherShort(ps);
-			List<PublisherInfo> list = pis.selectByAll();*/
-			
+			List<PublisherInfo> list = pis.selectByAll();
+
 			// 추가후... 추가한 항목을 selected로
-		/*	
+
 			pContent.getpPublisher().getComboBox().removeAllItems(); // 기존목록 지우기
 			pContent.getpPublisher().setComboDate(list); // 새 목록 넣기
 			// 목록을 넣지 않고 새로 추가된 애만 additem???? 고민중
-			pContent.getpPublisher().setSelected(pis.selectCountAll()-1); // 제일 마지막 출판사 선택하기
+			pContent.getpPublisher().setSelected(pis.selectCountAll() - 1); // 제일
+																			// 마지막
+																			// 출판사
+																			// 선택하기
 			pContent.getTfAddPublisher().setText(""); // 텍스트필드 초기화
-*/		}
+		}
+	}
+
+	public BookInfoP getpContent() {
+		return pContent;
 	}
 }

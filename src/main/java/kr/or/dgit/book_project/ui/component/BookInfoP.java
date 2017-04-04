@@ -93,10 +93,10 @@ public class BookInfoP extends JPanel {
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(0, 2, 5, 0));
 
-	//	PublisherInfoService pis = new PublisherInfoService();
-	//	List<PublisherInfo> list = pis.selectByAll();
+		PublisherInfoService pis = new PublisherInfoService();
+		List<PublisherInfo> list = pis.selectByAll();
 		pPublisher = new ComboBoxPanel();
-	//	pPublisher.setComboDate(list);
+		pPublisher.setComboDate(list);
 		pPublisher.setTitle("출  판  사");
 		panel_2.add(pPublisher);
 

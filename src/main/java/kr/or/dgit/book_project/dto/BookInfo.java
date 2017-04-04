@@ -3,6 +3,8 @@ package kr.or.dgit.book_project.dto;
 import java.util.List;
 
 public class BookInfo { // 도서
+	private String bCode; // 도서코드
+	private String bSubCode; // 도서 중복 코드
 	private BookLend bookLend;
 	private String bName; // 도서명
 	private String author; // 저자
@@ -15,6 +17,32 @@ public class BookInfo { // 도서
 
 	public BookInfo() {
 	}
+	
+	
+
+	public String getbCode() {
+		return bCode;
+	}
+
+
+
+	public void setbCode(String bCode) {
+		this.bCode = bCode;
+	}
+
+
+
+	public String getbSubCode() {
+		return bSubCode;
+	}
+
+
+
+	public void setbSubCode(String bSubCode) {
+		this.bSubCode = bSubCode;
+	}
+
+
 
 	public String getbName() {
 		return bName;
@@ -95,6 +123,9 @@ public class BookInfo { // 도서
 				bookLend, bName, author, price, insertDate, isDel, coden, publisherInfo, bookPaymentIO);
 	}
 
+	public Object[] toArray(){
+		return new Object[]{ bCode, bSubCode, bName, coden.getcName(), author, publisherInfo};
+	}
 	
 	
 }
