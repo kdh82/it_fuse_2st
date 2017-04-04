@@ -9,8 +9,12 @@
 		<result property="mTel" column="m_tel"/>
 		<result property="mZipCode" column="m_zip_code"/>
 		<result property="mAddress" column="m_address"/>
-		<result property="isSecsn" column="is_secsn"/>		
-		<association property="memberLend" resultMap="kr.or.dgit.book_project.dao.MemberLendMapper.MemberLendResult"></association>
+		<result property="isSecsn" column="is_secsn"/>
+		<result property="isPosbl" column="is_posbl"/>
+		<result property="delayCount" column="delay_count"/>
+		<result property="mLendCount" column="m_lend_count"/>
+		<result property="mNowCount" column="m_now_count"/>
+		<result property="blackDate" column="black_date"/>		
 	</resultMap>
 	
 	<select id="selectCountAll" resultType="int">
