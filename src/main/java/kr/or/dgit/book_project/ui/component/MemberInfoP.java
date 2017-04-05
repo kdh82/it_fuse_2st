@@ -68,13 +68,21 @@ public class MemberInfoP extends JPanel {
 	}
 	
 	public MemberInfo getObject(){				
-	/*	String mPass = pMPass.getTFValue();
+		String mCode = pMCode.getTFValue();
 		String mName = pMName.getTFValue();
-		String mTel = pMTel.getTFValue();
+		String mTel  = pMTel.getTFValue();
 		int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
-		String mAddress = pMAddress.getTFValue();		
-		return new MemberInfo(mPass, mName, mTel, mZipCode, mAddress);*/
-		return null;
+		String mAddress = pMAddress.getTFValue();
+		return new MemberInfo(mCode, mName, mTel, mZipCode, mAddress);
+	}
+	
+	public void setObject(MemberInfo item){
+		pMCode.setTFValue(item.getmCode());
+		pMPass.setTFValue(item.getmPass());
+		pMName.setTFValue(item.getmName());
+		pMTel.setTFValue(item.getmTel());
+		pMZipCode.setTFValue(item.getmZipCode()+"");
+		
 	}
 	
 	public boolean isVaildCheck(){

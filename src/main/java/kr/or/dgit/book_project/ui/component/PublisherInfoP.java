@@ -42,7 +42,9 @@ public class PublisherInfoP extends JPanel {
 		InputComp pPAddress = new InputComp();
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
-
 	}
+	
+	
+	
 
 }

@@ -16,6 +16,7 @@ import java.awt.FlowLayout;
 import javax.swing.JComboBox;
 import java.awt.CardLayout;
 import javax.swing.border.SoftBevelBorder;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import java.awt.event.ActionListener;
@@ -91,16 +92,14 @@ public class PageMain extends JFrame {
 		sub.getpTabSub().add(new SubMenuPage1());
 		sub.setVisible(true);
 	}
-
 	protected void actionPerformedBtnMenu2(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage2());
-		sub.setVisible(true);
+		sub.setVisible(true);	
 	}
-
 	protected void actionPerformedBtnMenu3(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage3());
-		sub.setVisible(true);
+		sub.setVisible(true);	
 	}
 }

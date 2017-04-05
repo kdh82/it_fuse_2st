@@ -16,6 +16,14 @@ public class MemberInfo {
 	private boolean isSecsn;	// 탈퇴여부
 	
 	public MemberInfo() {	}
+		
+	public MemberInfo(String mCode, String mName, String mTel, int mZipCode, String mAddress) {
+		this.mCode = mCode;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+	}
 
 	public String getmCode() {
 		return mCode;
