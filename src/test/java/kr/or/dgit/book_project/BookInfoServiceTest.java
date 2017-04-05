@@ -27,7 +27,7 @@ public class BookInfoServiceTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		bookInfoService = new BookInfoService();
+		bookInfoService = BookInfoService.getInstance();
 	}
 
 	@AfterClass

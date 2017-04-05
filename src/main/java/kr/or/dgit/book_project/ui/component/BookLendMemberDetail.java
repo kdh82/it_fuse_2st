@@ -1,22 +1,19 @@
 package kr.or.dgit.book_project.ui.component;
 
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
-
+import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.ui.common.InputComp;
 
 public class BookLendMemberDetail extends JPanel {
 
 	protected JLabel lblMsg;
+	private InputComp pMCode;
+	private InputComp pMName;
+	private InputComp pMTel;
 
 	/**
 	 * Create the panel.
@@ -24,23 +21,38 @@ public class BookLendMemberDetail extends JPanel {
 	public BookLendMemberDetail() {
 		setLayout(new GridLayout(0, 1, 0, 10));
 		
-		InputComp pMCode = new InputComp();
+		pMCode = new InputComp();
 		add(pMCode);
 		pMCode.setTitle("회원코드");
 		
 		lblMsg = new JLabel();
 		add(lblMsg);
 		
-		InputComp pMName = new InputComp();
+		pMName = new InputComp();
 		add(pMName);
 		pMName.setTitle("성명");
 		
-		InputComp pMTel = new InputComp();
+		pMTel = new InputComp();
 		add(pMTel);
 		pMTel.setTitle("전화번호");
-		
-		
-
 	}
-
+	// 겟
+	public MemberInfo getObject(){
+		String mCode = pMCode.getTFValue();
+		String mName = pMName.getTFValue();
+		String mTel = pMTel.getTFValue();
+		return new MemberInfo(mCode, mName, mTel);
+	}
+	// 셋
+	public void setObject(MemberInfo memberinfo){
+		pMCode.setTFValue(memberinfo.getmCode());
+		pMName.setTFValue(memberinfo.getmName());
+		pMTel.setTFValue(memberinfo.getmTel());
+	}
+	
+	public InputComp getpMCode() {
+		return pMCode;
+	}
+	
+	
 }
