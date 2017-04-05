@@ -55,8 +55,8 @@ public class BookSearchView extends AbsViewPanel {
 		gbc_pTable.fill = GridBagConstraints.BOTH;
 		gbc_pTable.gridx = 0;
 		gbc_pTable.gridy = 1;
-		pTable.loadData();
-		pMainSub.add(pTable, gbc_pTable);
+		/*pTable.loadData();*/
+		/*pMainSub.add(pTable, gbc_pTable);*/
 	}
 
 

@@ -19,7 +19,6 @@ public class BookInfo { // 도서
 	public BookInfo() {
 	}
 
-
 	public BookInfo(String bCode, String bSubCode, String bName, String author, PublisherInfo publisherInfo, int price,
 			int bLendCount) {
 		super();
@@ -32,10 +31,10 @@ public class BookInfo { // 도서
 		this.bLendCount = bLendCount;
 	}
 
-	/*public Object[] toArray() {
-		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author, publisherInfo };
-		return null;
-	}*/
+	/*
+	 * public Object[] toArray() { return new Object[] { bCode, bSubCode, bName,
+	 * coden.getcName(), author, publisherInfo }; return null; }
+	 */
 
 	public String getbCode() {
 		return bCode;
@@ -125,14 +124,15 @@ public class BookInfo { // 도서
 		this.isDel = isDel;
 	}
 
-
 	@Override
 	public String toString() {
-		return String.format(
-				"%s %s %s %s %s %s %s %s %s %s %s",
-				bCode, bSubCode, coden, bName, author, publisherInfo, price, insertDate, bLendCount, isLending, isDel);
+		return String.format("%s %s %s %s %s %s %s %s %s %s %s", bCode, bSubCode, coden, bName, author, publisherInfo,
+				price, insertDate, bLendCount, isLending, isDel);
 	}
-	public Object[] toArray(){
-		return new Object[]{bCode,bSubCode,bName,author,publisherInfo.getPublisher(),bLendCount};
+
+	public Object[] toArrayForLend() {
+		// "도서코드","도서중복코드","도서명","저자","출판사","총대여 횟수"
+		return new Object[] { bCode, bSubCode, bName, author,
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()),price, bLendCount };
 	}
 }

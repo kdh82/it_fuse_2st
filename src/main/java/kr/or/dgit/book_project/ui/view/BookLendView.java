@@ -1,33 +1,33 @@
 package kr.or.dgit.book_project.ui.view;
 
-import java.awt.Rectangle;
-
-import javax.swing.JPanel;
-
-import kr.or.dgit.book_project.ui.common.AbsViewPanel;
-import kr.or.dgit.book_project.ui.component.BookInfoBasic;
-import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
-
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.ui.common.AbsViewPanel;
+import kr.or.dgit.book_project.ui.component.BookInfoBasic;
+import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
 import kr.or.dgit.book_project.ui.table.BookLendTable;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class BookLendView extends AbsViewPanel {
 
 	
 	private BookLendTable blv4;
+	private BookInfoBasic panel_3;
 	public BookLendView() {
 		/*GridLayout gridLayout = (GridLayout) getLayout();
 		gridLayout.setVgap(10);*/
@@ -36,7 +36,13 @@ public class BookLendView extends AbsViewPanel {
 		pMain.add(blv1);
 		blv1.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		BookInfoBasic panel_3 = new BookInfoBasic();
+		panel_3 = new BookInfoBasic();
+		panel_3.getpBCode().getTfBCode().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				mousePressedPanel_3PBCodeTfBCode(e);
+			}
+		});
 		panel_3.getpBCode().getTfBCode().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				actionPerformedPanel_3PBCodeTfBCode(arg0);
@@ -87,8 +93,9 @@ public class BookLendView extends AbsViewPanel {
 		blv4.loadData();
 		blv4.getTable().addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				mouseClickedBlv4Table(arg0);
+			public void mouseClicked(MouseEvent e) {
+				
+				mouseClickedBlv4Table(e);
 			}
 		});
 		
@@ -96,18 +103,33 @@ public class BookLendView extends AbsViewPanel {
 	}
 	protected void actionPerformedPanel_3PBCodeTfBCode(ActionEvent arg0) {
 		BookSearchView bsv = new BookSearchView();
-		blv4.loadData();// 테이블 끌어오는거?
-		JFrame jf = new JFrame();
+		/*blv4.loadData();// 테이블 끌어오는거?
+*/		JFrame jf = new JFrame();
+		/*jf.add(bsv);*/
 		jf.setVisible(true);
 	}
 	protected void actionPerformedPanel_4PMCodeTF(ActionEvent arg0) {
 		MemberSearchView msv = new MemberSearchView();
-		blv4.loadData();// 테이블 끌어오는거?
-		JFrame jf = new JFrame();
-		jf.getContentPane().add(msv);
+		/*blv4.loadData();// 테이블 끌어오는거?
+*/		JFrame jf = new JFrame();
+		jf.setBounds(100, 100, 400, 500);
+		jf.add(msv);
 		jf.setVisible(true);
 	}
-	protected void mouseClickedBlv4Table(MouseEvent arg0) {
-		
+	protected void mouseClickedBlv4Table(MouseEvent e) {
+		if(e.getClickCount() == 2){
+			BookInfo bi = blv4.getSelectedObject();
+			Map<String, Object> param = new HashMap<>();
+			param.put("serarchBy","bCode");
+			param.put("bCode", bi.getbCode());
+		}
+	}
+	protected void mousePressedPanel_3PBCodeTfBCode(MouseEvent e) {
+		BookSearchView bsv = new BookSearchView();
+		/*blv4.loadData();// 테이블 끌어오는거?
+*/		JFrame jf = new JFrame();
+		jf.setBounds(100, 100, 400, 500);
+		jf.add(bsv);
+		jf.setVisible(true);
 	}
 }

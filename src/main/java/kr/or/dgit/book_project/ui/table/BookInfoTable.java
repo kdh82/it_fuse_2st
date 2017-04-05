@@ -46,7 +46,7 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 		List<BookInfo> list = BookInfoService.getInstance().selectBookInfoByAllBook(false);
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
-			datas[i] = list.get(i).toArray();
+			/*datas[i] = list.get(i).toArray();*/
 		}
 		return datas;
 	}
