@@ -72,17 +72,17 @@ public class PageSub extends JFrame implements ActionListener {
 						node_1.add(new DefaultMutableTreeNode("도서관리"));
 						node_1.add(new DefaultMutableTreeNode("분류관리"));
 						node_1.add(new DefaultMutableTreeNode("출판사관리"));
-					getContentPane().add(node_1);
+					add(node_1);
 					node_1 = new DefaultMutableTreeNode("인적자원관리");
 						node_1.add(new DefaultMutableTreeNode("회원등록"));
 						node_1.add(new DefaultMutableTreeNode("회원관리"));
 						node_1.add(new DefaultMutableTreeNode("직원등록"));
 						node_1.add(new DefaultMutableTreeNode("직원관리"));
-					getContentPane().add(node_1);
+					add(node_1);
 					node_1 = new DefaultMutableTreeNode("도서출납관리");
 						node_1.add(new DefaultMutableTreeNode("대여관리"));
 						node_1.add(new DefaultMutableTreeNode("반납관리"));
-					getContentPane().add(node_1);
+					add(node_1);
 					node_1 = new DefaultMutableTreeNode("도서출납통계");
 						node_1.add(new DefaultMutableTreeNode("누적 베스트지수"));
 						node_1.add(new DefaultMutableTreeNode("분야별 베스트지수"));
@@ -90,10 +90,14 @@ public class PageSub extends JFrame implements ActionListener {
 						node_1.add(new DefaultMutableTreeNode("분야별 월별 베스트 지수"));
 						node_1.add(new DefaultMutableTreeNode("분야별 권수 비율"));
 						node_1.add(new DefaultMutableTreeNode("분야별 대여 비율"));
-					getContentPane().add(node_1);
+					add(node_1);
 				}
 			}
 		));
+		
+		
+		
+		
 		GridBagConstraints gbc_tree = new GridBagConstraints();
 		gbc_tree.fill = GridBagConstraints.BOTH;
 		gbc_tree.gridx = 0;
@@ -107,7 +111,7 @@ public class PageSub extends JFrame implements ActionListener {
 		gbc_pTabSub.gridy = 0;
 		contentPane.add(pTabSub, gbc_pTabSub);
 		GridBagLayout gbl_pTabSub = new GridBagLayout();
-		gbl_pTabSub.columnWidths = new int[]{378, 0};
+		gbl_pTabSub.columnWidths = new int[]{832, 0};
 		gbl_pTabSub.rowHeights = new int[]{0, 0};
 		gbl_pTabSub.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_pTabSub.rowWeights = new double[]{1.0, Double.MIN_VALUE};
