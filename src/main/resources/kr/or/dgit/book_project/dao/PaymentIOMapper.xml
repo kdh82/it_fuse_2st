@@ -3,4 +3,13 @@
 <mapper namespace="kr.or.dgit.book_project.dao.PaymentIOMapper">
 
 
+	<resultMap type="PaymentIO" id="PaymentIOResult">
+		<result property="bCode" column="b_code" />
+		<result property="bSubCode" column="b_sub_code" />
+		<result property="mCode" column="m_code" />
+		<result property="lendDate" column="lend_date" />
+		<result property="returnDate" column="return_date" />
+	</resultMap>
+
+
 </mapper>

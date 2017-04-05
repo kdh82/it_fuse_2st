@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.book_project.dao.BookInfoMapper">
 
+
 	<resultMap type="BookInfo" id="BookInfoResult">
 		<id property="bCode" column="b_code" />
 		<id property="bSubCode" column="b_sub_code" />
@@ -9,6 +10,8 @@
 		<result property="author" column="author" />
 		<result property="price" column="price" />
 		<result property="insertDate" column="insert_date" />
+		<result property="bLendCount" column="b_lend_count" />
+		<result property="isLending" column="is_lending" />
 		<result property="isDel" column="is_del" />
 		<association property="coden"
 			resultMap="kr.or.dgit.book_project.dao.CodenMapper.CodenResult"/>

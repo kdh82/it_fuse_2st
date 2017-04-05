@@ -33,12 +33,12 @@ public class PageMain extends JFrame {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
 
-		} catch (Exception e) {
-		}
-		PageMain frame = new PageMain();
+		} catch (Exception e) {	}		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					PageMain frame = new PageMain();
 					frame.setVisible(true);
 
@@ -54,9 +54,8 @@ public class PageMain extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
-		contentPane.setBorder(new CompoundBorder());
+		contentPane.setBorder(new EmptyBorder(150, 80, 150, 80));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JButton btnMenu1 = new JButton("자료관리");
 		btnMenu1.setFont(new Font("나눔고딕", Font.PLAIN, 25));
@@ -65,7 +64,7 @@ public class PageMain extends JFrame {
 				actionPerformedBtnMenu1(e);
 			}
 		});
-		btnMenu1.setBounds(116, 193, 190, 190);
+		contentPane.setLayout(new GridLayout(0, 3, 100, 0));
 		contentPane.add(btnMenu1);
 
 		JButton btnMenu2 = new JButton("출납관리");
@@ -75,7 +74,6 @@ public class PageMain extends JFrame {
 				actionPerformedBtnMenu2(e);
 			}
 		});
-		btnMenu2.setBounds(398, 193, 190, 190);
 		contentPane.add(btnMenu2);
 
 		JButton btnMenu3 = new JButton("출납통계");
@@ -85,7 +83,6 @@ public class PageMain extends JFrame {
 				actionPerformedBtnMenu3(e);
 			}
 		});
-		btnMenu3.setBounds(671, 193, 190, 190);
 		contentPane.add(btnMenu3);
 	}
 

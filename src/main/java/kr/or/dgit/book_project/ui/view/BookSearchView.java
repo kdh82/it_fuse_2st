@@ -16,7 +16,6 @@ import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookSearchPanel;
 import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
 import kr.or.dgit.book_project.ui.table.AbsTable;
-import kr.or.dgit.book_project.ui.table.BookInfoTable;
 
 public class BookSearchView extends AbsViewPanel {
 
@@ -48,7 +47,7 @@ public class BookSearchView extends AbsViewPanel {
 		BookSearchPanel bsp = new BookSearchPanel();
 		pContent.getpContent().add(bsp);
 
-		pTable = new BookInfoTable();
+	//	pTable = new BookInfoTable();
 
 		GridBagConstraints gbc_pTable = new GridBagConstraints();
 		gbc_pTable.weighty = 1.5;

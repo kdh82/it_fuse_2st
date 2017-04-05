@@ -1,16 +1,23 @@
 package kr.or.dgit.book_project.ui.component;
 
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.ui.common.InputComp;
 
 public class MemberInfoP extends JPanel {
+	private InputComp pMCode;
+	private InputComp pMName;
+	private InputComp pMTel;
+	private InputComp pMZipCode;
+	private InputComp pMAddress;
+	private InputComp pMAddDetail;
+	private InputComp pMPass;
 
-	/**
-	 * Create the panel.
-	 */
 	public MemberInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -18,30 +25,75 @@ public class MemberInfoP extends JPanel {
 		add(panelM);
 		panelM.setLayout(new GridLayout(0, 1, 10, 10));
 		
-		InputComp pMCode = new InputComp();
+		pMCode = new InputComp();
 		pMCode.setTitle("회원코드");
 		panelM.add(pMCode);
 		
-		InputComp pMName = new InputComp();
+		pMName = new InputComp();
 		pMName.setTitle("성      명");
 		panelM.add(pMName);
 		
-		InputComp pMTel = new InputComp();
+		pMPass = new InputComp();
+		GridBagLayout pMPassGridBagLayout = (GridBagLayout) pMPass.getLayout();
+		pMPassGridBagLayout.rowWeights = new double[]{0.0};
+		pMPassGridBagLayout.rowHeights = new int[]{50};
+		pMPassGridBagLayout.columnWeights = new double[]{0.0, 0.0};
+		pMPassGridBagLayout.columnWidths = new int[]{100, 200};
+		pMPass.setTitle("비밀번호");
+		panelM.add(pMPass);
+		
+		pMTel = new InputComp();
 		pMTel.setTitle("전화번호");
 		panelM.add(pMTel);
 		
-		InputComp pMZipCode = new InputComp();
+		pMZipCode = new InputComp();
 		panelM.add(pMZipCode);
 		pMZipCode.setTitle("우편번호");
 		
-		InputComp pMAddress = new InputComp();
+		pMAddress = new InputComp();
 		pMAddress.setTitle("주      소");
 		panelM.add(pMAddress);
 		
-		InputComp panel = new InputComp();
-		panel.setTitle("상세주소");
-		panelM.add(panel);
-
+		pMAddDetail = new InputComp();
+		pMAddDetail.setTitle("상세주소");
+		panelM.add(pMAddDetail);
 	}
+	
+	public void setClear(){
+		pMName.setTFValue("");
+		pMTel.setTFValue("");
+		pMZipCode.setTFValue("");
+		pMAddress.setTFValue("");
+		pMAddDetail.setTFValue("");	
+	}
+	
+	public MemberInfo getObject(){				
+	/*	String mPass = pMPass.getTFValue();
+		String mName = pMName.getTFValue();
+		String mTel = pMTel.getTFValue();
+		int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
+		String mAddress = pMAddress.getTFValue();		
+		return new MemberInfo(mPass, mName, mTel, mZipCode, mAddress);*/
+		return null;
+	}
+	
+	public boolean isVaildCheck(){
+		try {
+			pMPass.isValidCheck("[a-zA-Z0-9]+", "한글 또는 숫자만 가능");
+			pMName.isValidCheck("[a-zA-Z가-힣]+", "한글 또는 영문만 가능");
+			pMTel.isEmptyCheck();
+			pMZipCode.isEmptyCheck();
+			pMAddress.isEmptyCheck();
+			pMAddDetail.isEmptyCheck();
+			return true;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			return false;
+			//e.printStackTrace();
+		}
+	}	
+	
+		
+	
 
 }

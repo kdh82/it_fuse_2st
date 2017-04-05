@@ -1,38 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.book_project.dao.PublisherInfoMapper">
-
 	<resultMap type="PublisherInfo" id="PublisherInfoResult">
-		<id property="pCode" column="p_code"/>
-		<result property="publisher" column="publisher"/>
-		<result property="pName" column="p_name"/>
-		<result property="pTel" column="p_tel"/>
-		<result property="pZipCode" column="p_zip_code"/>
-		<result property="pAddress" column="p_Address"/>
+		<id property="pCode" column="p_code" />
+		<result property="publisher" column="publisher" />
+		<result property="pName" column="p_name" />
+		<result property="pTel" column="p_tel" />
+		<result property="pZipCode" column="p_zip_code" />
+		<result property="pAddress" column="p_Address" />
 	</resultMap>
 
 	<sql id="insertShortSql">
 		<!-- 도서등록 페이지에서 간단한 출판사등록시 -->
 		INSERT INTO publisherinfo (p_code, publisher)
-		VALUES(#{pCode}, #{publisher})
+		VALUES(#{pCode},
+		#{publisher})
 	</sql>
 	<sql id="selectCountSql">
 		select count(*) from publisherinfo
 	</sql>
 	<sql id="selectSql">
-		SELECT p_code, publisher, p_name, p_tel, p_zip_code, p_address FROM publisherinfo
+		SELECT p_code, publisher, p_name, p_tel, p_zip_code,
+		p_address FROM publisherinfo
 	</sql>
-	
-	
-	
+
+
+
 	<insert id="insertPubliherShort" parameterType="PublisherInfo">
-		<include refid="insertShortSql"/>
+		<include refid="insertShortSql" />
 	</insert>
 	<select id="selectCountAll" resultType="int">
-		<include refid="selectCountSql"/>
+		<include refid="selectCountSql" />
 	</select>
 	<select id="selectByAll" resultType="PublisherInfo">
-		<include refid="selectSql"/>
+		<include refid="selectSql" />
 	</select>
 
+
+	<sql id="selectSql">
+		SELECT p_code, publisher, p_name, p_tel, p_zip_code, p_address
+		FROM publisherinfo
+	</sql>
+	<sql id="whereSql">
+
+		where p_code=#{pCode}
+
+
+		<!-- where p_code=#{pCode} -->
+	</sql>
+
+	<select id="selectPublisherInfo" resultMap="PublisherInfoResult"
+		parameterType="publisherInfo">
+		<include refid="selectSql" />
+		where p_code=#{pCode}
+	</select>
+
+	<insert id="insertAllPublisherInfo" parameterType="PublisherInfo">
+		INSERT INTO PublisherInfo
+		(p_code, publisher, p_name, p_tel, p_zip_code, p_address)
+		VALUES(#{pCode}, #{publisher}, #{pName}, #{pTel}, #{pZipCode}, #{pAddress})
+	</insert>
+	<update id="updateSetPublisherInfo" parameterType="PublisherInfo">
+		UPDATE PUBLISHERINFO
+		<set>
+			<if test="publisher != null">publisher=#{publisher},</if>
+			<if test="pName != null">p_name=#{pName},</if>
+			<if test="pTel != null">p_tel=#{pTel},</if>
+			<if test="pZipCode != null">p_zip_code=#{pZipCode},</if>
+			<if test="pAddress != null">p_address=#{pAddress},</if>
+		</set>
+		<include refid="whereSql" />
+	</update>
+	<select id="selectPublisherInfoByAll" resultMap="PublisherInfoResult">
+		<include refid="selectSql" />
+	</select>
 </mapper>

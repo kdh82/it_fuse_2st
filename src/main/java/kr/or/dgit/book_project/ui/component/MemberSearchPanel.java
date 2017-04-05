@@ -22,7 +22,8 @@ public class MemberSearchPanel extends JPanel {
 		OptionSearchTF pMTel = new OptionSearchTF();
 		pMTel.setTitle("전화번호");
 		add(pMTel);
-
 	}
+	
+	
 
 }

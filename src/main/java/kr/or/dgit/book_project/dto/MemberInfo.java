@@ -7,22 +7,15 @@ public class MemberInfo {
 	private String mTel;		// 연락처
 	private int mZipCode;		// 우편번호
 	private String mAddress;	// 주소
+	private boolean isPosbl; 	// 대여가능여부
+	private int delayCount;		// 연체횟수
+	private int mLendCount;		// 총 대여권수
+	private int mNowCount;		// 현재 대여권수
+	private String blackDate;	// 대여금지일
 	private char mGroup;		// A/B/C : 관리자/사서/일반회원
 	private boolean isSecsn;	// 탈퇴여부
 	
 	public MemberInfo() {	}
-
-	public MemberInfo(String mCode, String mPass, String mName, String mTel,
-						int mZipCode, String mAddress, char mGroup, boolean isSecsn) {
-		this.mCode = mCode;
-		this.mPass = mPass;
-		this.mName = mName;
-		this.mTel = mTel;
-		this.mZipCode = mZipCode;
-		this.mAddress = mAddress;
-		this.mGroup = mGroup;
-		this.isSecsn = isSecsn;
-	}
 
 	public String getmCode() {
 		return mCode;
@@ -72,7 +65,47 @@ public class MemberInfo {
 		this.mAddress = mAddress;
 	}
 
-	public char mGroup() {
+	public boolean isPosbl() {
+		return isPosbl;
+	}
+
+	public void setPosbl(boolean isPosbl) {
+		this.isPosbl = isPosbl;
+	}
+
+	public int getDelayCount() {
+		return delayCount;
+	}
+
+	public void setDelayCount(int delayCount) {
+		this.delayCount = delayCount;
+	}
+
+	public int getmLendCount() {
+		return mLendCount;
+	}
+
+	public void setmLendCount(int mLendCount) {
+		this.mLendCount = mLendCount;
+	}
+
+	public int getmNowCount() {
+		return mNowCount;
+	}
+
+	public void setmNowCount(int mNowCount) {
+		this.mNowCount = mNowCount;
+	}
+
+	public String getBlackDate() {
+		return blackDate;
+	}
+
+	public void setBlackDate(String blackDate) {
+		this.blackDate = blackDate;
+	}
+
+	public char getmGroup() {
 		return mGroup;
 	}
 
@@ -90,7 +123,11 @@ public class MemberInfo {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s, %s, %s", 
-							mCode, mPass, mName, mTel, mZipCode, mAddress, mGroup, isSecsn);
-	}
+		return String.format(
+				"%s %s %s %s %s %s %s %s %s %s %s %s %s ",
+				mCode, mPass, mName, mTel, mZipCode, mAddress, isPosbl, delayCount, mLendCount, mNowCount, blackDate,
+				mGroup, isSecsn);
+	}	
+	
+	
 }
