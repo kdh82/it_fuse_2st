@@ -13,6 +13,7 @@ public class CheckSearchDesign extends JPanel {
 
 	protected JPanel pContent;
 	protected JPanel pBtnSub;
+	private JButton btnSearch;
 
 	public CheckSearchDesign() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -50,7 +51,7 @@ public class CheckSearchDesign extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel_4.add(panel_3);
 
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
 		panel_4.add(btnSearch);
 
 		pBtnSub = new JPanel();
@@ -66,5 +67,11 @@ public class CheckSearchDesign extends JPanel {
 	public JPanel getpBtnSub() {
 		return pBtnSub;
 	}
+
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+	
+	
 
 }

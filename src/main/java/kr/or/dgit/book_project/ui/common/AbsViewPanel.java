@@ -20,6 +20,4 @@ public class AbsViewPanel extends JPanel {
 		add(pMain);
 		pMain.setLayout(new GridLayout(0, 1, 0, 0));
 	}
-	
-
 }

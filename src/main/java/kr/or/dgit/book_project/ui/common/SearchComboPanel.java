@@ -6,17 +6,20 @@ import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.GridBagLayout;
+import javax.swing.JButton;
 
 public class SearchComboPanel extends JPanel {
 	private JTextField tF;
+	private JButton btnNewButton;
+	private SerarchComboBoxPanel panel;
 
 	/**
 	 * Create the panel.
 	 */
 	public SearchComboPanel() {
-		setLayout(new GridLayout(1, 0, 0, 0));
+		setLayout(new GridLayout(1, 0, 10, 0));
 		
-		SerarchComboBoxPanel panel = new SerarchComboBoxPanel();
+		panel = new SerarchComboBoxPanel();
 		GridBagLayout gridBagLayout = (GridBagLayout) panel.getLayout();
 		gridBagLayout.columnWidths = new int[] {0};
 		gridBagLayout.rowHeights = new int[] {10};
@@ -33,7 +36,29 @@ public class SearchComboPanel extends JPanel {
 		tF.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(tF);
 		tF.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		add(panel_2);
+		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		btnNewButton = new JButton("검색");
+		panel_2.add(btnNewButton);
 
 	}
+
+	public JTextField gettF() {
+		return tF;
+	}
+
+	public JButton getBtnNewButton() {
+		return btnNewButton;
+	}
+
+	public SerarchComboBoxPanel getPanel() {
+		return panel;
+	}
+	
+	
+	
 
 }
