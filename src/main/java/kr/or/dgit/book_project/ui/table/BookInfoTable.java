@@ -43,8 +43,7 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected Object[][] getRowData() {
-		BookInfoService bis = new BookInfoService();
-		List<BookInfo> list = bis.selectBookInfoByAllBook(false);
+		List<BookInfo> list = BookInfoService.getInstance().selectBookInfoByAllBook(false);
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = list.get(i).toArray();
@@ -68,8 +67,7 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 		BookInfo bookInfo = new BookInfo();
 		bookInfo.setbCode(bCode);
 		bookInfo.setbSubCode(bSubCode);
-		BookInfoService bis = new BookInfoService();
-		return bis.selectBookInfoOne(bookInfo);
+		return BookInfoService.getInstance().selectBookInfoOne(bookInfo);
 	}
 
 }
