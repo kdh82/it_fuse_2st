@@ -11,6 +11,7 @@ import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -24,6 +25,7 @@ import kr.or.dgit.book_project.ui.table.BookLendTable;
 public class BookLendView extends AbsViewPanel {
 
 	
+	private BookLendTable blv4;
 	public BookLendView() {
 		/*GridLayout gridLayout = (GridLayout) getLayout();
 		gridLayout.setVgap(10);*/
@@ -50,6 +52,11 @@ public class BookLendView extends AbsViewPanel {
 		blv2.setLayout(gbl_panel_5);
 		
 		BookLendMemberDetail panel_4 = new BookLendMemberDetail();
+		panel_4.getpMCode().getTF().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				actionPerformedPanel_4PMCodeTF(arg0);
+			}
+		});
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.weighty = 2.0;
 		gbc_panel_4.weightx = 1.0;
@@ -74,10 +81,20 @@ public class BookLendView extends AbsViewPanel {
 		btnLend.setFont(new Font("굴림", Font.PLAIN, 18));
 		blv3.add(btnLend);
 		
-		BookLendTable blv4 = new BookLendTable();
+		blv4 = new BookLendTable();
 		pMain.add(blv4);
 	}
 	protected void actionPerformedPanel_3PBCodeTfBCode(ActionEvent arg0) {
-		
+		BookSearchView bsv = new BookSearchView();
+		blv4.loadData();// 테이블 끌어오는거?
+		JFrame jf = new JFrame();
+		jf.setVisible(true);
+	}
+	protected void actionPerformedPanel_4PMCodeTF(ActionEvent arg0) {
+		MemberSearchView msv = new MemberSearchView();
+		blv4.loadData();// 테이블 끌어오는거?
+		JFrame jf = new JFrame();
+		jf.add(msv);
+		jf.setVisible(true);
 	}
 }
