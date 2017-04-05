@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import kr.or.dgit.book_project.dto.MemberInfo;
 
 public class MemberInfoMapperImpl implements MemberInfoMapper {
-	private String namespace="kr.or.dgit.book_pjt.dao.MemberInfoMapper.";
+	private String namespace="kr.or.dgit.book_project.dao.MemberInfoMapper.";
 	private static final Log log = LogFactory.getLog(BookInfoMapper.class);
 	private SqlSession sqlSession;	
 	public MemberInfoMapperImpl(SqlSession sqlSession) {

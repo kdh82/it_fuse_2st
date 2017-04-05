@@ -3,15 +3,65 @@
 <mapper namespace="kr.or.dgit.book_project.dao.PaymentIOMapper">
 
 
-
 	<resultMap type="PaymentIO" id="PaymentIOResult">
-		<result property="bCode" column="b_code" />
-		<result property="bSubCode" column="b_sub_code" />
-		<result property="mCode" column="m_code" />
 		<result property="lendDate" column="lend_date" />
 		<result property="returnDate" column="return_date" />
+		<association property="bookInfo"
+			resultMap="kr.or.dgit.book_project.dao.BookInfoMapper.BookInfoResult" />
+		<association property="memberInfo"
+			resultMap="kr.or.dgit.book_project.dao.MemberInfoMapper.MemberInfoResult" />
 	</resultMap>
 
+	<sql id="selectLeftSql">
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		left outer join memberinfo m on io.m_code = m.m_code
+	</sql>
+	<sql id="selectRightSql">
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		right outer join memberinfo m on io.m_code = m.m_code
+	</sql>
+	
+	<sql id="whereSql">
+		<where>
+			<if test="bCode != null">
+				b.b_code= #{bCode}
+			</if>
+			<if test="bSubCode != null">
+				and b.b_sub_code =#{bSubCode}
+			</if>
+			<if test="mCode != null">
+				and m.m_code =#{mCode}
+			</if>
+			<if test="lendDate != null">
+				and lend_date =#{lendDate}
+			</if>
+			<if test="returnDate != null">
+				and return_date =#{returnDate}
+			</if>
 
+		</where>
+	</sql>
+
+	<select id="selectAllPaymentIOInfo" parameterType="hashmap"  resultMap="PaymentIOResult">
+		<include refid="selectLeftSql"/>
+		<include refid="whereSql"/>
+		 union 
+		<include refid="selectRightSql"/>
+		<include refid="whereSql"/>
+	</select>
 
 </mapper>

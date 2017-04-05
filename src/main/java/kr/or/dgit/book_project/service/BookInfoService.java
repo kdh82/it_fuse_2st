@@ -67,5 +67,11 @@ public class BookInfoService {
 			return bookInfoMapper.selectBookInfoOne(bookInfo);
 		}
 	}
+	public List<BookInfo> selectAllBookInfo(Map<String, Object> param) {
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.selectAllBookInfo(param);
+		}
+	}
 
 }

@@ -25,7 +25,7 @@ public class PublisherInfoServiceTest {
 		publisherInfoService = null;
 	}
 
-	@Test 
+	/*@Test 
 	public void aTestselectPublisherInfoByAll(){
 	
 		RowBounds rowBounds = new RowBounds(0, 10);
@@ -57,6 +57,6 @@ public class PublisherInfoServiceTest {
 		int res = PublisherInfoService.updateSetPublisherInfo(pi);
 		Assert.assertEquals(1, res);
 		
-	}
+	}*/
 
 }
