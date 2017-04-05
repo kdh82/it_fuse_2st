@@ -21,6 +21,8 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import kr.or.dgit.book_project.ui.table.BookLendTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BookLendView extends AbsViewPanel {
 
@@ -82,6 +84,13 @@ public class BookLendView extends AbsViewPanel {
 		blv3.add(btnLend);
 		
 		blv4 = new BookLendTable();
+		blv4.getTable().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				mouseClickedBlv4Table(arg0);
+			}
+		});
+		
 		pMain.add(blv4);
 	}
 	protected void actionPerformedPanel_3PBCodeTfBCode(ActionEvent arg0) {
@@ -94,7 +103,10 @@ public class BookLendView extends AbsViewPanel {
 		MemberSearchView msv = new MemberSearchView();
 		blv4.loadData();// 테이블 끌어오는거?
 		JFrame jf = new JFrame();
-		jf.add(msv);
+		jf.getContentPane().add(msv);
 		jf.setVisible(true);
+	}
+	protected void mouseClickedBlv4Table(MouseEvent arg0) {
+		
 	}
 }
