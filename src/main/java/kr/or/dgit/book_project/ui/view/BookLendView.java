@@ -84,6 +84,7 @@ public class BookLendView extends AbsViewPanel {
 		blv3.add(btnLend);
 		
 		blv4 = new BookLendTable();
+		blv4.loadData();
 		blv4.getTable().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
