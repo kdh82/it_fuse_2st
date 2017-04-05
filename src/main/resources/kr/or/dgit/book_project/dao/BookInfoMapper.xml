@@ -149,7 +149,7 @@
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
 	</select>
-	<select id="countBookInfo" parameterType="hashmap" resultMap="int">
+	<select id="countBookInfo" parameterType="hashmap" resultType="int">
 		<include refid="selectCountSql" />
 		<include refid="whereSql" />
 	</select>
