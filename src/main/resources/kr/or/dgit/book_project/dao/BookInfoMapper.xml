@@ -153,6 +153,7 @@
 		<include refid="whereSql" />
 	</update>
 	
+
 	<select id="selectAllBookInfo" parameterType="hashmap"  resultMap="BookInfoResult">
 		<include refid="selectLeftSql"/>
 		<include refid="whereSql"/>
@@ -160,4 +161,7 @@
 		<include refid="selectRightSql"/>
 		<include refid="whereSql"/>
 	</select>
+
+	
+
 </mapper>

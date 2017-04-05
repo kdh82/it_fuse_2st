@@ -11,7 +11,15 @@ import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
 public class BookInfoService {
-
+	private static final BookInfoService instance = new BookInfoService();
+	
+	private BookInfoService() {}
+	
+	public static BookInfoService getInstance() {
+		return instance;
+	}
+	
+	
 	public int insertBookInfo(BookInfo bookInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
@@ -67,6 +75,7 @@ public class BookInfoService {
 			return bookInfoMapper.selectBookInfoOne(bookInfo);
 		}
 	}
+
 	public List<BookInfo> selectAllBookInfo(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
@@ -74,4 +83,12 @@ public class BookInfoService {
 		}
 	}
 
+
+	// 대여 테이블
+	public List<BookInfo> selectIslending() {
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.selectIslending();
+		}
+	}
 }

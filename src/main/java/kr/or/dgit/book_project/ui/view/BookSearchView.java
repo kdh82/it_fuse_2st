@@ -66,11 +66,12 @@ public class BookSearchView extends AbsViewPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				BookInfo bi = pTable.getSelectedObject();
-				BookInfoService bis = new BookInfoService();
+				/*BookInfoService bis = new BookInfoService();
+				BookInfoService.getInstance().*/
 				Map<String, Object> param = new HashMap<>();
 				param.put("searchBy", "bCode");
 				param.put("bCode", bi.getbCode());
-				int cnt = bis.selectBookInfoCountBy(param);
+				/*int cnt = bis.selectBookInfoCountBy(param);*/
 			/*	bookInsertView.getpContent().getpBCode().setTfBCode(bi.getbCode());
 				bookInsertView.getpContent().getpBCode().setEnabled(false);
 				bookInsertView.getpContent().getpBCode().setTfBSubCode(cnt+"");*/
