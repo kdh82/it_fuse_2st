@@ -88,6 +88,7 @@
 			<if test="pCode != null">
 				and p.p_code =#{pCode}
 			</if>
+
 			<if test="publisher != null">
 				and p.publisher like #{publisher}
 			</if>
@@ -97,6 +98,12 @@
 			<if test="cCode != null">
 				and c.c_code is not null group by c.c_code
 			</if>
+
+
+			<if test="isLending != null">
+				and b.is_lending = #{isLending}
+			</if>
+			
 
 
 		</where>
@@ -153,6 +160,13 @@
 		<include refid="selectCountSql" />
 		<include refid="whereSql" />
 	</select>
+
+
+	<select id="selectIslending" parameterType="hashmap" resultMap="BookInfoResult">
+		<include refid="selectLeftSql"/>
+		<include refid="whereSql"/>
+	</select> 
+	
 
 
 </mapper>

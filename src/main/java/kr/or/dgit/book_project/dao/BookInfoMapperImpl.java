@@ -57,9 +57,10 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 
 	// 대여 테이블
 	@Override
-	public List<BookInfo> selectIslending() {
+	public List<BookInfo> selectIslending(Map<String, Object> param) {
 		log.debug("selectIslending");
-		return sqlSession.selectList(namespace + "selectIslending");
+		return sqlSession.selectList(namespace+"selectIslending",param);
+
 	}
 
 	@Override
