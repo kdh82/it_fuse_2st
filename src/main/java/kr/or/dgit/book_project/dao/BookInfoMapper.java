@@ -23,4 +23,9 @@ public interface BookInfoMapper {
 	int selectBookInfoCountBy(Map<String, Object> param);
 
 	List<BookInfo> selectBookInfo(Map<String, Object> param); // 
+	
+	
+	//////////////////////////////
+	
+	List<BookInfo> selectAllBookInfo(Map<String, Object> param);
 }

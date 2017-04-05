@@ -15,7 +15,6 @@ public class BookInfo { // 도서
 	private int bLendCount; // 총 대여횟수
 	private boolean isLending; // 대여여부
 	private boolean isDel; // 도서폐기여부
-	private List<PaymentIO> bookPaymentIO;
 
 	public BookInfo() {
 	}
@@ -161,24 +160,13 @@ public class BookInfo { // 도서
 
 
 
-	public List<PaymentIO> getBookPaymentIO() {
-		return bookPaymentIO;
-	}
-
-
-
-	public void setBookPaymentIO(List<PaymentIO> bookPaymentIO) {
-		this.bookPaymentIO = bookPaymentIO;
-	}
-
 
 
 	@Override
 	public String toString() {
 		return String.format(
-				"%s %s %s %s %s %s %s %s %s %s %s %s",
-				bCode, bSubCode, coden, bName, author, publisherInfo, price, insertDate, bLendCount, isLending, isDel,
-				bookPaymentIO);
+				"%s %s %s %s %s %s %s %s %s %s %s",
+				bCode, bSubCode, coden, bName, author, publisherInfo, price, insertDate, bLendCount, isLending, isDel);
 	}
 
 }
