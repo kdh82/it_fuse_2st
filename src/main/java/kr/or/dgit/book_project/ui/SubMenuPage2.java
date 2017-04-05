@@ -23,13 +23,13 @@ public class SubMenuPage2 extends JTabbedPane {
 	public SubMenuPage2() {		
 		
 		JPanel pPaymentInput = new JPanel();
-		add("아무거나1",pPaymentInput);		
+		add("대여관리",pPaymentInput);		
 		pPaymentInput.setLayout(new GridLayout(0, 1, 0, 0));
 		BookLendView bLendView = new BookLendView();
 		pPaymentInput.add(bLendView);
 		
 		JPanel pPaymentUpdate = new JPanel();
-		add("아무거나2",pPaymentUpdate);
+		add("반납관리",pPaymentUpdate);
 		BookReturnView bRetrunView = new BookReturnView();
 		pPaymentUpdate.add(bRetrunView);
 		
