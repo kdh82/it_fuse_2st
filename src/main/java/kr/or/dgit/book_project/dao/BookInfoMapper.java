@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.or.dgit.book_project.dto.BookInfo;
 
+
 public interface BookInfoMapper {
 	int insertBookInfo(BookInfo bookInfo); // 도서 추가
 
@@ -23,4 +24,7 @@ public interface BookInfoMapper {
 	int selectBookInfoCountBy(Map<String, Object> param);
 
 	List<BookInfo> selectBookInfo(Map<String, Object> param); // 
+	
+	// 대여 테이블 
+	List<BookInfo> selectIslending();
 }

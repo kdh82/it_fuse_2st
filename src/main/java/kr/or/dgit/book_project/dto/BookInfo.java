@@ -15,170 +15,123 @@ public class BookInfo { // 도서
 	private int bLendCount; // 총 대여횟수
 	private boolean isLending; // 대여여부
 	private boolean isDel; // 도서폐기여부
-	private List<PaymentIO> bookPaymentIO;
 
 	public BookInfo() {
 	}
 
-	
 
-	public Object[] toArray() {
-		/*return new Object[] { bCode, bSubCode, bName, coden.getcName(), author, publisherInfo };*/
-		return null;
+	public BookInfo(String bCode, String bSubCode, String bName, String author, PublisherInfo publisherInfo, int price,
+			int bLendCount) {
+		super();
+		this.bCode = bCode;
+		this.bSubCode = bSubCode;
+		this.bName = bName;
+		this.author = author;
+		this.publisherInfo = publisherInfo;
+		this.price = price;
+		this.bLendCount = bLendCount;
 	}
 
-
+	/*public Object[] toArray() {
+		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author, publisherInfo };
+		return null;
+	}*/
 
 	public String getbCode() {
 		return bCode;
 	}
 
-
-
 	public void setbCode(String bCode) {
 		this.bCode = bCode;
 	}
-
-
 
 	public String getbSubCode() {
 		return bSubCode;
 	}
 
-
-
 	public void setbSubCode(String bSubCode) {
 		this.bSubCode = bSubCode;
 	}
-
-
 
 	public Coden getCoden() {
 		return coden;
 	}
 
-
-
 	public void setCoden(Coden coden) {
 		this.coden = coden;
 	}
-
-
 
 	public String getbName() {
 		return bName;
 	}
 
-
-
 	public void setbName(String bName) {
 		this.bName = bName;
 	}
-
-
 
 	public String getAuthor() {
 		return author;
 	}
 
-
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
-
 
 	public PublisherInfo getPublisherInfo() {
 		return publisherInfo;
 	}
 
-
-
 	public void setPublisherInfo(PublisherInfo publisherInfo) {
 		this.publisherInfo = publisherInfo;
 	}
-
-
 
 	public int getPrice() {
 		return price;
 	}
 
-
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
-
 
 	public String getInsertDate() {
 		return insertDate;
 	}
 
-
-
 	public void setInsertDate(String insertDate) {
 		this.insertDate = insertDate;
 	}
-
-
 
 	public int getbLendCount() {
 		return bLendCount;
 	}
 
-
-
 	public void setbLendCount(int bLendCount) {
 		this.bLendCount = bLendCount;
 	}
-
-
 
 	public boolean isLending() {
 		return isLending;
 	}
 
-
-
 	public void setLending(boolean isLending) {
 		this.isLending = isLending;
 	}
-
-
 
 	public boolean isDel() {
 		return isDel;
 	}
 
-
-
 	public void setDel(boolean isDel) {
 		this.isDel = isDel;
 	}
 
-
-
-	public List<PaymentIO> getBookPaymentIO() {
-		return bookPaymentIO;
-	}
-
-
-
-	public void setBookPaymentIO(List<PaymentIO> bookPaymentIO) {
-		this.bookPaymentIO = bookPaymentIO;
-	}
-
-
-
 	@Override
 	public String toString() {
 		return String.format(
-				"%s %s %s %s %s %s %s %s %s %s %s %s",
-				bCode, bSubCode, coden, bName, author, publisherInfo, price, insertDate, bLendCount, isLending, isDel,
-				bookPaymentIO);
+				"%s %s %s %s %s %s %s %s %s %s %s",
+				bCode, bSubCode, coden, bName, author, publisherInfo, price, insertDate, bLendCount, isLending, isDel);
 	}
-
+	public Object[] toArray(){
+		return new Object[]{bCode,bSubCode,bName,author,publisherInfo.getPublisher(),bLendCount};
+	}
 }

@@ -36,8 +36,6 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		panel_5.setLayout(gbl_panel_5);
 
 		pContent = new BookInfoP();
-		pContent.getBtnAddPublisher().addActionListener(this);
-		pContent.getBtnBookSearch().addActionListener(this);
 		GridBagConstraints gbc_pContent = new GridBagConstraints();
 		gbc_pContent.weighty = 1.0;
 		gbc_pContent.weightx = 1.0;

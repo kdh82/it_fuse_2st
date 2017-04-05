@@ -14,6 +14,8 @@ import kr.or.dgit.book_project.ui.component.BookLendMemberDetailDate;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 
 public class BookReturnView extends AbsViewPanel {
 
@@ -51,6 +53,7 @@ public class BookReturnView extends AbsViewPanel {
 		panel_5.add(panel_4, gbc_panel_4);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new EmptyBorder(10, 100, 10, 100));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.weighty = 1.0;
 		gbc_panel_2.weightx = 1.0;
@@ -58,10 +61,10 @@ public class BookReturnView extends AbsViewPanel {
 		gbc_panel_2.gridx = 0;
 		gbc_panel_2.gridy = 1;
 		panel_5.add(panel_2, gbc_panel_2);
-		panel_2.setLayout(null);
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnLend = new JButton("반납");
-		btnLend.setBounds(146, 5, 100, 35);
+		btnLend.setFont(new Font("굴림", Font.PLAIN, 18));
 		panel_2.add(btnLend);
 		
 		JPanel panel_1 = new JPanel();

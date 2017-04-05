@@ -17,8 +17,6 @@
 			resultMap="kr.or.dgit.book_project.dao.CodenMapper.CodenResult"/>
 		<association property="publisherInfo"
 			resultMap="kr.or.dgit.book_project.dao.PublisherInfoMapper.PublisherInfoResult" />
-		<collection property="bookPaymentIO"
-			resultMap="kr.or.dgit.book_project.dao.PublisherInfoMapper.PublisherInfoResult"/>
 	</resultMap>
 
 
@@ -134,4 +132,6 @@
 		update bookinfo set is_del = true
 		<include refid="whereSql" />
 	</update>
+	
+	
 </mapper>

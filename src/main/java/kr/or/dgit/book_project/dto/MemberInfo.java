@@ -17,6 +17,17 @@ public class MemberInfo {
 	
 	public MemberInfo() {	}
 
+	
+	
+	public MemberInfo(String mCode, String mName, String mTel) {
+		super();
+		this.mCode = mCode;
+		this.mName = mName;
+		this.mTel = mTel;
+	}
+
+
+
 	public String getmCode() {
 		return mCode;
 	}
