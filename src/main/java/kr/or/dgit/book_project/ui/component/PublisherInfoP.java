@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.ui.common.InputComp;
 
 @SuppressWarnings("serial")
@@ -50,6 +51,17 @@ public class PublisherInfoP extends JPanel {
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
 	}
+	
+		public PublisherInfo getObject(){
+			String pCode = pPCode.getTFValue();
+			String publisher = pPublisher.getTFValue();
+			String pName = pPName.getTFValue();
+			String pTel = pPTel.getTFValue();
+			Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
+			String pAddress = pPAddress.getTFValue();		
+			
+			return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
+		}
 	
 		public void clear(){
 			pPCode.setTFValue("");

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.PublisherInfoP;
 
@@ -87,7 +88,7 @@ public class PublisherView extends AbsViewPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnSave(ActionEvent arg0) {
-		
+			PublisherInfoService.insertAllPublisherInfo(panel_2.getObject());
 	}
 	protected void actionPerformedBtnCancel(ActionEvent arg0) {
 			panel_2.clear();
