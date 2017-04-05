@@ -184,7 +184,7 @@ insert into book_project.coden (c_name, c_code) values
 ('자기계발', 'D');
 
 
-INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, b_lend_count, is_lending) values
+INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, is_lending, b_lend_count) values
 ('T001',00, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 1),
 ('T001',01, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 2),
 ('T001',02, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-04-01', true, 0),

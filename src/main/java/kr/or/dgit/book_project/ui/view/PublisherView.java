@@ -14,9 +14,12 @@ import javax.swing.JPanel;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.PublisherInfoP;
 
-public class PublisherView extends AbsViewPanel {
+public class PublisherView extends AbsViewPanel implements ActionListener {
 
 	protected JPanel panel_5;
+	private JButton btnSave;
+	private JButton btnCancel;
+	private PublisherInfoP panel_2;
 
 	public PublisherView() {
 		
@@ -38,7 +41,7 @@ public class PublisherView extends AbsViewPanel {
 		panel.add(panel_1, gbc_panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		PublisherInfoP panel_2 = new PublisherInfoP();
+		panel_2 = new PublisherInfoP();
 		panel_1.add(panel_2);
 		
 		JPanel panel_3 = new JPanel();
@@ -54,13 +57,15 @@ public class PublisherView extends AbsViewPanel {
 		panel_3.add(panel_4);
 		panel_4.setLayout(null);
 		
-		JButton btnSave = new JButton("저장");
+		btnSave = new JButton("저장");
+		btnSave.addActionListener(this);
 		btnSave.setLocation(281, 5);
 		panel_4.add(btnSave);
 		btnSave.setSize(104, 55);
 		
 		
-		JButton btnCancel = new JButton("취소");
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
 		btnCancel.setBounds(390, 5, 112, 55);
 		panel_4.add(btnCancel);
 		
@@ -69,11 +74,22 @@ public class PublisherView extends AbsViewPanel {
 		panel_3.add(panel_5);
 		panel_5.setAlignmentY(100);
 		panel_5.setLayout(new BorderLayout(0, 0));
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 
 	}
 
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnCancel) {
+			actionPerformedBtnCancel(arg0);
+		}
+		if (arg0.getSource() == btnSave) {
+			actionPerformedBtnSave(arg0);
+		}
+	}
+	protected void actionPerformedBtnSave(ActionEvent arg0) {
+		
+	}
+	protected void actionPerformedBtnCancel(ActionEvent arg0) {
+			panel_2.clear();
+	}
 }
