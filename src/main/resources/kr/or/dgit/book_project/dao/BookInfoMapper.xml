@@ -128,10 +128,10 @@
 			</when>
 		</choose>
 	</select>
-
+	<!-- selectLeftSql로 바꿈 -->
 	<select id="selectBookInfoOne" parameterType="BookInfo"
 		resultMap="BookInfoResult">
-		<include refid="selectSql" />
+		<include refid="selectLeftSql" />
 		<include refid="whereSql" />
 	</select>
 

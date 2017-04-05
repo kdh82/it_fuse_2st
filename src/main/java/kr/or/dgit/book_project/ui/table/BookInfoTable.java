@@ -71,7 +71,8 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 		BookInfo bookInfo = new BookInfo();
 		bookInfo.setbCode(bCode);
 		bookInfo.setbSubCode(bSubCode);
-		return BookInfoService.getInstance().selectBookInfoOne(bookInfo);
+		// 잠시 주석
+		return null/*BookInfoService.getInstance().selectBookInfoOne(bookInfo)*/;
 	}
 
 }

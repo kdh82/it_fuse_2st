@@ -68,7 +68,7 @@ public class BookInfoService {
 			return bookInfoMapper.selectBookInfoCountBy(param);
 		}
 	}
-
+	
 	public BookInfo selectBookInfoOne(BookInfo bookInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);

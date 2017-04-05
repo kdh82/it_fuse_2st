@@ -68,7 +68,7 @@ public class BookLendTable extends AbsTable<BookInfo> {
 		BookInfo bookinfo = new BookInfo();
 		bookinfo.setbCode(bCode);
 		bookinfo.setbSubCode(bSubCode);
-		return BookInfoService.getInstance().selectBookInfoOne(bookinfo);
+		return null; /*BookInfoService.getInstance().selectBookInfoOne(bookinfo);*/
 	}
 
 }
