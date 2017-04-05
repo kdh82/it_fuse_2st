@@ -15,12 +15,6 @@ public interface BookInfoMapper {
 	
 	BookInfo selectBookInfoOne(BookInfo bookInfo);
 
-	/////////////////////////////////////////////////////////
-
-	List<BookInfo> selectBookInfoByAllBook(Boolean isDel); // 폐기/ 정상 도서 리스트 출력하기
-
-	///////////////////////////////////////////////////////////////
-	// 분야/특정 코드의 책 갯수 가져오기
 	int selectBookInfoCountBy(Map<String, Object> param);
 
 	List<BookInfo> selectBookInfo(Map<String, Object> param); // 

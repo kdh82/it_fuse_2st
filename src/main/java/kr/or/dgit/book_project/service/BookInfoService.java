@@ -55,12 +55,12 @@ public class BookInfoService {
 
 	}
 
-	public List<BookInfo> selectBookInfoByAllBook(Boolean isDel) {
+	/*public List<BookInfo> selectBookInfoByAllBook(Boolean isDel) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
 			return bookInfoMapper.selectBookInfoByAllBook(isDel);
 		}
-	}
+	}*/
 
 	public int selectBookInfoCountBy(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {

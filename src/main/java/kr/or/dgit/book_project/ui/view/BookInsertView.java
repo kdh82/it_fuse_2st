@@ -36,6 +36,8 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		panel_5.setLayout(gbl_panel_5);
 
 		pContent = new BookInfoP();
+		pContent.getBtnAddPublisher().addActionListener(this);
+		pContent.getBtnBookSearch().addActionListener(this);
 		GridBagConstraints gbc_pContent = new GridBagConstraints();
 		gbc_pContent.weighty = 1.0;
 		gbc_pContent.weightx = 1.0;
@@ -108,9 +110,11 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
 		// 도서 검색창 새창으로
+		System.out.println("도서검색 왜 안뜰까용");
 		JFrame bookSearch = new JFrame("도서검색");
 		BookSearchView bsv = new BookSearchView();
-		bsv.setMyMouseListener(this);
+		bsv.addBtn("신규", bookSearch);
+		bsv.setMyMouseListener(this, bookSearch);
 		bookSearch.setBounds(600, 100, 500, 600);
 		bookSearch.getContentPane().add(bsv);
 		bookSearch.setVisible(true);

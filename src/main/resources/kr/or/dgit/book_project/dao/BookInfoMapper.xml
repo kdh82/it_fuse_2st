@@ -28,37 +28,35 @@
 		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},#{insertDate},#{isDel});
 	</sql>
 	<sql id="selectCountSql">
-		select count(*) from bookInfo b
-		<choose>
-			<when test="searchBy=='Coden'">
-				where c_name = #{cName}
-			</when>
-			<when test="searchBy=='bCode'">
-				where b_code = #{bCode}
-			</when>
-			<otherwise>
-
-			</otherwise>
-		</choose>
+		select count(*) from bookInfo b right outer join
+		publisherInfo p on b.p_code = p.p_code
+		left outer join
+		coden c on
+		b.c_name = c.c_name
 	</sql>
 	<sql id="selectSql">
 	</sql>
 
 
 	<sql id="selectLeftSql">
-		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
-		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
+		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name,
+		author,
+		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address,
+		price,
 		insert_date, b_lend_count, is_lending, is_del from bookInfo b
 		right outer join publisherInfo p on b.p_code = p.p_code
 		left outer join
 		coden c on b.c_name = c.c_name
 	</sql>
 	<sql id="selectRightSql">
-		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author, b.p_code,
-		publisher, p_name, p_tel, p_zip_code, p_address, price, insert_date,
+		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name,
+		author, b.p_code,
+		publisher, p_name, p_tel, p_zip_code, p_address,
+		price, insert_date,
 		b_lend_count, is_lending, is_del from bookInfo b
 		right outer join publisherInfo p on b.p_code = p.p_code
-		right outer join
+		right outer
+		join
 		coden c on b.c_name = c.c_name
 	</sql>
 	<sql id="updateSql">
@@ -80,12 +78,26 @@
 			<if test="bSubCode != null">
 				and b.b_sub_code =#{bSubCode}
 			</if>
+			<if test="bName != null">
+				and b.b_name like {bName}
+			</if>
 			<if test="cName != null">
 				and b.c_name =#{cName}
 			</if>
+
 			<if test="pCode != null">
 				and p.p_code =#{pCode}
 			</if>
+			<if test="publisher != null">
+				and p.publisher like #{publisher}
+			</if>
+			<if test="isDel != null">
+				and b.is_del = #{isDel}
+			</if>
+			<if test="cCode != null">
+				and c.c_code is not null group by c.c_code
+			</if>
+
 
 		</where>
 	</sql>
@@ -110,33 +122,6 @@
 		</choose>
 	</select>
 
-	<select id="selectBookInfoByAll" parameterType="BookInfo"
-		resultMap="BookInfoResult">
-		<include refid="selectSql" />
-		where is_del = false
-	</select>
-
-	<select id="selectBookInfoByAllBook" parameterType="boolean"
-		resultMap="BookInfoResult">
-		<include refid="selectSql" />
-		where is_del = #{isDel};
-	</select>
-
-	<select id="selectBookInfo" parameterType="hashmap" resultMap="BookInfoResult">
-		<include refid="selectSql" />
-		<where>
-			<if test="isDel != null">
-				is_del = #{isDel}
-			</if>
-			<if test="bCode != null">
-				and b.b_code = #{bCode}
-			</if>
-			<if test="bSubCode != null">
-				and b.b_sub_code = #{bSubCode}
-			</if>
-		</where>
-
-	</select>
 	<select id="selectBookInfoOne" parameterType="BookInfo"
 		resultMap="BookInfoResult">
 		<include refid="selectSql" />
@@ -152,16 +137,22 @@
 		update bookinfo set is_del = true
 		<include refid="whereSql" />
 	</update>
-	
 
-	<select id="selectAllBookInfo" parameterType="hashmap"  resultMap="BookInfoResult">
-		<include refid="selectLeftSql"/>
-		<include refid="whereSql"/>
-		 union 
-		<include refid="selectRightSql"/>
-		<include refid="whereSql"/>
+
+
+
+	<select id="selectAllBookInfo" parameterType="hashmap"
+		resultMap="BookInfoResult">
+		<include refid="selectLeftSql" />
+		<include refid="whereSql" />
+		union
+		<include refid="selectRightSql" />
+		<include refid="whereSql" />
+	</select>
+	<select id="countBookInfo" parameterType="hashmap" resultMap="int">
+		<include refid="selectCountSql" />
+		<include refid="whereSql" />
 	</select>
 
-	
 
 </mapper>

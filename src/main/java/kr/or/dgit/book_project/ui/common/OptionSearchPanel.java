@@ -14,23 +14,28 @@ public class OptionSearchPanel extends BasicPanel {
 	protected JCheckBox chbTitle;
 	protected JPanel panel;
 
-	/**
-	 * Create the panel.
-	 */
 	public OptionSearchPanel() {
-		
+
 		chbTitle = new JCheckBox("title");
 		pTitle.add(chbTitle);
 		chbTitle.setMargin(new Insets(2, 30, 2, 2));
-		
+
 		panel = new JPanel();
 		pContent.add(panel);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 
 	}
-	
-	public void setTitle(String title){
+
+	public void setTitle(String title) {
 		chbTitle.setText(title);
+	}
+
+	public boolean isVaildCheck() {
+		if (chbTitle.isSelected()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
