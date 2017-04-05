@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.book_project.dao.PublisherInfoMapper">
-	<resultMap type="PublisherInfo" id="PublisherInfoResult">
+	
+	<resultMap type="PublisherInfo" id="PublisherInfoResult">	
 		<id property="pCode" column="p_code" />
 		<result property="publisher" column="publisher" />
 		<result property="pName" column="p_name" />
 		<result property="pTel" column="p_tel" />
 		<result property="pZipCode" column="p_zip_code" />
-		<result property="pAddress" column="p_Address" />
+		<result property="pAddress" column="p_address" />
 	</resultMap>
 
 	<sql id="insertShortSql">
-		<!-- 도서등록 페이지에서 간단한 출판사등록시 -->
+		도서등록 페이지에서 간단한 출판사등록시
 		INSERT INTO publisherinfo (p_code, publisher)
 		VALUES(#{pCode},
 		#{publisher})
@@ -36,17 +37,12 @@
 		<include refid="selectSql" />
 	</select>
 
-
-	<sql id="selectSql">
-		SELECT p_code, publisher, p_name, p_tel, p_zip_code, p_address
-		FROM publisherinfo
-	</sql>
 	<sql id="whereSql">
 
 		where p_code=#{pCode}
 
 
-		<!-- where p_code=#{pCode} -->
+		where p_code=#{pCode}
 	</sql>
 
 	<select id="selectPublisherInfo" resultMap="PublisherInfoResult"

@@ -31,8 +31,8 @@
 		select m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group from memberinfo;
 	</select>
 	
-	<select id="findMemberInfoByCode" parameterType="code" resultType="MemberInfoResult" >
+	<!-- <select id="findMemberInfoByCode" parameterType="code" resultType="MemberInfoResult" >
 		select m.m_name, m.m_code, m_tel, m_zip_code, m_address, if(black_date is null," ",black_date)
 		from memberInfo m inner join memberLend ml on m.m_code = ml.m_code where m.m_code = #{memberInfo.mCode}
-	</select>
+	</select> -->
 </mapper>

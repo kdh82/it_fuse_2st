@@ -5,9 +5,8 @@ import java.util.Date;
 public class PaymentIO {
 
 	private int no; // 출납번호
-	private String bCode; // 도서코드
-	private String bSubCode; // 도서중복코드
-	private String mCode; // 회원코드
+	private BookInfo bookInfo; // 도서코드
+	private MemberInfo memberInfo; // 회원코드
 	private String lendDate; // 대여일
 	private String returnDate; // 반납일
 
@@ -22,28 +21,20 @@ public class PaymentIO {
 		this.no = no;
 	}
 
-	public String getbCode() {
-		return bCode;
+	public BookInfo getBookInfo() {
+		return bookInfo;
 	}
 
-	public void setbCode(String bCode) {
-		this.bCode = bCode;
+	public void setBookInfo(BookInfo bookInfo) {
+		this.bookInfo = bookInfo;
 	}
 
-	public String getbSubCode() {
-		return bSubCode;
+	public MemberInfo getMemberInfo() {
+		return memberInfo;
 	}
 
-	public void setbSubCode(String bSubCode) {
-		this.bSubCode = bSubCode;
-	}
-
-	public String getmCode() {
-		return mCode;
-	}
-
-	public void setmCode(String mCode) {
-		this.mCode = mCode;
+	public void setMemberInfo(MemberInfo memberInfo) {
+		this.memberInfo = memberInfo;
 	}
 
 	public String getLendDate() {
@@ -64,7 +55,7 @@ public class PaymentIO {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s %s %s %s %s", no, bCode, bSubCode, mCode, lendDate, returnDate);
+		return String.format("%s %s %s %s %s", no, bookInfo, memberInfo, lendDate, returnDate);
 	}
 
 }
