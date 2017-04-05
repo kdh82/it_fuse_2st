@@ -269,7 +269,7 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
 
-
+select*from bookinfo;
 	select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
 		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
 		insert_date, b_lend_count, is_lending, is_del from bookInfo b
