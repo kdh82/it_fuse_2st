@@ -4,10 +4,18 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.ui.common.InputComp;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel {
+
+	private InputComp pPCode;
+	private InputComp pPublisher;
+	private InputComp pPName;
+	private InputComp pPTel;
+	private InputComp pPZipCode;
+	private InputComp pPAddress;
 
 	/**
 	 * Create the panel.
@@ -19,32 +27,50 @@ public class PublisherInfoP extends JPanel {
 		add(panelPub);
 		panelPub.setLayout(new GridLayout(0, 1, 0, 10));
 		
-		InputComp pPCode = new InputComp();
+		pPCode = new InputComp();
 		pPCode.setTitle("출판사코드");
 		panelPub.add(pPCode);
 		
-		InputComp pPublisher = new InputComp();
+		pPublisher = new InputComp();
 		pPublisher.setTitle("출 판 사 명");
 		panelPub.add(pPublisher);
 		
-		InputComp pPName = new InputComp();
+		pPName = new InputComp();
 		pPName.setTitle("담 당 자 명");
 		panelPub.add(pPName);
 		
-		InputComp pPTel = new InputComp();
+		pPTel = new InputComp();
 		pPTel.setTitle("연   락   처");
 		panelPub.add(pPTel);
 		
-		InputComp pPZipCode = new InputComp();
+		pPZipCode = new InputComp();
 		pPZipCode.setTitle("우 편 번 호");
 		panelPub.add(pPZipCode);
 		
-		InputComp pPAddress = new InputComp();
+		pPAddress = new InputComp();
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
 	}
 	
+		public PublisherInfo getObject(){
+			String pCode = pPCode.getTFValue();
+			String publisher = pPublisher.getTFValue();
+			String pName = pPName.getTFValue();
+			String pTel = pPTel.getTFValue();
+			Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
+			String pAddress = pPAddress.getTFValue();		
+			
+			return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
+		}
 	
+		public void clear(){
+			pPCode.setTFValue("");
+			pPublisher.setTFValue("");
+			pPName.setTFValue("");
+			pPTel.setTFValue("");
+			pPZipCode.setTFValue("");
+			pPAddress.setTFValue("");
+		}
 	
 
 }
