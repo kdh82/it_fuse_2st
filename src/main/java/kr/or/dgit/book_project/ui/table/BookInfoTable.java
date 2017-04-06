@@ -49,7 +49,7 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 		param.put("isDel", false);
 		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(param);
 		Object[][] datas = new Object[list.size()][];
-		for (int i = 0; i < datas.length; i++) {
+		for (int i = 0; i < datas.length; i++){
 			datas[i] = list.get(i).toArrayForBoookList();
 		}
 		return datas;

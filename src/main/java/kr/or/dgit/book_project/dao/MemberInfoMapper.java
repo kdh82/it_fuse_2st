@@ -8,6 +8,10 @@ import kr.or.dgit.book_project.dto.MemberInfo;
 public interface MemberInfoMapper {
 	int selectCountAll();								//회원 수 
 	int insertMemberInfo(MemberInfo memberInfo);		//회원삽입
-	List<MemberInfo> selectMemberByAll();				//목록출력
-	MemberInfo FindMemberInfoByCode(MemberInfo code);	//회원검색
+	List<MemberInfo> selectMemberByAll(Map<String, Object> param);				//목록출력
+	MemberInfo FindMemberInfoByCode(MemberInfo memberinfo);	//회원검색
+	
+	
+	// 한개만 가져오는 거
+	// 출력 (조건 셋팅 시 조건에 해당되는 데이터만 끌어오기)
 }

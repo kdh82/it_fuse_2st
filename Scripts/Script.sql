@@ -317,3 +317,28 @@ SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
 		
 		select count(*) from memberinfo where m_code="C001";
 
+		
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		left outer join memberinfo m on io.m_code = m.m_code
+		where m.m_code="C006";
+		
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		right outer join memberinfo m on io.m_code = m.m_code
+		where m.m_code="C001";
+		
+		select m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group from memberinfo
+		where m_code="C001";

@@ -30,15 +30,15 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 	}
 
 	@Override
-	public List<MemberInfo> selectMemberByAll() {
+	public List<MemberInfo> selectMemberByAll(Map<String, Object> param) {
 		log.debug("selectMemberByAll()");
-		return sqlSession.selectList(namespace+"selectMemberByAll");
+		return sqlSession.selectList(namespace+"selectMemberByAll",param);
 	}
 
 	@Override
-	public MemberInfo FindMemberInfoByCode(MemberInfo code) {
+	public MemberInfo FindMemberInfoByCode(MemberInfo memberinfo) {
 		log.debug("findMemberInfoByCode()");
-		return sqlSession.selectOne(namespace+"findMemberInfoByCode", code);
+		return sqlSession.selectOne(namespace+"findMemberInfoByCode", memberinfo);
 	}
 	
 

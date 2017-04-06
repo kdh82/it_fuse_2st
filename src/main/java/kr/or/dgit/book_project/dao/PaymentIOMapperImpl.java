@@ -21,4 +21,5 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 		log.debug("selectAllPaymentIOInfo()");
 		return sqlSession.selectList(namespace + "selectAllPaymentIOInfo", param);
 	}
+	
 }
