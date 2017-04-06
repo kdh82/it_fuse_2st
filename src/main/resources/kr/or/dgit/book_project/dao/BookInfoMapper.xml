@@ -129,7 +129,7 @@
 		</choose>
 	</select>
 	<!-- selectLeftSql로 바꿈 -->
-	<select id="selectBookInfoOne" parameterType="BookInfo"
+	<select id="selectBookInfoOne" parameterType="hashmap"
 		resultMap="BookInfoResult">
 		<include refid="selectLeftSql" />
 		<include refid="whereSql" />

@@ -65,10 +65,11 @@ public class BookLendTable extends AbsTable<BookInfo> {
 		}
 		String bCode = (String) table.getValueAt(selectedIdx, 0);
 		String bSubCode = (String) table.getValueAt(selectedIdx, 1);
-		BookInfo bookinfo = new BookInfo();
-		bookinfo.setbCode(bCode);
-		bookinfo.setbSubCode(bSubCode);
-		return null; /*BookInfoService.getInstance().selectBookInfoOne(bookinfo);*/
+		Map<String, Object> hash= new HashMap<>();
+		hash.put("bCode", bCode);
+		hash.put("bSubCode",bSubCode);
+		List<BookInfo> binf=  BookInfoService.getInstance().selectBookInfoOne(hash);
+		return binf.get(0);
 	}
 
 }

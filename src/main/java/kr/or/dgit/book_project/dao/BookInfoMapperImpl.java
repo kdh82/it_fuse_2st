@@ -50,9 +50,9 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 	}
 
 	@Override
-	public BookInfo selectBookInfoOne(BookInfo bookInfo) {
+	public List<BookInfo> selectBookInfoOne(Map<String, Object> param) {
 		log.debug("selectBookInfoOne()");
-		return sqlSession.selectOne(namespace + "selectBookInfoOne", bookInfo);
+		return sqlSession.selectList(namespace + "selectBookInfoOne", param);
 	}
 
 	// 대여 테이블
