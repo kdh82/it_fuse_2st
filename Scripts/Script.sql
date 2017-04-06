@@ -308,4 +308,6 @@ select*from bookinfo;
 		left outer join
 		coden c on b.c_name = c.c_name
 		where b.b_code= "T001" and b.b_sub_code = "2";
+		
+		select count(*) from memberinfo where m_code="C001";
 
