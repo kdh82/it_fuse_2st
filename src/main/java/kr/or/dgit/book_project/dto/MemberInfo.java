@@ -146,6 +146,11 @@ public class MemberInfo {
 				"%s %s %s %s %s %s %s %s %s %s %s %s %s ",
 				mCode, mPass, mName, mTel, mZipCode, mAddress, isPosbl, delayCount, mLendCount, mNowCount, blackDate,
 				mGroup, isSecsn);
+	}
+
+	public Object[] toArrayForMemberList() {
+		//{"이름","회원코드","전화번호","우편번호","주소","대여금지일"};		
+		return new Object[]{mName, mCode, mTel, mZipCode, mAddress, blackDate};
 	}	
 	
 	

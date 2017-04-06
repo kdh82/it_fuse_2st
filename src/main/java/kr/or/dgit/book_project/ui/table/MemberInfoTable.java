@@ -1,8 +1,17 @@
 package kr.or.dgit.book_project.ui.table;
 
+import java.util.List;
+
+import javax.swing.SwingConstants;
+
 import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.service.MemberInfoService;
+import kr.or.dgit.book_project.service.PaymentIOService;
 
 public class MemberInfoTable extends AbsTable<MemberInfo> {
+	public MemberInfoTable() {
+		loadData();
+	}
 
 	@Override
 	protected void createPopupMenu() {
@@ -24,26 +33,29 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected void cellWith() {
-		// TODO Auto-generated method stub
+		tableSetWidth(80,50,100,50,200,100);
 		
 	}
 
 	@Override
 	protected void CellAlign() {
-		// TODO Auto-generated method stub
+		tableCellAlignment(SwingConstants.CENTER, 1);
 		
 	}
 
 	@Override
-	protected Object[][] getRowData() {
-		// TODO Auto-generated method stub
-		return null;
+	protected Object[][] getRowData() {		
+		List<MemberInfo> member = MemberInfoService.getInstance().selectMemberByAll();
+		Object[][] datas = new Object[member.size()][];
+		for(int i=0; i<datas.length; i++){
+			datas[i] = member.get(i).toArrayForMemberList();
+		}
+		return datas;
 	}
 
 	@Override
 	protected Object[] getColumn() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[] {"이름","회원코드","전화번호","우편번호","주소","대여금지일"};
 	}
 
 	@Override
