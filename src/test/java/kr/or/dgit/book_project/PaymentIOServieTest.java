@@ -17,7 +17,7 @@ public class PaymentIOServieTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		paymentIOServie = new PaymentIOService();
+		paymentIOServie = PaymentIOService.getInstance();
 	}
 
 	@AfterClass

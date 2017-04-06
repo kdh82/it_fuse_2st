@@ -1,5 +1,5 @@
 -- 도서관
-DROP SCHEMA IF EXISTS book_project;
+DROP SCHEMA IF EXISTS book_project; 
 
 -- 도서관
 CREATE SCHEMA book_project;
@@ -184,11 +184,8 @@ insert into book_project.coden (c_name, c_code) values
 ('자기계발', 'D');
 
 
-<<<<<<< HEAD
+
 INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, is_lending, b_lend_count) values
-=======
-INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date,is_lending, b_lend_count) values
->>>>>>> refs/remotes/origin/대여xml2
 ('T001',00, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 1),
 ('T001',01, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 2),
 ('T001',02, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-04-01', true, 0),
@@ -272,24 +269,33 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (37,'T002',00,'C001','2017-03-23' , null),
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
-<<<<<<< HEAD
-=======
 
-select*from bookinfo;
-	select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
-		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
-		insert_date, b_lend_count, is_lending, is_del from bookInfo b
-		right outer join publisherInfo p on b.p_code = p.p_code
-		left outer join
-		coden c on b.c_name = c.c_name
-	union
-	select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author, b.p_code,
-		publisher, p_name, p_tel, p_zip_code, p_address, price, insert_date,
-		b_lend_count, is_lending, is_del from bookInfo b
-		right outer join publisherInfo p on b.p_code = p.p_code
-		right outer join
-		coden c on b.c_name = c.c_name;
+
+-- 
+select m_name, m_code, m_tel, m_zip_code, m_address, black_date from memberinfo;
+
+
+SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		left outer join memberinfo m on io.m_code = m.m_code
 		
+		
+SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		right outer join memberinfo m on io.m_code = m.m_code
+
 		
 		select * from book_project.bookinfo where is_lending = false;
 		

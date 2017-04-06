@@ -63,5 +63,11 @@
 		<include refid="selectRightSql"/>
 		<include refid="whereSql"/>
 	</select>
+	
+	<select id="selectAllMemberInfo" parameterType="hashmap" resultMap="PaymentIOResult">
+		<include refid="selectLeftSql"></include>		
+	</select>
+	
+	
 
 </mapper>

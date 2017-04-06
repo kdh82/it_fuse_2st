@@ -11,9 +11,14 @@ import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class MemberInsertView extends AbsViewPanel {
-
+public class MemberInsertView extends AbsViewPanel implements ActionListener {
+	
+	private JButton btnCancel;
+	private MemberInfoP pContent;	
+	private JButton btnSave;
 	
 	public MemberInsertView() {
 		JPanel panel_5 = new JPanel();
@@ -57,10 +62,13 @@ public class MemberInsertView extends AbsViewPanel {
 		panel_3.add(panel_6);
 		panel_6.setLayout(new GridLayout(0, 2, 10, 0));
 		
-		JButton btnSave = new JButton("저장");
+		btnSave = new JButton("저장");
+		btnSave.addActionListener(this);
 		panel_6.add(btnSave);
 		
-		JButton btnCancel = new JButton("취소");
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
+		
 		panel_6.add(btnCancel);
 		
 		JPanel panel_8 = new JPanel();
@@ -75,5 +83,26 @@ public class MemberInsertView extends AbsViewPanel {
 		gbc_pTable.gridy = 2;
 		panel_5.add(pTable, gbc_pTable);
 
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
+		if (e.getSource() == btnSave) {
+			actionPerformedBtnSave(e);
+		}
+	}
+	
+	// 우편번호 더블클릭 시, 주소 검색 창 오픈시켜야 함. (툴팁으로 힌트주기)
+	
+	protected void actionPerformedBtnSave(ActionEvent e) {
+		// 입력확인 후 등록 완료 팝업 창 출력
+		// 등록된 목록을 테이블에 출력
+		
+		
+	}
+	protected void actionPerformedBtnCancel(ActionEvent e) {
+		pContent.setClear();
 	}
 }

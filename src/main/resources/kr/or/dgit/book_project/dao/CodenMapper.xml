@@ -8,4 +8,15 @@
 		<id property="cName" column="c_name" />
 		<result property="cCode" column="c_code" />
 	</resultMap>
+	<insert id="insertCoden" parameterType="Coden">
+		insert into coden
+		( c_name, c_code) values(#{cName}, #{cCode})
+	</insert>
+	<update id="updateCoden" parameterType="Coden">
+		update CODEN
+		<set>
+			<if test="cCode !=null">c_code=#{cCode}</if>
+		</set>
+		where c_name=#{cName}
+	</update>
 </mapper>
