@@ -118,10 +118,7 @@ public class BookLendView extends AbsViewPanel {
 	}
 	protected void mouseClickedBlv4Table(MouseEvent e) {
 		if(e.getClickCount() == 2){
-			BookInfo bi = blv4.getSelectedObject();
-			Map<String, Object> param = new HashMap<>();
-			param.put("serarchBy","bCode");
-			param.put("bCode", bi.getbCode());
+			panel_3.setObject(blv4.getSelectedObject());
 		}
 	}
 	protected void mousePressedPanel_3PBCodeTfBCode(MouseEvent e) {
