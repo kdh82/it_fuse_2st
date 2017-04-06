@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.book_project.dao.MemberInfoMapper">
 	
-	<resultMap id="MemberInfoResult" type="MemberInfo" >
+	<resultMap type="MemberInfo" id="MemberInfoResult">
 		<id property="mCode" column="m_code"/>
 		<result property="mPass" column="m_pass"/>
 		<result property="mName" column="m_name"/>
@@ -32,10 +32,7 @@
 	</select>
 	
 
-	<!-- <select id="findMemberInfoByCode" parameterType="code" resultType="MemberInfoResult" >
-
-	<select id="findMemberInfoByCode" resultType="MemberInfoResult" >
-
+	<!-- <select id="findMemberInfoByCode" parameterType="MemberInfo" resultType="MemberInfoResult" >
 		select m.m_name, m.m_code, m_tel, m_zip_code, m_address, if(black_date is null," ",black_date)
 		from memberInfo m inner join memberLend ml on m.m_code = ml.m_code where m.m_code = #{memberInfo.mCode}
 	</select> -->
