@@ -36,7 +36,7 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 	}
 
 	@Override
-	public MemberInfo FindMemberInfoByCode(MemberInfo code) {
+	public MemberInfo findMemberInfoByCode(MemberInfo code) {
 		log.debug("findMemberInfoByCode()");
 		return sqlSession.selectOne(namespace+"findMemberInfoByCode", code);
 	}

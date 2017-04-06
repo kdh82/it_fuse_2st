@@ -63,8 +63,7 @@ public class CodenView extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Coden coden = pTable.getSelectedObject();
-				
+				Coden coden = pTable.getSelectedObject();				
 			}
 			
 		});
