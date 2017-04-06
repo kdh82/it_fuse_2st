@@ -22,7 +22,6 @@
 	</sql>
 	<sql id="selectSql">
 		SELECT c_name, c_code FROM coden;
-
 	</sql>
 	<sql id="whereSql">
 		where c_name=#{cName}
@@ -39,5 +38,10 @@
 	
 	<select id="selectCodenAll" resultMap="CodenResult">
 		<include refid="selectSql" />
+	</select>
+	
+	<select id="selectOneByCode" parameterType="hashmap" resultMap="CodenResult">
+		<include refid="selectSql" />
+		where c_code = #{cCode}
 	</select>
 </mapper>

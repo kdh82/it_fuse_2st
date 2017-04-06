@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -43,6 +44,13 @@ public class CodenService {
 			CodenMapper codenMapper = new CodenMapperImpl(sqlSession);
 			return codenMapper.selectCodenAll();
 
+		}
+	}
+	
+	public Coden selectOneByCode (Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			CodenMapper codenMapper = new CodenMapperImpl(sqlSession);
+			return codenMapper.selectOneByCode(param);
 		}
 	}
 }

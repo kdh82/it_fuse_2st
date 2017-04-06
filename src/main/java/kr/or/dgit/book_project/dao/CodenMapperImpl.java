@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -30,5 +31,10 @@ public class CodenMapperImpl implements CodenMapper {
 	public List<Coden> selectCodenAll() {
 		log.debug("selectCodenAll()");
 		return sqlSession.selectList(namespace + "selectCodenAll");
+	}
+	@Override
+	public Coden selectOneByCode(Map<String, Object> param) {
+		log.debug("selectOneByCode");
+		return sqlSession.selectOne(namespace + "selectOneByCode",param);
 	}
 }

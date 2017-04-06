@@ -25,11 +25,11 @@ import java.awt.event.ActionEvent;
 
 public class BookSearchView extends AbsViewPanel implements ActionListener {
 
-	private AbsTable<BookInfo> pTable;
+	private BookSearchTable pTable;
 	private CheckSearchDesign pContent;
 	private BookSearchPanel bsp;
 	private Map<String, Object> map;
-	private BookInsertView insertDataPanel;
+	private BookInsertView bookInsertView;
 
 	public BookSearchView() {
 
@@ -69,54 +69,15 @@ public class BookSearchView extends AbsViewPanel implements ActionListener {
 
 		map = new HashMap<>();
 		map.put("onlyBook", "onlyBook");
-		((BookSearchTable) pTable).setMap(map);
+		pTable.setMap(map);
 		pTable.loadData();
 
 		pMainSub.add(pTable, gbc_pTable);
 
 	}
 
-	public void setMyMouseListener(BookInsertView insertDataPanel, JFrame myFrarme) {
-		this.insertDataPanel = (BookInsertView) insertDataPanel;
-		pTable.getTable().addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					BookInfo bi = pTable.getSelectedObject();
-					System.out.println(bi.toString());
-					Map<String, Object> param = new HashMap<>();
-					param.put("bCode", bi.getbCode());
-					int cnt = BookInfoService.getInstance().countBookInfo(param);
-					insertDataPanel.getpContent().getpBCode().setTfBCode(bi.getbCode());
-					insertDataPanel.getpContent().getpBCode().setTfBSubCode(cnt + "");
-					insertDataPanel.getpContent().getpBName().setTFValue(bi.getbName());
-					insertDataPanel.getpContent().getpAuthor().setTFValue(bi.getAuthor());
-					insertDataPanel.getpContent().getpPrice().setValue(bi.getPrice());
-					insertDataPanel.getpContent().getpPublisher().setSelectedTT(bi.getPublisherInfo());
-					System.out.println(bi.getPublisherInfo());
-					myFrarme.setVisible(false);
-				}
-			}
-
-		});
-	}
-
-	public void addBtn(String string, JFrame myFrame) {
-		JButton btnAddBtn = new JButton(string);
-		pContent.getpBtnSub().add(btnAddBtn);
-		btnAddBtn.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				CodenView cv = new CodenView();
-				cv.addMyMouseListner(insertDataPanel);
-				cv.setVisible(true);
-				myFrame.setVisible(false);
-			}
-
-		});
-
+	public BookSearchTable getpTable() {
+		return pTable;
 	}
 
 	public CheckSearchDesign getpContent() {

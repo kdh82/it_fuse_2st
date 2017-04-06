@@ -21,49 +21,6 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected void createPopupMenu() {
-		/*popupMenu = new JPopupMenu();
-
-		JMenuItem updateItem = new JMenuItem("수정");
-		updateItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				T t = getSelectedObject();
-				if (t == null) {
-					JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					return;
-				}
-				updateData(t);
-			}
-		});
-		popupMenu.add(updateItem);
-
-		JMenuItem deleteItem = new JMenuItem("삭제");
-		deleteItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				T t = getSelectedObject();
-				if (t == null) {
-					JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					return;
-				}
-				int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까", "", JOptionPane.YES_NO_OPTION);
-				if (res != 0) {
-					JOptionPane.showMessageDialog(null, "취소하였습니다");
-					return;
-				}
-
-				deleteItem(t);
-				loadData();
-				JOptionPane.showMessageDialog(null, "삭제되었습니다");
-
-			}
-
-		});
-		popupMenu.add(deleteItem);
-
-		return null;*/
 	}
 
 	@Override

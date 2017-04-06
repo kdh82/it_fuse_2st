@@ -113,7 +113,7 @@ public class BookLendView extends AbsViewPanel {
 		/*blv4.loadData();// 테이블 끌어오는거?
 */		JFrame jf = new JFrame();
 		jf.setBounds(100, 100, 400, 500);
-		jf.add(msv);
+		jf.getContentPane().add(msv);
 		jf.setVisible(true);
 	}
 	protected void mouseClickedBlv4Table(MouseEvent e) {
@@ -126,7 +126,7 @@ public class BookLendView extends AbsViewPanel {
 		/*blv4.loadData();// 테이블 끌어오는거?
 */		JFrame jf = new JFrame();
 		jf.setBounds(100, 100, 400, 500);
-		jf.add(bsv);
+		jf.getContentPane().add(bsv);
 		jf.setVisible(true);
 	}
 }

@@ -24,6 +24,7 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	private JButton btnSave;
 	private JButton btnCancel;
 	private BookInfoP pContent;
+	private BookSearchTable pTable;
 
 	public BookInsertView() {
 
@@ -64,7 +65,6 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 		btnSave = new JButton("저장");
 		btnSave.addActionListener(this);
-		btnSave.setEnabled(false);
 		pBtn.add(btnSave);
 
 		btnCancel = new JButton("취소");
@@ -74,7 +74,7 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		JPanel panel_1 = new JPanel();
 		pBtn.add(panel_1);
 
-		BookSearchTable pTable = new BookSearchTable();
+		pTable = new BookSearchTable();
 		GridBagConstraints gbc_pTable = new GridBagConstraints();
 		gbc_pTable.weighty = 1.0;
 		gbc_pTable.weightx = 1.0;
@@ -101,6 +101,10 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 	protected void actionPerformedBtnSave(ActionEvent e) {
 		// 모두 입력되었는지 확인 후
+		if(pContent.isVaildCheck()){
+			pContent.getObject();
+			System.out.println(pContent.getObject());
+		}
 		// 새로운 도서정보가 저장
 		// 저장확인메시지
 		// 하단에 테이블 데이터 갱신
@@ -112,16 +116,11 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
 		// 도서 검색창 새창으로
-		JFrame bookSearch = new JFrame("도서검색");
-		BookSearchView bsv = new BookSearchView();
-		
-		// 분류 창 띄우는 버튼 추가
-		bsv.addBtn("신규", bookSearch);
-		bsv.setMyMouseListener(this, bookSearch);
-		
-		bookSearch.setBounds(600, 100, 500, 600);
-		bookSearch.getContentPane().add(bsv);
-		bookSearch.setVisible(true);
+		BookSearchViewFrame bookSearchFrame = new BookSearchViewFrame();
+		bookSearchFrame.setBookInsertView(this);
+		bookSearchFrame.addBtn("신규");
+		bookSearchFrame.setMyMouseListener();
+		bookSearchFrame.setVisible(true);
 	}
 
 	protected void actionPerformedPContentBtnAddPublisher(ActionEvent e) {

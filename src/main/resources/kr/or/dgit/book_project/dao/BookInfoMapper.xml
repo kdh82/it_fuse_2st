@@ -24,8 +24,8 @@
 
 	<sql id="insertSql">
 		insert into bookInfo(b_code, b_sub_code, c_name, b_name,
-		author, p_code, price, insert_date, is_del) values
-		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},#{insertDate},#{isDel});
+		author, p_code, price, insert_date) values
+		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price}, current_date);
 	</sql>
 	<sql id="selectCountSql">
 		select count(*) from bookInfo b 
@@ -96,6 +96,7 @@
 			</if>
 			<if test="cCode != null">
 				and c.c_code is not null group by c.c_code
+				
 			</if>
 			<if test="isLending != null">
 				and b.is_lending = #{isLending}
@@ -152,5 +153,7 @@
 		<include refid="selectLeftSql" />
 		<include refid="whereSql" />
 	</select>
+
+	
 
 </mapper>

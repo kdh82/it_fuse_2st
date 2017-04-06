@@ -2,7 +2,9 @@ package kr.or.dgit.book_project.ui.component;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,7 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.service.CodenService;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.BookCodePanel;
 import kr.or.dgit.book_project.ui.common.ComboBoxPanel;
@@ -150,9 +155,27 @@ public class BookInfoP extends JPanel {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			return false;
-			// e.printStackTrace();
 		}
 
+	}
+	
+	/*insert into bookInfo(b_code, b_sub_code, c_name, b_name,
+			author, p_code, price, insert_date, is_del) values
+			(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},#{insertDate},#{isDel});*/
+	
+	public BookInfo getObject(){
+		String bCode = pBCode.getTfBCode().getText();
+		String bSubCode = pBCode.getTfBSubCode().getText();
+		String bName = pBName.getTFValue();
+		Coden coden = new Coden();
+	/*	coden.setcCode(pBCode.getTfBCode().getText().charAt(0)+"");
+		Map<String, Object> param = new HashMap<>();
+		//param.put("cCode", cCode);
+		Coden codenRes = CodenService.getInstance().selectOneByCode(param);*/
+		String author = pAuthor.getTFValue();
+		PublisherInfo publisherInfo = (PublisherInfo) pPublisher.getCombItem();
+		int price = (int) pPrice.getValue();
+		return new BookInfo(bCode, bSubCode, codenRes, bName, author, publisherInfo, price);
 	}
 
 	public ComboBoxPanel getpPublisher() {

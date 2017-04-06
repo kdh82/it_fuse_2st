@@ -19,8 +19,22 @@ public class BookInfo { // 도서
 	public BookInfo() {
 	}
 
+	public BookInfo(String bCode, String bSubCode, Coden coden, String bName, String author,
+			PublisherInfo publisherInfo, int price) {
+		// 도서 입력시 사용
+		super();
+		this.bCode = bCode;
+		this.bSubCode = bSubCode;
+		this.coden = coden;
+		this.bName = bName;
+		this.author = author;
+		this.publisherInfo = publisherInfo;
+		this.price = price;
+	}
+
 	public BookInfo(String bCode, String bSubCode, String bName, String author, PublisherInfo publisherInfo, int price,
 			int bLendCount) {
+		// 도서정보 받아올 때 사용
 		super();
 		this.bCode = bCode;
 		this.bSubCode = bSubCode;
@@ -125,13 +139,11 @@ public class BookInfo { // 도서
 				price, insertDate, bLendCount, isLending, isDel);
 	}
 
-	
 	public Object[] toArrayForBoookList() {
 		// "도서코드", "중복코드", "도서명", "분야", "저자", "출판사"
 		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author,
 				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()) };
 	}
-	
 
 	public Object[] toArray() {
 		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "총대여 횟수"

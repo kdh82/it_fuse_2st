@@ -339,3 +339,9 @@ select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name,
 		join
 		coden c on b.c_name = c.c_name
 		where b.b_name like '무엇';
+		
+		
+select*from coden
+where c_code = "T";
+SELECT c_name, c_code FROM coden
+where c_code = "T";
