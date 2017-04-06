@@ -36,9 +36,9 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 	}
 
 	@Override
-	public MemberInfo FindMemberInfoByCode(MemberInfo memberinfo) {
+	public MemberInfo findMemberInfoByCode(MemberInfo code) {
 		log.debug("findMemberInfoByCode()");
-		return sqlSession.selectOne(namespace+"findMemberInfoByCode", memberinfo);
+		return sqlSession.selectOne(namespace+"findMemberInfoByCode", code);
 	}
 
 	@Override
@@ -47,9 +47,4 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		return null;
 	}
 
-	@Override
-	public MemberInfo findMemberInfoByCode(MemberInfo code) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

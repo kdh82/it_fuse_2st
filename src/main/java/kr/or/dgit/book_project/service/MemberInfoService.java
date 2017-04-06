@@ -46,7 +46,7 @@ public class MemberInfoService {
 	public MemberInfo findMemberInfoByCode(MemberInfo memberinfo){		// 멤버 검색
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			return memberInfoMapper.FindMemberInfoByCode(memberinfo);
+			return memberInfoMapper.findMemberInfoByCode(memberinfo);
 		}
 	}	
 	

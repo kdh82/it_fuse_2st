@@ -33,9 +33,18 @@ public class MemberInfo {
 		this.mZipCode = mZipCode;
 		this.mAddress = mAddress;
 	}
+	
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, int mZipCode, String mAddress) {
+		this.mCode = mCode;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+	}
 
-	
-	
+
+
 	public MemberInfo(String mCode, String mName, String mTel) {
 		super();
 		this.mCode = mCode;
