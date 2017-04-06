@@ -39,6 +39,7 @@ public abstract class AbsTable<T> extends JPanel {
 	}
 
 	
+	
 
 	public void loadData() {
 		table.setModel(new DefaultTableModel(getRowData(), getColumn()) {

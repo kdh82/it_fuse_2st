@@ -61,11 +61,13 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 	@Override
 	public MemberInfo getSelectedObject() {
 		int selectedIdx = table.getSelectedRow();
-		if(selectedIdx == -1) return null;
-		String member= (String) table.getValueAt(selectedIdx, 0);
+		if(selectedIdx == 1) return null;
+		String member= (String) table.getValueAt(selectedIdx, 1);
 		MemberInfo mi = MemberInfoService.getInstance().findMemberInfoByCode(new MemberInfo(member));
+		System.out.println(mi);
 		return mi;
 	}
 	
 
+	
 }

@@ -23,6 +23,7 @@ public class MemberSearchComboView extends AbsViewPanel {
 	/**
 	 * Create the panel.
 	 */
+	
 	public MemberSearchComboView() {
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
 		gridBagLayout_2.columnWidths = new int[]{735, 0};
@@ -65,7 +66,7 @@ public class MemberSearchComboView extends AbsViewPanel {
 		gbc_panel.gridy = 0;
 		panel_2.add(panel, gbc_panel);
 		
-		JPanel panel_1 = new MemberInfoTable();
+		MemberInfoTable panel_1 = new MemberInfoTable();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 0;
 		gbc_panel_1.gridy = 1;
@@ -77,8 +78,10 @@ public class MemberSearchComboView extends AbsViewPanel {
 		gbc_pTable_1.fill = GridBagConstraints.BOTH;
 		gbc_pTable_1.gridx = 0;
 		gbc_pTable_1.gridy = 1;
+		
+		
+		
+		
 
 	}
-	
-	
 }

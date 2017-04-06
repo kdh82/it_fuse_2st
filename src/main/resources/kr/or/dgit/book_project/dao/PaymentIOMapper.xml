@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="selectAllMemberInfo" parameterType="hashmap" resultMap="PaymentIOResult">
-		<include refid="selectLeftSql"></include>		
+		<include refid="selectLeftSql"></include>
 	</select>
 	
 	

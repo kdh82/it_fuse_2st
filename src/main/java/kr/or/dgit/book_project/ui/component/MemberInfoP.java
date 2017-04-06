@@ -60,6 +60,7 @@ public class MemberInfoP extends JPanel {
 	}
 	
 	public void setClear(){
+		
 		pMName.setTFValue("");
 		pMTel.setTFValue("");
 		pMZipCode.setTFValue("");
