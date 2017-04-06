@@ -74,5 +74,6 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 		memberinfo.setmCode(mCode);
 		return MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
 	}
+	
 
 }

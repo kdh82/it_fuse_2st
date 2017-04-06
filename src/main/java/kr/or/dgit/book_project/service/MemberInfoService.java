@@ -48,8 +48,7 @@ public class MemberInfoService {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			return memberInfoMapper.FindMemberInfoByCode(memberinfo);
 		}
-	}
-	
+	}	
 	
 }
 
