@@ -68,31 +68,36 @@ public class PublisherInfoP extends JPanel {
 			
 		}
 	}*/
-		public PublisherInfo addCheck(){
+		public boolean addCheck(){
 	
 			if(pPCode.getTFValue().trim().equals("")){
 				JOptionPane.showMessageDialog(null, "출판사코드를 입력해주세요");
 				pPCode.getTF().requestFocus();
+				return false;
 			}else if(pPublisher.getTFValue().trim().equals("")){
 				JOptionPane.showMessageDialog(null, "출판사명을 입력해주세요");
 				pPublisher.getTF().requestFocus();
+				return false;
 			}else if(pPName.getTFValue().trim().equals("")){
 				JOptionPane.showMessageDialog(null, "담당자명을 입력해주세요");
 				pPName.getTF().requestFocus();
+				return false;
 			}else if(!pPTel.getTFValue().trim().matches("^[0-9]{3}-{1}[0-9]{3,4}-{1}[0-9]{4}$")){
 				JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요 000-0000-0000");
 				pPTel.getTF().requestFocus();
+				return false;
 			}else if(!pPZipCode.getTFValue().matches("^[0-9]{5}$")){
 				JOptionPane.showMessageDialog(null, "우편번호를 입력해주세요 5자리");
 				pPZipCode.getTF().requestFocus();
+				return false;
 			}else if(pPAddress.getTFValue().trim().equals("")){
 				JOptionPane.showMessageDialog(null, "주소를 입력해주세요");
 				pPAddress.getTF().requestFocus();
+				return false;
 			}else{
-				JOptionPane.showMessageDialog(null, "등록완료");
-			}
-			return getObject();
 			
+				return true;
+			}			
 		}
 		public PublisherInfo getObject(){
 			String pCode = pPCode.getTFValue();
