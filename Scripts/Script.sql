@@ -1,5 +1,5 @@
 -- 도서관
-DROP SCHEMA IF EXISTS book_project;
+DROP SCHEMA IF EXISTS book_project; 
 
 -- 도서관
 CREATE SCHEMA book_project;
@@ -184,6 +184,7 @@ insert into book_project.coden (c_name, c_code) values
 ('자기계발', 'D');
 
 
+
 INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, is_lending, b_lend_count) values
 ('T001',00, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 1),
 ('T001',01, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 2),
@@ -294,3 +295,23 @@ SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
 		right outer join bookinfo b on io.b_code = b.b_code and
 		io.b_sub_code = b.b_sub_code
 		right outer join memberinfo m on io.m_code = m.m_code
+
+		
+		select * from book_project.bookinfo where is_lending = false;
+		
+		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
+		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
+		insert_date, b_lend_count, is_lending, is_del from bookInfo b
+		right outer join publisherInfo p on b.p_code = p.p_code
+		left outer join
+		coden c on b.c_name = c.c_name
+		where is_lending = false;
+		
+		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
+		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
+		insert_date, b_lend_count, is_lending, is_del from bookInfo b
+		right outer join publisherInfo p on b.p_code = p.p_code
+		left outer join
+		coden c on b.c_name = c.c_name
+		where b.b_code= "T001" and b.b_sub_code = "2";
+
