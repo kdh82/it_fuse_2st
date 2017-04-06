@@ -11,7 +11,14 @@ import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
 public class MemberInfoService {
 	
-	public int selectCountAll(){
+	private static final MemberInfoService instance = new MemberInfoService();
+	private MemberInfoService() {	}
+	public static MemberInfoService getInstance() {
+		return instance;
+	}
+
+
+	public int selectCountAll(){		// 회원 목록 수
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			int res = memberInfoMapper.selectCountAll();
@@ -28,14 +35,14 @@ public class MemberInfoService {
 		}				
 	}
 	
-	public List<MemberInfo> selectMemberByAll(){
+	public List<MemberInfo> selectMemberByAll(){		// 전체 회원 출력
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			return memberInfoMapper.selectMemberByAll();
 		}				
 	}
 	
-	public MemberInfo findMemberInfoByCode(MemberInfo code){
+	public MemberInfo findMemberInfoByCode(MemberInfo code){		// 멤버 검색
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			return memberInfoMapper.FindMemberInfoByCode(code);

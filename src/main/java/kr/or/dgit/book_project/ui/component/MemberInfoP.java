@@ -81,13 +81,13 @@ public class MemberInfoP extends JPanel {
 		pMPass.setTFValue(item.getmPass());
 		pMName.setTFValue(item.getmName());
 		pMTel.setTFValue(item.getmTel());
-		pMZipCode.setTFValue(item.getmZipCode()+"");
+		pMZipCode.setTFValue(String.valueOf(item.getmZipCode()));
 		
 	}
 	
 	public boolean isVaildCheck(){
 		try {
-			pMPass.isValidCheck("[a-zA-Z0-9]+", "한글 또는 숫자만 가능");
+			pMPass.isValidCheck("[a-zA-Z0-9]+", "영문 또는 숫자만 가능");
 			pMName.isValidCheck("[a-zA-Z가-힣]+", "한글 또는 영문만 가능");
 			pMTel.isEmptyCheck();
 			pMZipCode.isEmptyCheck();
@@ -99,9 +99,39 @@ public class MemberInfoP extends JPanel {
 			return false;
 			//e.printStackTrace();
 		}
-	}	
-	
 		
+		
+		
+	}
+
+	public InputComp getpMCode() {
+		return pMCode;
+	}
+
+	public InputComp getpMName() {
+		return pMName;
+	}
+
+	public void setpMName(InputComp pMName) {
+		this.pMName = pMName;
+	}
+
+	public InputComp getpMTel() {
+		return pMTel;
+	}
+
+	public void setpMTel(InputComp pMTel) {
+		this.pMTel = pMTel;
+	}
+
+	public InputComp getpMPass() {
+		return pMPass;
+	}
+
+	public void setpMPass(InputComp pMPass) {
+		this.pMPass = pMPass;
+	}
+	
 	
 
 }

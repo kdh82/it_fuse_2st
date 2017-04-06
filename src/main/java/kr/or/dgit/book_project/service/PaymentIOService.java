@@ -12,6 +12,23 @@ import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
 public class PaymentIOService {
 	
+	private static final PaymentIOService instance = new PaymentIOService();
+	
+	
+	private PaymentIOService() {
+		
+	}
+	
+	
+
+
+	public static PaymentIOService getInstance() {
+		return instance;
+	}
+
+
+
+
 	public List<PaymentIO> selectAllPaymentIOInfo(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);

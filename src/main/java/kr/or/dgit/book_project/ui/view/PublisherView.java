@@ -88,7 +88,8 @@ public class PublisherView extends AbsViewPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnSave(ActionEvent arg0) {
-			PublisherInfoService.insertAllPublisherInfo(panel_2.getObject());
+			PublisherInfoService.insertAllPublisherInfo(panel_2.addCheck());
+			panel_2.clear();
 	}
 	protected void actionPerformedBtnCancel(ActionEvent arg0) {
 			panel_2.clear();

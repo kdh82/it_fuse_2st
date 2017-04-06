@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
 import kr.or.dgit.book_project.ui.component.MemberSearchPanel;
+import kr.or.dgit.book_project.ui.table.MemberInfoTable;
+
 import java.awt.GridLayout;
 import kr.or.dgit.book_project.ui.common.SearchComboPanel;
 import javax.swing.JTextField;
@@ -48,7 +50,7 @@ public class MemberSearchComboView extends AbsViewPanel {
 		panel_2GridBagLayout.columnWidths = new int[] {100, 0};
 		panel_2GridBagLayout.rowHeights = new int[] {21, 400, 0};
 		panel_2GridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		panel_2GridBagLayout.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		panel_2GridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel_2.setLayout(panel_2GridBagLayout);
 		
 		SearchComboPanel panel = new SearchComboPanel();
@@ -63,20 +65,12 @@ public class MemberSearchComboView extends AbsViewPanel {
 		gbc_panel.gridy = 0;
 		panel_2.add(panel, gbc_panel);
 		
-		JPanel pTable = new JPanel();
-		GridBagConstraints gbc_pTable = new GridBagConstraints();
-		gbc_pTable.weighty = 1.0;
-		gbc_pTable.weightx = 1.0;
-		gbc_pTable.fill = GridBagConstraints.BOTH;
-		gbc_pTable.gridx = 0;
-		gbc_pTable.gridy = 1;
-		panel_2.add(pTable, gbc_pTable);
-		GridBagLayout gbl_pTable = new GridBagLayout();
-		gbl_pTable.columnWidths = new int[]{0};
-		gbl_pTable.rowHeights = new int[]{0};
-		gbl_pTable.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_pTable.rowWeights = new double[]{Double.MIN_VALUE};
-		pTable.setLayout(gbl_pTable);
+		JPanel panel_1 = new MemberInfoTable();
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 1;
+		panel_2.add(panel_1, gbc_panel_1);
+		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 		GridBagConstraints gbc_pTable_1 = new GridBagConstraints();
 		gbc_pTable_1.weighty = 2.0;
 		gbc_pTable_1.weightx = 1.0;
