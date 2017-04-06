@@ -6,9 +6,6 @@ import javax.swing.JTextField;
 public class OptionSearchTF extends OptionSearchPanel {
 	private JTextField textField;
 
-	/**
-	 * Create the panel.
-	 */
 	public OptionSearchTF() {
 		
 		textField = new JTextField();
@@ -16,6 +13,10 @@ public class OptionSearchTF extends OptionSearchPanel {
 		textField.setColumns(10);
 		
 
+	}
+	
+	public String getTfValue(){
+		return textField.getText();
 	}
 	
 

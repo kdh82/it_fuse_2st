@@ -122,7 +122,7 @@ public class BookInfoServiceTest {
 
 	}*/
 	
-	@Test
+	/*@Test
 	public void TESTselectAllBookInfo() {
 		
 		Map<String, Object> param = new HashMap<>();
@@ -131,6 +131,23 @@ public class BookInfoServiceTest {
 		List<BookInfo> binew = bookInfoService.selectAllBookInfo(param);
 		Assert.assertNotNull(binew);
 
+	}*/
+	
+	@Test
+	public void TESTselectBookInfoOne() {
+		/*BookInfo bi = new BookInfo();
+		bi.setbCode("T001");
+		bi.setbSubCode("2");
+		
+		BookInfo binew = bookInfoService.selectBookInfoOne(bi);
+		Assert.assertNotNull(bi);*/
+		
+		
+		/*Map<String, Object> param = new HashMap<>();
+		param.put("bCode", "T001");
+		param.put("bSubCode", "2");
+		List<BookInfo> bi = bookInfoService.selectBookInfoOne(param);
+		Assert.assertNotNull(bi);*/
 	}
 
 }

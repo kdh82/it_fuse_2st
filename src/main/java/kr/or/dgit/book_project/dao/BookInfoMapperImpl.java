@@ -50,21 +50,17 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 	}
 
 	@Override
-	public List<BookInfo> selectBookInfoByAllBook(Boolean isDel) {
-		log.debug("selectBookInfoByAllBook()");
-		return sqlSession.selectList(namespace + "selectBookInfoByAllBook", isDel);
-	}
-
-	@Override
 	public BookInfo selectBookInfoOne(BookInfo bookInfo) {
 		log.debug("selectBookInfoOne()");
 		return sqlSession.selectOne(namespace + "selectBookInfoOne", bookInfo);
 	}
-	//대여 테이블
+
+	// 대여 테이블
 	@Override
 	public List<BookInfo> selectIslending(Map<String, Object> param) {
 		log.debug("selectIslending");
 		return sqlSession.selectList(namespace+"selectIslending",param);
+
 	}
 
 	@Override

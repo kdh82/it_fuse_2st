@@ -5,9 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.BookInfo;
@@ -16,10 +16,12 @@ import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookSearchPanel;
 import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
 import kr.or.dgit.book_project.ui.table.AbsTable;
+import kr.or.dgit.book_project.ui.table.BookInfoTable;
 
 public class BookSearchView extends AbsViewPanel {
 
 	private AbsTable<BookInfo> pTable;
+	private CheckSearchDesign pContent;
 
 	public BookSearchView() {
 
@@ -32,7 +34,7 @@ public class BookSearchView extends AbsViewPanel {
 		gbl_pMainSub.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		pMainSub.setLayout(gbl_pMainSub);
 
-		CheckSearchDesign pContent = new CheckSearchDesign();
+		pContent = new CheckSearchDesign();
 		GridBagConstraints gbc_pContent = new GridBagConstraints();
 		gbc_pContent.weighty = 1.0;
 		gbc_pContent.weightx = 1.0;
@@ -47,7 +49,7 @@ public class BookSearchView extends AbsViewPanel {
 		BookSearchPanel bsp = new BookSearchPanel();
 		pContent.getpContent().add(bsp);
 
-	//	pTable = new BookInfoTable();
+		pTable = new BookInfoTable();
 
 		GridBagConstraints gbc_pTable = new GridBagConstraints();
 		gbc_pTable.weighty = 1.5;
@@ -59,26 +61,45 @@ public class BookSearchView extends AbsViewPanel {
 		/*pMainSub.add(pTable, gbc_pTable);*/
 	}
 
-
-	public void setMyMouseListener(BookInsertView bookInsertView) {
+	public void setMyMouseListener(BookInsertView bookInsertView, JFrame myFrarme) {
 		pTable.getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				BookInfo bi = pTable.getSelectedObject();
-				/*BookInfoService bis = new BookInfoService();
-				BookInfoService.getInstance().*/
-				Map<String, Object> param = new HashMap<>();
+			/*	Map<String, Object> param = new HashMap<>();
 				param.put("searchBy", "bCode");
 				param.put("bCode", bi.getbCode());
-				/*int cnt = bis.selectBookInfoCountBy(param);*/
-			/*	bookInsertView.getpContent().getpBCode().setTfBCode(bi.getbCode());
+				int cnt = BookInfoService.getInstance().selectBookInfoCountBy(param);
+				bookInsertView.getpContent().getpBCode().setTfBCode(bi.getbCode());
 				bookInsertView.getpContent().getpBCode().setEnabled(false);
 				bookInsertView.getpContent().getpBCode().setTfBSubCode(cnt+"");*/
-				setVisible(false);
+				myFrarme.setVisible(false);
 			}
 
 		});
 	}
+	
+	public void addBtn(String string, JFrame myFrame){
+		JButton btnAddBtn = new JButton(string);
+		pContent.getpBtnSub().add(btnAddBtn);
+		btnAddBtn.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CodenView cv = new CodenView();
+				cv.setVisible(true);
+				myFrame.setVisible(false);
+			}
+			
+		});
+		
+	}
+
+	public CheckSearchDesign getpContent() {
+		return pContent;
+	}
+	
+	
 
 }

@@ -1,10 +1,11 @@
 package kr.or.dgit.book_project.dto;
 
 public class Coden {
-	private String cName;		// 분류
-	private String cCode;		// 코드
-	
-	public Coden() {	}
+	private String cName; // 분류
+	private String cCode; // 코드
+
+	public Coden() {
+	}
 
 	public Coden(String cName, String cCode) {
 		this.cName = cName;
@@ -32,7 +33,8 @@ public class Coden {
 		return String.format("%s, %s", cName, cCode);
 	}
 
-	
-	
-	
+	public Object[] toArray() {
+		return new String[]{ cName, cCode};
+	}
+
 }

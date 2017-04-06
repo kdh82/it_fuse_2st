@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import kr.or.dgit.book_project.ui.view.BookInsertView;
+import kr.or.dgit.book_project.ui.view.BookSearchView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
 import kr.or.dgit.book_project.ui.view.CodenView;
 import kr.or.dgit.book_project.ui.view.MemberInsertView;
@@ -28,6 +29,9 @@ private JPanel pCoden;
 		
 		JPanel pBookManager = new JPanel();
 		addTab("도서관리", null, pBookManager, null);
+		pBook.setLayout(new GridLayout(0, 1, 0, 0));
+		BookSearchView bookSearchview = new BookSearchView();
+		pBook.add(bookInsertview);
 		
 		pMember = new JPanel();
 		addTab("회원등록", null, pMember, null);		

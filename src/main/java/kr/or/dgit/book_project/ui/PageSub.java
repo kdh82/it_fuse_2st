@@ -1,97 +1,78 @@
 package kr.or.dgit.book_project.ui;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PageSub extends JFrame implements ActionListener {
 
-	private JPanel contentPane;	
-	private SideBar pSubMenu;
+	private JPanel contentPane;
+	private SideBar pSideBar;
 	private JPanel pTabSub;
 
 	public PageSub() {
 		setTitle("도서관리프로그램");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(400, 200, 1000, 660);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(400, 200, 1000, 600);
 		
-		pSubMenu = new SideBar();
-		pSubMenu.getBtnMenu4().addActionListener(this);
-		pSubMenu.btnMenu3.addActionListener(this);
-		pSubMenu.btnMenu2.addActionListener(this);
-		pSubMenu.btnMenu1.addActionListener(this);
-		pSubMenu.setBounds(15, 36, 120, 574);
-		contentPane.add(pSubMenu);
-		pSubMenu.setLayout(null);
+		pSideBar = new SideBar();
+		pSideBar.getBtnMenu4().addActionListener(this);
+		pSideBar.btnMenu3.addActionListener(this);
+		pSideBar.btnMenu2.addActionListener(this);
+		pSideBar.btnMenu1.addActionListener(this);
+		pSideBar.setBorder(new EmptyBorder(30, 10, 30, 10));
+		GridLayout gl_pSideBar = (GridLayout) pSideBar.getLayout();
+		gl_pSideBar.setVgap(10);
+		gl_pSideBar.setHgap(10);
+		getContentPane().add(pSideBar, BorderLayout.WEST);
 		
-		pTabSub = new JPanel();	
-		pTabSub.setBounds(147, 10, 825, 600);
-		contentPane.add(pTabSub);
-		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));				
-	}
+		pTabSub = new JPanel();
+		getContentPane().add(pTabSub, BorderLayout.CENTER);	
+		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));			
 	
+	}
+
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == pSubMenu.getBtnMenu4()) {
-			actionPerformedPSubMenuBtnMenu4(e);
+		if (e.getSource() == pSideBar.getBtnMenu4()) {
+			actionPerformedPSideBarBtnMenu4(e);
 		}
-		if (e.getSource() == pSubMenu.btnMenu3) {
-			actionPerformedPSubMenuBtnMenu3(e);
+		if (e.getSource() == pSideBar.btnMenu3) {
+			actionPerformedPSideBarBtnMenu3(e);
 		}
-		if (e.getSource() == pSubMenu.btnMenu2) {
-			actionPerformedPSubMenuBtnMenu2(e);
+		if (e.getSource() == pSideBar.btnMenu2) {
+			actionPerformedPSideBarBtnMenu2(e);
 		}
-		if (e.getSource() == pSubMenu.btnMenu1) {
-			actionPerformedPSubMenuBtnMenu1(e);
+		if (e.getSource() == pSideBar.btnMenu1) {
+			actionPerformedPSideBarBtnMenu1(e);
 		}
 	}
-	protected void actionPerformedPSubMenuBtnMenu1(ActionEvent e) {
-		pTabSub.removeAll();		
+	protected void actionPerformedPSideBarBtnMenu1(ActionEvent e) {
+		pTabSub.removeAll();
 		pTabSub.add(new SubMenuPage1());
 		revalidate();
 		repaint();
 	}
-	
-	protected void actionPerformedPSubMenuBtnMenu2(ActionEvent e) {
+	protected void actionPerformedPSideBarBtnMenu2(ActionEvent e) {
 		pTabSub.removeAll();
 		pTabSub.add(new SubMenuPage2());
 		revalidate();
 		repaint();
 	}
-	
-	protected void actionPerformedPSubMenuBtnMenu3(ActionEvent e) {
+	protected void actionPerformedPSideBarBtnMenu3(ActionEvent e) {
 		pTabSub.removeAll();
 		pTabSub.add(new SubMenuPage3());
 		revalidate();
 		repaint();
+	}
+	protected void actionPerformedPSideBarBtnMenu4(ActionEvent e) {
+		setVisible(false);
 	}
 
 	public JPanel getpTabSub() {
@@ -102,8 +83,5 @@ public class PageSub extends JFrame implements ActionListener {
 		this.pTabSub = pTabSub;
 	}
 	
-	protected void actionPerformedPSubMenuBtnMenu4(ActionEvent e) {
-		setVisible(false);
-	}
 	
 }

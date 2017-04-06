@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 public class ViewTest extends JFrame {
 
@@ -38,8 +39,14 @@ public class ViewTest extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		MemberSearchMemberPaymentViewFrame panel = new MemberSearchMemberPaymentViewFrame();
+		JPanel panel = new JPanel();
 		contentPane.add(panel);
+		
+		JButton btnNewButton = new JButton("New button");
+		panel.add(btnNewButton);
+		
+	/*	MemberSearchMemberPaymentViewFrame panel = new MemberSearchMemberPaymentViewFrame();
+		contentPane.add(panel);*/
 	}
 
 }

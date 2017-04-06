@@ -1,6 +1,8 @@
 package kr.or.dgit.book_project.ui.table;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
@@ -43,10 +45,12 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected Object[][] getRowData() {
-		List<BookInfo> list = BookInfoService.getInstance().selectBookInfoByAllBook(false);
+		Map<String, Object> param = new HashMap<>();
+		param.put("isDel", false);
+		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(param);
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
-			/*datas[i] = list.get(i).toArray();*/
+			datas[i] = list.get(i).toArrayForBoookList();
 		}
 		return datas;
 	}
@@ -67,7 +71,8 @@ public class BookInfoTable extends AbsTable<BookInfo> {
 		BookInfo bookInfo = new BookInfo();
 		bookInfo.setbCode(bCode);
 		bookInfo.setbSubCode(bSubCode);
-		return BookInfoService.getInstance().selectBookInfoOne(bookInfo);
+		// 잠시 주석
+		return null/*BookInfoService.getInstance().selectBookInfoOne(bookInfo)*/;
 	}
 
 }

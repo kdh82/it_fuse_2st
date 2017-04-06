@@ -137,6 +137,7 @@ public class BookInfoP extends JPanel {
 		pAuthor.setTFValue("");
 		pPrice.setValue(0);
 		pPublisher.setSelected(0);
+		tfAddPublisher.setText("");		
 	}
 	
 	public boolean isVaildCheck(){
@@ -161,5 +162,18 @@ public class BookInfoP extends JPanel {
 	public ComboBoxPanel getpPublisher() {
 		return pPublisher;
 	}
+
+
+
+	public BookCodePanel getpBCode() {
+		return pBCode;
+	}
+
+
+
+	public void setpBCode(BookCodePanel pBCode) {
+		this.pBCode = pBCode;
+	}
+	
 
 }
