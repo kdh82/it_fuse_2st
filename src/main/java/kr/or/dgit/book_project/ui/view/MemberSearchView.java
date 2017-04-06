@@ -71,6 +71,7 @@ public class MemberSearchView extends AbsViewPanel {
 				if (e.getClickCount() == 2){
 					//회원 검색시 회원 정보 넣기 더블클릭
 					MemberInfo memberinfo = pTable.getSelectedObject();
+					JOptionPane.showMessageDialog(null, memberinfo.toString());
 					memberinfo.setmCode(memberinfo.getmCode());
 					booklendview.getPanel_4().getpMCode().setTFValue(memberinfo.getmCode());
 					JOptionPane.showMessageDialog(null,memberinfo.isPosbl());

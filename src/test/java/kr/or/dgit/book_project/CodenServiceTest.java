@@ -20,7 +20,7 @@ public class CodenServiceTest {
 		codenService = null;	
 	}
 
-	@Test
+/*	@Test
 	public void aTestInsertCoden() {
 		Coden cd = new Coden();
 		cd.setcName("자연");
@@ -35,6 +35,6 @@ public class CodenServiceTest {
 		cd.setcCode("T");
 		int res = CodenService.updateCoden(cd);
 		Assert.assertEquals(1, res);
-	}
+	}*/
 
 }

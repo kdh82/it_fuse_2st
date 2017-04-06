@@ -68,6 +68,20 @@
 		<include refid="selectLeftSql"></include>		
 	</select>
 	
+<!-- 프로시저 -->
+<!-- 	 <parameterMap type="hashmap" id="paramMap">
+		<parameter  mode="IN" property="b_code" jdbcType="char" />
+		<parameter  mode="IN" property="b_sub_code" jdbcType="int" />
+		<parameter  mode="IN" property="m_code" jdbcType="char" />
+	</parameterMap>
 	
+	<update id="getbcode" statementType="CALLABLE" parameterMap="BookInfo">
+		{call proc_paymentIO_insert(#{"bCode"},#{bSubCode},#{mCode})}
+	</update> -->
+	
+	
+	 <select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_paymentIO_insert(#{"bCode", mode = in, jdbcType= 'char'},#{bSubCode, mode = in, jdbcType= 'char'},#{mCode, mode = in, jdbcType= 'char'})}
+	</select>
 
 </mapper>

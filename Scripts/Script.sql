@@ -271,7 +271,7 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (39,'H003',00,'C009','2017-03-23' , null);
 
 
--- 
+--  테스트
 select m_name, m_code, m_tel, m_zip_code, m_address, black_date from memberinfo;
 
 
@@ -342,3 +342,58 @@ SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
 		
 		select m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group from memberinfo
 		where m_code="C001";
+	
+		
+delimiter $$
+create procedure proc_paymentIO_insert(
+	in _b_code char(4),
+	in _b_sub_code int(2),
+	in _m_code char(4)
+)
+begin 
+	declare _m_now_count int;
+	declare err int default 0;
+	declare continue handler for sqlexception set err = -1;
+	
+	
+	start transaction;
+	-- <<회원대여정보>>테이블에서 [총대여권수] +1, [현재대여권수] +1,  <<도서대여정보>>테이블에서 [총대여횟수] +1, [대여여부] false
+	UPDATE bookinfo SET  b_lend_count=(b_lend_count+1), is_lending=true WHERE b_code=_b_code and b_sub_code = _b_sub_code;
+	UPDATE memberinfo SET  m_lend_count=(m_lend_count+1), m_now_count=(m_now_count+1) WHERE m_code=_m_code;
+	-- <<출납>>테이블 [회원코드],[도서코드],[대여일자(컴퓨터 현재일자): CURRENT_DATE()],[반납일자(초기화 : null)]
+	INSERT INTO paymentIO (b_code, b_sub_code, m_code, lend_date, return_date) VALUES(_b_code, _b_sub_code, _m_code, current_date, null);
+	select m_now_count into _m_now_count from memberlend where m_code = _m_code;
+	
+	-- [대여권수] 5권되면 [대여가능여부] false로 설정
+	if _m_now_count > 4 then
+		update memberinfo set is_posbl = false where m_code = _m_code;
+	end if;
+	
+	
+	if err < 0 then
+		rollback;
+	else
+		commit;
+	end if;
+	
+end $$
+delimiter ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
