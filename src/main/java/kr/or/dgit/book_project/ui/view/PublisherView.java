@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.service.PublisherInfoService;
@@ -88,8 +89,12 @@ public class PublisherView extends AbsViewPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnSave(ActionEvent arg0) {
-			PublisherInfoService.insertAllPublisherInfo(panel_2.addCheck());
+		if(panel_2.addCheck()){
+			PublisherInfoService.insertAllPublisherInfo(panel_2.getObject());
+			JOptionPane.showMessageDialog(null, "등록완료");
 			panel_2.clear();
+			// 테이블 데이터 새로고침.. loaddate();
+		}
 	}
 	protected void actionPerformedBtnCancel(ActionEvent arg0) {
 			panel_2.clear();
