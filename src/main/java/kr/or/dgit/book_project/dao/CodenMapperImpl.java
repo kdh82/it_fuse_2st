@@ -1,5 +1,7 @@
 package kr.or.dgit.book_project.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -23,5 +25,10 @@ public class CodenMapperImpl implements CodenMapper {
 	public int updateCoden(Coden coden) {
 		log.debug("updateCoden()");
 		return sqlSession.insert(namespace + "updateCoden", coden);
+	}
+	@Override
+	public List<Coden> selectCodenAll() {
+		log.debug("selectCodenAll()");
+		return sqlSession.selectList(namespace + "selectCodenAll");
 	}
 }

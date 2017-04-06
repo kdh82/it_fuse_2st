@@ -317,3 +317,25 @@ SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
 		
 		select count(*) from memberinfo where m_code="C001";
 
+		
+		
+select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name,
+		author,
+		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address,
+		price,
+		insert_date, b_lend_count, is_lending, is_del from bookInfo b
+		right outer join publisherInfo p on b.p_code = p.p_code
+		left outer join
+		coden c on b.c_name = c.c_name
+		where b.b_name like '무엇'
+union 
+select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name,
+		author, b.p_code,
+		publisher, p_name, p_tel, p_zip_code, p_address,
+		price, insert_date,
+		b_lend_count, is_lending, is_del from bookInfo b
+		right outer join publisherInfo p on b.p_code = p.p_code
+		right outer
+		join
+		coden c on b.c_name = c.c_name
+		where b.b_name like '무엇';

@@ -31,14 +31,6 @@ public class BookInfo { // 도서
 		this.bLendCount = bLendCount;
 	}
 
-
-
-	/*
-	 * public Object[] toArray() { return new Object[] { bCode, bSubCode, bName,
-	 * coden.getcName(), author, publisherInfo }; return null; }
-	 */
-
-
 	public String getbCode() {
 		return bCode;
 	}
@@ -133,19 +125,17 @@ public class BookInfo { // 도서
 				price, insertDate, bLendCount, isLending, isDel);
 	}
 
-
-	public Object[] toArray() {
-		return new Object[] { bCode, bSubCode, bName, author, publisherInfo.getPublisher(), bLendCount };
-	}
-
+	
 	public Object[] toArrayForBoookList() {
 		// "도서코드", "중복코드", "도서명", "분야", "저자", "출판사"
-		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author, String.format("%s(%s)", publisherInfo.getPublisher(),publisherInfo.getpCode())}; 
+		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author,
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()) };
 	}
+	
 
-	public Object[] toArrayForLend() {
-		// "도서코드","도서중복코드","도서명","저자","출판사","총대여 횟수"
+	public Object[] toArray() {
+		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "총대여 횟수"
 		return new Object[] { bCode, bSubCode, bName, author,
-				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()),price, bLendCount };
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, bLendCount };
 	}
 }

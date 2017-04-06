@@ -38,9 +38,9 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 	}
 
 	@Override
-	public int selectBookInfoCountBy(Map<String, Object> param) {
-		log.debug("selectBookInfoCountBy()");
-		return sqlSession.selectOne(namespace + "selectBookInfoCountBy", param);
+	public int countBookInfo(Map<String, Object> param) {
+		log.debug("countBookInfo()");
+		return sqlSession.selectOne(namespace + "countBookInfo", param);
 	}
 
 	@Override

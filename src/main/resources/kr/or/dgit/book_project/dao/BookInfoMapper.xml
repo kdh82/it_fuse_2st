@@ -28,13 +28,11 @@
 		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},#{insertDate},#{isDel});
 	</sql>
 	<sql id="selectCountSql">
-		select count(*) from bookInfo b right outer join
-		publisherInfo p on b.p_code = p.p_code
-		left outer join
-		coden c on
-		b.c_name = c.c_name
+		select count(*) from bookInfo b 
 	</sql>
 	<sql id="selectSql">
+	SELECT b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, b_lend_count, is_lending, is_del
+	FROM bookinfo;
 	</sql>
 
 
@@ -70,6 +68,7 @@
 		</set>
 
 	</sql>
+	
 	<sql id="whereSql">
 		<where>
 			<if test="bCode != null">
@@ -79,14 +78,14 @@
 				and b.b_sub_code =#{bSubCode}
 			</if>
 			<if test="bName != null">
-				and b.b_name like {bName}
+				and b.b_name like #{bName}
 			</if>
 			<if test="cName != null">
 				and b.c_name =#{cName}
 			</if>
 
 			<if test="pCode != null">
-				and p.p_code =#{pCode}
+				and b.p_code =#{pCode}
 			</if>
 
 			<if test="publisher != null">
@@ -98,14 +97,12 @@
 			<if test="cCode != null">
 				and c.c_code is not null group by c.c_code
 			</if>
-
-
 			<if test="isLending != null">
 				and b.is_lending = #{isLending}
 			</if>
-			
-
-
+			<if test="onlyBook != null">
+				and b.b_code is not null
+			</if>
 		</where>
 	</sql>
 
@@ -115,18 +112,10 @@
 	<insert id="insertBookInfo" parameterType="BookInfo">
 		<include refid="insertSql" />
 	</insert>
-	<select id="selectBookInfoCountBy" parameterType="hashmap"
+	<select id="countBookInfo" parameterType="hashmap"
 		resultType="int">
 		<include refid="selectCountSql" />
-		select count(*) from bookInfo
-		<choose>
-			<when test="searchBy=='Coden'">
-				where c_name = #{cName}
-			</when>
-			<when test="searchBy=='bCode'">
-				where b_code = #{bCode}
-			</when>
-		</choose>
+		<include refid="whereSql"/>
 	</select>
 	<!-- selectLeftSql로 바꿈 -->
 	<select id="selectBookInfoOne" parameterType="hashmap"
@@ -156,17 +145,12 @@
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
 	</select>
-	<select id="countBookInfo" parameterType="hashmap" resultType="int">
-		<include refid="selectCountSql" />
-		<include refid="whereSql" />
-	</select>
+	
 
 
 	<select id="selectIslending" parameterType="hashmap" resultMap="BookInfoResult">
-		<include refid="selectLeftSql"/>
-		<include refid="whereSql"/>
-	</select> 
-	
-
+		<include refid="selectLeftSql" />
+		<include refid="whereSql" />
+	</select>
 
 </mapper>

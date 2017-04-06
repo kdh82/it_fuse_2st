@@ -12,6 +12,7 @@ import kr.or.dgit.book_project.ui.view.CodenView;
 import kr.or.dgit.book_project.ui.view.MemberInsertView;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 import kr.or.dgit.book_project.ui.view.MemberSearchComboView;
+import java.awt.BorderLayout;
 
 public class SubMenuPage1 extends JTabbedPane {
 
@@ -30,9 +31,9 @@ private JPanel pCoden;
 		
 		JPanel pBookManager = new JPanel();
 		addTab("도서관리", null, pBookManager, null);
-		pBook.setLayout(new GridLayout(0, 1, 0, 0));
+		pBookManager.setLayout(new BorderLayout(0, 0));
 		BookSearchView bookSearchview = new BookSearchView();
-		pBook.add(bookInsertview);
+		pBookManager.add(bookSearchview);
 		
 		pMember = new JPanel();
 		addTab("회원등록", null, pMember, null);		

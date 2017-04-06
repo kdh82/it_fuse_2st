@@ -17,6 +17,7 @@ import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
+import kr.or.dgit.book_project.ui.table.BookSearchTable;
 
 public class BookInsertView extends AbsViewPanel implements ActionListener {
 
@@ -63,6 +64,7 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 		btnSave = new JButton("저장");
 		btnSave.addActionListener(this);
+		btnSave.setEnabled(false);
 		pBtn.add(btnSave);
 
 		btnCancel = new JButton("취소");
@@ -72,14 +74,14 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		JPanel panel_1 = new JPanel();
 		pBtn.add(panel_1);
 
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.weighty = 1.0;
-		gbc_panel_2.weightx = 1.0;
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 2;
-		panel_5.add(panel_2, gbc_panel_2);
+		BookSearchTable pTable = new BookSearchTable();
+		GridBagConstraints gbc_pTable = new GridBagConstraints();
+		gbc_pTable.weighty = 1.0;
+		gbc_pTable.weightx = 1.0;
+		gbc_pTable.fill = GridBagConstraints.BOTH;
+		gbc_pTable.gridx = 0;
+		gbc_pTable.gridy = 2;
+		panel_5.add(pTable, gbc_pTable);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -110,15 +112,16 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
 		// 도서 검색창 새창으로
-		System.out.println("도서검색 왜 안뜰까용");
 		JFrame bookSearch = new JFrame("도서검색");
 		BookSearchView bsv = new BookSearchView();
+		
+		// 분류 창 띄우는 버튼 추가
 		bsv.addBtn("신규", bookSearch);
 		bsv.setMyMouseListener(this, bookSearch);
+		
 		bookSearch.setBounds(600, 100, 500, 600);
 		bookSearch.getContentPane().add(bsv);
 		bookSearch.setVisible(true);
-		// 도서코드 세팅후 enable
 	}
 
 	protected void actionPerformedPContentBtnAddPublisher(ActionEvent e) {

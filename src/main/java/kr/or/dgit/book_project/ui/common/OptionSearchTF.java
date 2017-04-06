@@ -19,6 +19,10 @@ public class OptionSearchTF extends OptionSearchPanel {
 		return textField.getText();
 	}
 	
+	public void clear(){
+		textField.setText("");
+	}
+	
 
 
 }

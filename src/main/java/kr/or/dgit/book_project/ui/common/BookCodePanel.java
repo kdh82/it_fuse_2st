@@ -40,6 +40,10 @@ public class BookCodePanel extends CompPanel {
 		tfBSubCode.setText(bSubCode);
 	}
 	
+	public void clear(){
+		tfBCode.setText("");
+		tfBSubCode.setText("");
+	}
 	
 	
 

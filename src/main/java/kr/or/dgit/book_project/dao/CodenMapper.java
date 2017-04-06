@@ -9,4 +9,6 @@ public interface CodenMapper {
 	
 	int insertCoden(Coden coden);
 	int updateCoden(Coden coden);
+	
+	List<Coden> selectCodenAll();
 }

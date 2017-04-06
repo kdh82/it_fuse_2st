@@ -35,16 +35,16 @@ public class BookInfoServiceTest {
 		bookInfoService = null;
 	}
 
-	/*@Test
+	@Test
 	public void atestselectBookInfoCountBy() { ///됨
 		Map<String, Object> param = new HashMap<>();
-		param.put("searchBy", "Coden");
+		param.put("bSubCode", 0);
 		param.put("cName", "IT");
-		int res = bookInfoService.selectBookInfoCountBy(param);
+		int res = bookInfoService.countBookInfo(param);
 		System.out.println("검색 조건 : " + param);
 		System.out.println(res);
 		Assert.assertNotNull(res);
-	}*/
+	}
 
 	/*
 	 * @Test public void btestinsertBookInfo() { // 된댜!!!!!!!!!!!!!!!!
@@ -126,8 +126,7 @@ public class BookInfoServiceTest {
 	public void TESTselectAllBookInfo() {
 		
 		Map<String, Object> param = new HashMap<>();
-		param.put("cName", "IT");
-		
+		param.put("isDel", true);
 		List<BookInfo> binew = bookInfoService.selectAllBookInfo(param);
 		Assert.assertNotNull(binew);
 

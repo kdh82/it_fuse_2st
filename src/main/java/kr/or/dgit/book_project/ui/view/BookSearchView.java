@@ -5,9 +5,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.BookInfo;
@@ -16,12 +19,17 @@ import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookSearchPanel;
 import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
 import kr.or.dgit.book_project.ui.table.AbsTable;
-import kr.or.dgit.book_project.ui.table.BookInfoTable;
+import kr.or.dgit.book_project.ui.table.BookSearchTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class BookSearchView extends AbsViewPanel {
+public class BookSearchView extends AbsViewPanel implements ActionListener {
 
 	private AbsTable<BookInfo> pTable;
 	private CheckSearchDesign pContent;
+	private BookSearchPanel bsp;
+	private Map<String, Object> map;
+	private BookInsertView insertDataPanel;
 
 	public BookSearchView() {
 
@@ -29,12 +37,13 @@ public class BookSearchView extends AbsViewPanel {
 		pMain.add(pMainSub);
 		GridBagLayout gbl_pMainSub = new GridBagLayout();
 		gbl_pMainSub.columnWidths = new int[] { 300, 0 };
-		gbl_pMainSub.rowHeights = new int[] { 200, 200, 0 };
+		gbl_pMainSub.rowHeights = new int[] { 150, 250, 0 };
 		gbl_pMainSub.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_pMainSub.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		pMainSub.setLayout(gbl_pMainSub);
 
 		pContent = new CheckSearchDesign();
+		pContent.getBtnSearch().addActionListener(this);
 		GridBagConstraints gbc_pContent = new GridBagConstraints();
 		gbc_pContent.weighty = 1.0;
 		gbc_pContent.weightx = 1.0;
@@ -44,43 +53,56 @@ public class BookSearchView extends AbsViewPanel {
 		gbc_pContent.gridy = 0;
 		pMainSub.add(pContent, gbc_pContent);
 		GridBagLayout gbl_pContent = (GridBagLayout) pContent.getLayout();
-		gbl_pContent.rowHeights = new int[] { 227 };
+		gbl_pContent.columnWidths = new int[] { 300, 0 };
+		gbl_pContent.rowHeights = new int[] { 150 };
 
-		BookSearchPanel bsp = new BookSearchPanel();
+		bsp = new BookSearchPanel();
 		pContent.getpContent().add(bsp);
 
-		pTable = new BookInfoTable();
-
+		pTable = new BookSearchTable();
 		GridBagConstraints gbc_pTable = new GridBagConstraints();
-		gbc_pTable.weighty = 1.5;
+		gbc_pTable.weighty = 1.0;
 		gbc_pTable.weightx = 1.0;
 		gbc_pTable.fill = GridBagConstraints.BOTH;
 		gbc_pTable.gridx = 0;
 		gbc_pTable.gridy = 1;
-		/*pTable.loadData();*/
-		/*pMainSub.add(pTable, gbc_pTable);*/
+
+		map = new HashMap<>();
+		map.put("onlyBook", "onlyBook");
+		((BookSearchTable) pTable).setMap(map);
+		pTable.loadData();
+
+		pMainSub.add(pTable, gbc_pTable);
+
 	}
 
-	public void setMyMouseListener(BookInsertView bookInsertView, JFrame myFrarme) {
+	public void setMyMouseListener(BookInsertView insertDataPanel, JFrame myFrarme) {
+		this.insertDataPanel = (BookInsertView) insertDataPanel;
 		pTable.getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				BookInfo bi = pTable.getSelectedObject();
-			/*	Map<String, Object> param = new HashMap<>();
-				param.put("searchBy", "bCode");
-				param.put("bCode", bi.getbCode());
-				int cnt = BookInfoService.getInstance().selectBookInfoCountBy(param);
-				bookInsertView.getpContent().getpBCode().setTfBCode(bi.getbCode());
-				bookInsertView.getpContent().getpBCode().setEnabled(false);
-				bookInsertView.getpContent().getpBCode().setTfBSubCode(cnt+"");*/
-				myFrarme.setVisible(false);
+				if (e.getClickCount() == 2) {
+					BookInfo bi = pTable.getSelectedObject();
+					System.out.println(bi.toString());
+					Map<String, Object> param = new HashMap<>();
+					param.put("bCode", bi.getbCode());
+					int cnt = BookInfoService.getInstance().countBookInfo(param);
+					insertDataPanel.getpContent().getpBCode().setTfBCode(bi.getbCode());
+					insertDataPanel.getpContent().getpBCode().setTfBSubCode(cnt + "");
+					insertDataPanel.getpContent().getpBName().setTFValue(bi.getbName());
+					insertDataPanel.getpContent().getpAuthor().setTFValue(bi.getAuthor());
+					insertDataPanel.getpContent().getpPrice().setValue(bi.getPrice());
+					insertDataPanel.getpContent().getpPublisher().setSelectedTT(bi.getPublisherInfo());
+					System.out.println(bi.getPublisherInfo());
+					myFrarme.setVisible(false);
+				}
 			}
 
 		});
 	}
-	
-	public void addBtn(String string, JFrame myFrame){
+
+	public void addBtn(String string, JFrame myFrame) {
 		JButton btnAddBtn = new JButton(string);
 		pContent.getpBtnSub().add(btnAddBtn);
 		btnAddBtn.addMouseListener(new MouseAdapter() {
@@ -88,18 +110,37 @@ public class BookSearchView extends AbsViewPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				CodenView cv = new CodenView();
+				cv.addMyMouseListner(insertDataPanel);
 				cv.setVisible(true);
 				myFrame.setVisible(false);
 			}
-			
+
 		});
-		
+
 	}
 
 	public CheckSearchDesign getpContent() {
 		return pContent;
 	}
-	
-	
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == pContent.getBtnSearch()) {
+			actionPerformedPContentBtnSearch(e);
+		}
+	}
+
+	protected void actionPerformedPContentBtnSearch(ActionEvent e) {
+		Map<String, Object> param = bsp.getValueForSearch();
+		if (param.isEmpty()) {
+			// 검색 조건이 체크되어있지 않은 경우
+			((BookSearchTable) pTable).setMap(map);
+			pTable.loadData();
+			JOptionPane.showMessageDialog(null, "검색하고 싶은 항목을 선택해주세요");
+		} else {
+			// 검색하기
+			((BookSearchTable) pTable).setMap(param);
+			pTable.loadData();
+			bsp.clearAll();
+		}
+	}
 }
