@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.service.PublisherInfoService;
 
 public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 	
@@ -62,7 +63,7 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 		String pCode = (String) table.getValueAt(selectedIdx, 0);
 		PublisherInfo publisherinfo = new PublisherInfo();
 		publisherinfo.setpCode(pCode);
-		return null;
+		return null;/*PublisherInfoService.get;*/
 	}
 
 	
