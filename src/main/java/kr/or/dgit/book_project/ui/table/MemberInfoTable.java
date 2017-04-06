@@ -60,8 +60,12 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 
 	@Override
 	public MemberInfo getSelectedObject() {
-		// TODO Auto-generated method stub
-		return null;
+		int selectedIdx = table.getSelectedRow();
+		if(selectedIdx == -1) return null;
+		String member= (String) table.getValueAt(selectedIdx, 0);
+		MemberInfo mi = MemberInfoService.getInstance().findMemberInfoByCode(new MemberInfo(member));
+		return mi;
 	}
+	
 
 }

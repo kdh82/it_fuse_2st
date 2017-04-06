@@ -9,5 +9,6 @@ public interface MemberInfoMapper {
 	int selectCountAll();								//회원 수 
 	int insertMemberInfo(MemberInfo memberInfo);		//회원삽입
 	List<MemberInfo> selectMemberByAll();				//목록출력
-	MemberInfo FindMemberInfoByCode(MemberInfo code);	//회원검색
+	MemberInfo findMemberInfoByCode(MemberInfo code);	//코드로 회원검색
+	
 }
