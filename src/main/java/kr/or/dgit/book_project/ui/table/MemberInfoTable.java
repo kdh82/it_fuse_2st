@@ -1,10 +1,14 @@
 package kr.or.dgit.book_project.ui.table;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.SwingConstants;
 
+import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.service.PaymentIOService;
 
@@ -45,10 +49,11 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected Object[][] getRowData() {		
-		List<MemberInfo> member = MemberInfoService.getInstance().selectMemberByAll();
-		Object[][] datas = new Object[member.size()][];
+		Map<String, Object> param = new HashMap<>();
+		List<MemberInfo> list = MemberInfoService.getInstance().selectMemberByAll(param);
+		Object[][] datas = new Object[list.size()][];
 		for(int i=0; i<datas.length; i++){
-			datas[i] = member.get(i).toArrayForMemberList();
+			datas[i] = list.get(i).toArrayForMemberList();
 		}
 		return datas;
 	}
@@ -61,13 +66,13 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 	@Override
 	public MemberInfo getSelectedObject() {
 		int selectedIdx = table.getSelectedRow();
-		if(selectedIdx == 1) return null;
-		String member= (String) table.getValueAt(selectedIdx, 1);
-		MemberInfo mi = MemberInfoService.getInstance().findMemberInfoByCode(new MemberInfo(member));
-		System.out.println(mi);
-		return mi;
+		if (selectedIdx == -1){
+			return null;
+		}
+		String mCode = (String) table.getValueAt(selectedIdx, 1);
+		MemberInfo memberinfo = new MemberInfo();
+		memberinfo.setmCode(mCode);
+		return MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
 	}
-	
-
 	
 }

@@ -134,16 +134,16 @@ public class BookInfo { // 도서
 	}
 
 
-	public Object[] toArray() {
+	/*public Object[] toArray() {
 		return new Object[] { bCode, bSubCode, bName, author, publisherInfo.getPublisher(), bLendCount };
 	}
-
+*/
 	public Object[] toArrayForBoookList() {
 		// "도서코드", "중복코드", "도서명", "분야", "저자", "출판사"
 		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author, String.format("%s(%s)", publisherInfo.getPublisher(),publisherInfo.getpCode())}; 
 	}
 
-	public Object[] toArrayForLend() {
+	public Object[] toArray() {
 		// "도서코드","도서중복코드","도서명","저자","출판사","총대여 횟수"
 		return new Object[] { bCode, bSubCode, bName, author,
 				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()),price, bLendCount };

@@ -17,6 +17,25 @@
 		<result property="blackDate" column="black_date"/>		
 	</resultMap>
 	
+	<sql id ="whereSql">
+		<where>
+			<if test="mCode != null">
+				m_code=#{mCode}
+			</if>
+			<if test="mName != null">
+				and m_name like #{mName}
+			</if>
+			<if test="mTel != null">
+				and m_tel like #{mTel}
+			</if>
+		</where>
+	</sql>
+	<sql id="selectSql">
+		SELECT m_code, m_pass, m_name, m_tel, m_zip_code, m_address, is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group, is_secsn
+	FROM memberinfo
+		
+	</sql>
+	
 	<select id="selectCountAll" resultType="int">
 		select count(*) from memberinfo;
 	</select>
@@ -27,10 +46,17 @@
 		values(#{mCode}, #{mName} ,#{mTel} ,#{mZipCode} ,#{mAddress} ,#{mPass} ,#{mGroup});
 	</insert>
 	
-	<select id="selectMemberByAll" resultMap="MemberInfoResult">
-		select m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group from memberinfo;
+	<!-- 일딴 목록보이게 하는거 -->
+	<select id="selectMemberByAll" parameterType="hashmap" resultMap="MemberInfoResult">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
 	</select>
 	
+	
+	<select id="findMemberInfoByCode" parameterType="memberinfo" resultMap="MemberInfoResult">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
 
 	<!-- <select id="findMemberInfoByCode" parameterType="MemberInfo" resultType="MemberInfoResult" >
 		select m.m_name, m.m_code, m_tel, m_zip_code, m_address, if(black_date is null," ",black_date)
