@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -35,17 +36,17 @@ public class MemberInfoService {
 		}				
 	}
 	
-	public List<MemberInfo> selectMemberByAll(){		// 전체 회원 출력
+	public List<MemberInfo> selectMemberByAll(Map<String, Object> param){		// 전체 회원 출력
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			return memberInfoMapper.selectMemberByAll();
+			return memberInfoMapper.selectMemberByAll(param);
 		}				
 	}
-	
-	public MemberInfo findMemberInfoByCode(MemberInfo code){		// 멤버 검색
+	// 코드 하나 빼올라고 실험중임
+	public MemberInfo findMemberInfoByCode(MemberInfo memberinfo){		// 멤버 검색
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			return memberInfoMapper.FindMemberInfoByCode(code);
+			return memberInfoMapper.FindMemberInfoByCode(memberinfo);
 		}
 	}
 	
