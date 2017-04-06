@@ -13,7 +13,7 @@ public interface BookInfoMapper {
 
 	int delBookInfo(BookInfo bookInfo); // 도서 폐기/복원
 	
-	BookInfo selectBookInfoOne(BookInfo bookInfo);
+	BookInfo selectBookInfoOne(Map<String, Object> param);
 
 	int selectBookInfoCountBy(Map<String, Object> param);
 
@@ -25,6 +25,6 @@ public interface BookInfoMapper {
 	List<BookInfo> selectAllBookInfo(Map<String, Object> param);
 
 	// 대여 테이블 
-	List<BookInfo> selectIslending();
+	List<BookInfo> selectIslending(Map<String, Object> param);
 
 }

@@ -20,29 +20,23 @@ public class SideBar extends JPanel {
 	private JButton btnMenu4;
 
 	public SideBar() {
-		setLayout(null);
+		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel pMenu = new JPanel();
-		pMenu.setBounds(0, 0, 120, 600);
 		add(pMenu);
-		pMenu.setLayout(null);
+		pMenu.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		btnMenu4 = new JButton("HOME");
+		pMenu.add(btnMenu4);
 		
 		btnMenu1 = new JButton("자료관리");
-		btnMenu1.setBounds(0, 124, 120, 130);
 		pMenu.add(btnMenu1);
 		
 		btnMenu2 = new JButton("출납관리");
-		btnMenu2.setBounds(0, 279, 120, 130);
 		pMenu.add(btnMenu2);
 		
 		btnMenu3 = new JButton("출납통계");
-		btnMenu3.setBounds(0, 437, 120, 130);
 		pMenu.add(btnMenu3);		
-		
-		btnMenu4 = new JButton("HOME");
-		//btnMenu4.addActionListener(this);
-		btnMenu4.setBounds(0, 0, 120, 30);
-		pMenu.add(btnMenu4);
 	}
 	/*public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnMenu4) {

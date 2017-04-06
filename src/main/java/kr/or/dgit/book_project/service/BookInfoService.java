@@ -68,11 +68,11 @@ public class BookInfoService {
 			return bookInfoMapper.selectBookInfoCountBy(param);
 		}
 	}
-
-	public BookInfo selectBookInfoOne(BookInfo bookInfo) {
+	
+	public BookInfo selectBookInfoOne(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			return bookInfoMapper.selectBookInfoOne(bookInfo);
+			return bookInfoMapper.selectBookInfoOne(param);
 		}
 	}
 
@@ -85,10 +85,10 @@ public class BookInfoService {
 
 
 	// 대여 테이블
-	public List<BookInfo> selectIslending() {
+	public List<BookInfo> selectIslending(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			return bookInfoMapper.selectIslending();
+			return bookInfoMapper.selectIslending(param);
 		}
 	}
 }

@@ -1,10 +1,11 @@
 package kr.or.dgit.book_project.ui.table;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import kr.or.dgit.book_project.dao.BookInfoMapper;
-import kr.or.dgit.book_project.dao.BookInfoMapperImpl;
 import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
 
 public class BookLendTable extends AbsTable<BookInfo> {
@@ -41,23 +42,33 @@ public class BookLendTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected Object[][] getRowData() {
-		List<BookInfo> bi = BookInfoService.getInstance().selectIslending();
+		Map<String, Object> param = new HashMap<>();
+		param.put("isLending", false);
+		List<BookInfo> bi = BookInfoService.getInstance().selectIslending(param);
 		Object[][] datas = new Object[bi.size()][];
 		for(int i =0; i< datas.length; i++){
-			datas[i]= bi.get(i).toArray();
+			datas[i]= bi.get(i).toArrayForLend();
 		}
 		return datas;
 	}
 
 	@Override
 	protected Object[] getColumn() {
-		return new String[]{"도서코드","도서중복코드","도서명","저자","출판사","총대여 횟수"};
+		return new String[]{"도서코드","도서중복코드","도서명","저자","출판사","가격","총대여 횟수"};
 	}
 
 	@Override
 	public BookInfo getSelectedObject() {
-		// TODO Auto-generated method stub
-		return null;
+		int selectedIdx = table.getSelectedRow();
+		if (selectedIdx == -1){
+			return null;
+		}
+		String bCode = (String) table.getValueAt(selectedIdx, 0);
+		String bSubCode = (String) table.getValueAt(selectedIdx, 1);
+		Map<String, Object> hash= new HashMap<>();
+		hash.put("bCode", bCode);
+		hash.put("bSubCode", bSubCode);
+		return BookInfoService.getInstance().selectBookInfoOne(hash);
 	}
 
 }
