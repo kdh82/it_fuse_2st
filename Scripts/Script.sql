@@ -1,5 +1,5 @@
 -- 도서관
-DROP SCHEMA IF EXISTS book_project;
+DROP SCHEMA IF EXISTS book_project; 
 
 -- 도서관
 CREATE SCHEMA book_project;
