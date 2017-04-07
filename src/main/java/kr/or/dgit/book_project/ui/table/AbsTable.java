@@ -94,7 +94,7 @@ public abstract class AbsTable<T> extends JPanel {
 	}
 	
 	protected void createPopupMenu() {
-		popupMenu = new JPopupMenu();
+/*		popupMenu = new JPopupMenu();
 		
 		JMenuItem updateItem = new JMenuItem("수정/탈퇴");
 		updateItem.addActionListener(new ActionListener() {			
@@ -129,7 +129,7 @@ public abstract class AbsTable<T> extends JPanel {
 			}
 		});
 		popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
-	}
+*/	}
 
 	protected abstract void updateData(T t);
 
