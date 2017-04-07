@@ -32,19 +32,21 @@ public class BookPaymentViewFrame extends JFrame {
 		bookPaymentDataDetail.getLblTitle().setText("- 도서대여정보 -");
 
 		pTable = new BookPaymentIOInfoTable();
-		
+
 		bookPaymentDataDetail.getpResult().add(pTable);
 
 		JPanel pSum = new JPanel(); // 총 합께?
 		pSum.setLayout(new GridLayout(0, 1, 0, 0));
-		JLabel label = new JLabel("총 대여횟수 : XX회");
+		String lbl = String.format("총 대여횟수 : %d회", pTable.getDataCnt());
+		// 총대여횟수 출력이 왜 안될까
+		JLabel label = new JLabel(lbl);
 		pSum.add(label);
 		bookPaymentDataDetail.getpResult().add(pSum);
 		contentPane.add(bookPaymentDataDetail);
 
 	}
-	
-	public void setBookInfo(BookInfo bookInfo){
+
+	public void setBookInfo(BookInfo bookInfo) {
 		Map<String, Object> param = new HashMap<>();
 		param.put("bCode", bookInfo.getbCode());
 		param.put("bSubCode", bookInfo.getbSubCode());

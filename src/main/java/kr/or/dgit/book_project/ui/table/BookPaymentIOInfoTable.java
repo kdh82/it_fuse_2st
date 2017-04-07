@@ -12,6 +12,7 @@ import kr.or.dgit.book_project.service.PaymentIOService;
 public class BookPaymentIOInfoTable extends AbsTable<PaymentIO> {
 
 	private Map<String, Object> param;
+	private int dataCnt = 0;
 
 	public BookPaymentIOInfoTable() {
 
@@ -54,6 +55,8 @@ public class BookPaymentIOInfoTable extends AbsTable<PaymentIO> {
 			JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			return null;
 		}
+		dataCnt = list.size();
+		System.out.println(dataCnt);
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = list.get(i).toArray();
@@ -74,6 +77,10 @@ public class BookPaymentIOInfoTable extends AbsTable<PaymentIO> {
 
 	public void setParam(Map<String, Object> param) {
 		this.param = param;
+	}
+
+	public int getDataCnt() {
+		return dataCnt;
 	}
 
 }

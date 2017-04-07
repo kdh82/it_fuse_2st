@@ -23,59 +23,34 @@ import kr.or.dgit.book_project.ui.table.AbsTable;
 import kr.or.dgit.book_project.ui.table.BookSearchTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
 public abstract class AbsBookSearchView extends AbsViewPanel implements ActionListener {
 
 	protected BookSearchTable pTable;
-	protected CheckSearchDesign pContent;
-	protected BookSearchPanel bsp;
+	protected BookSearchPanel pContent;
 	protected Map<String, Object> map;
 	protected BookInsertView bookInsertView;
 	protected JPopupMenu popupMenu;
-
 
 	public AbsBookSearchView() {
 
 		JPanel pMainSub = new JPanel();
 		pMain.add(pMainSub);
-		GridBagLayout gbl_pMainSub = new GridBagLayout();
-		gbl_pMainSub.columnWidths = new int[] { 300, 0 };
-		gbl_pMainSub.rowHeights = new int[] { 150, 250, 0 };
-		gbl_pMainSub.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
-		gbl_pMainSub.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		pMainSub.setLayout(gbl_pMainSub);
 
-		pContent = new CheckSearchDesign();
+		pContent = new BookSearchPanel();
 		pContent.getBtnSearch().addActionListener(this);
-		GridBagConstraints gbc_pContent = new GridBagConstraints();
-		gbc_pContent.weighty = 1.0;
-		gbc_pContent.weightx = 1.0;
-		gbc_pContent.fill = GridBagConstraints.BOTH;
-		gbc_pContent.insets = new Insets(0, 0, 5, 0);
-		gbc_pContent.gridx = 0;
-		gbc_pContent.gridy = 0;
-		pMainSub.add(pContent, gbc_pContent);
-		GridBagLayout gbl_pContent = (GridBagLayout) pContent.getLayout();
-		gbl_pContent.columnWidths = new int[] { 300, 0 };
-		gbl_pContent.rowHeights = new int[] { 150 };
-
-		bsp = new BookSearchPanel();
-		pContent.getpContent().add(bsp);
+		pMainSub.add(pContent);
 
 		pTable = new BookSearchTable();
-		GridBagConstraints gbc_pTable = new GridBagConstraints();
-		gbc_pTable.weighty = 1.0;
-		gbc_pTable.weightx = 1.0;
-		gbc_pTable.fill = GridBagConstraints.BOTH;
-		gbc_pTable.gridx = 0;
-		gbc_pTable.gridy = 1;
 
 		map = new HashMap<>();
 		map.put("onlyBook", "onlyBook");
 		pTable.setMap(map);
 		pTable.loadData();
+		pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
 
-		pMainSub.add(pTable, gbc_pTable);
+		pMainSub.add(pTable);
 
 	}
 
@@ -83,7 +58,7 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 		return pTable;
 	}
 
-	public CheckSearchDesign getpContent() {
+	public BookSearchPanel getpContent() {
 		return pContent;
 	}
 
@@ -94,7 +69,7 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 	}
 
 	protected void actionPerformedPContentBtnSearch(ActionEvent e) {
-		Map<String, Object> param = bsp.getValueForSearch();
+		Map<String, Object> param = pContent.getValueForSearch();
 		if (param.isEmpty()) {
 			// 검색 조건이 체크되어있지 않은 경우
 			((BookSearchTable) pTable).setMap(map);
@@ -104,10 +79,11 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 			// 검색하기
 			((BookSearchTable) pTable).setMap(param);
 			pTable.loadData();
-			bsp.clearAll();
+			pContent.clearAll();
 		}
 	}
-	protected void addPopupMenu(){
+
+	protected void addPopupMenu() {
 		(pTable.getTable()).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,8 +94,8 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 				}
 			}
 		});
-		
+
 	}
-	
+
 	protected abstract void createPopupMenu();
 }
