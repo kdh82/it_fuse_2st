@@ -23,6 +23,7 @@ public class PageSub extends JFrame implements ActionListener {
 		setBounds(400, 200, 1000, 600);
 		
 		pSideBar = new SideBar();
+		pSideBar.btnMenu0.addActionListener(this);
 		pSideBar.getBtnMenu4().addActionListener(this);
 		pSideBar.btnMenu3.addActionListener(this);
 		pSideBar.btnMenu2.addActionListener(this);
@@ -40,6 +41,9 @@ public class PageSub extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == pSideBar.btnMenu0) {
+			actionPerformedPSideBarBtnMenu0(e);
+		}
 		if (e.getSource() == pSideBar.getBtnMenu4()) {
 			actionPerformedPSideBarBtnMenu4(e);
 		}
@@ -52,6 +56,12 @@ public class PageSub extends JFrame implements ActionListener {
 		if (e.getSource() == pSideBar.btnMenu1) {
 			actionPerformedPSideBarBtnMenu1(e);
 		}
+	}
+	protected void actionPerformedPSideBarBtnMenu0(ActionEvent e) {
+		pTabSub.removeAll();
+		pTabSub.add(new SubMenuPage0());
+		revalidate();
+		repaint();
 	}
 	protected void actionPerformedPSideBarBtnMenu1(ActionEvent e) {
 		pTabSub.removeAll();
@@ -82,6 +92,7 @@ public class PageSub extends JFrame implements ActionListener {
 	public void setpTabSub(JPanel pTabSub) {
 		this.pTabSub = pTabSub;
 	}
+	
 	
 	
 }
