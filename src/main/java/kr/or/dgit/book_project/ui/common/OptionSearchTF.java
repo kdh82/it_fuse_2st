@@ -19,6 +19,11 @@ public class OptionSearchTF extends OptionSearchPanel {
 		return textField.getText();
 	}
 	
+	public void clear(){
+		chbTitle.setSelected(false);
+		textField.setText("");
+	}
+	
 
 
 }

@@ -8,15 +8,44 @@
 		<id property="cName" column="c_name" />
 		<result property="cCode" column="c_code" />
 	</resultMap>
-	<insert id="insertCoden" parameterType="Coden">
-		insert into coden
-		( c_name, c_code) values(#{cName}, #{cCode})
-	</insert>
-	<update id="updateCoden" parameterType="Coden">
+
+	<sql id="insertSql">
+		insert into coden ( c_name, c_code) values(#{cName},
+		#{cCode})
+	</sql>
+	<sql id="updateSql">
 		update CODEN
 		<set>
 			<if test="cCode !=null">c_code=#{cCode}</if>
+			<if test="cName !=null">c_name=#{cName}</if>
 		</set>
-		where c_name=#{cName}
+
+	</sql>
+	<sql id="selectSql">
+		SELECT c_name, c_code FROM coden
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="cCode !=null">c_code=#{cCode}</if>
+			<if test="cName !=null">c_name=#{cName}</if>
+		</where>
+	</sql>
+
+
+	<insert id="insertCoden" parameterType="Coden">
+		<include refid="insertSql" />
+	</insert>
+	<update id="updateCoden" parameterType="Coden">
+		<include refid="updateSql" />
+		where c_code = #{cCode}
 	</update>
+
+	<select id="selectCodenAll" resultMap="CodenResult">
+		<include refid="selectSql" />
+	</select>
+
+	<select id="selectOne" parameterType="hashmap" resultMap="CodenResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
 </mapper>

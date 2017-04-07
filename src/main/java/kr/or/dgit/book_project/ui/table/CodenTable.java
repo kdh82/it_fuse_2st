@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.service.BookInfoService;
+import kr.or.dgit.book_project.service.CodenService;
 
 public class CodenTable extends AbsTable<Coden> {
 
@@ -40,18 +41,11 @@ public class CodenTable extends AbsTable<Coden> {
 
 	@Override
 	protected Object[][] getRowData() {
-		Map<String, Object> param = new HashMap<>();
-		param.put("cCode", true);
-		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(param);
-		Vector<Coden> vt = new Vector<>();
-		for (BookInfo bookInfo : list) {
-			vt.addElement(bookInfo.getCoden());
-		}
-		Object[][] datas = new Object[vt.size()][];
+		List<Coden> list = CodenService.getInstance().selectCodenAll();
+		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
-			datas[i] = vt.get(i).toArray();
+			datas[i] = list.get(i).toArray();
 		}
-		System.out.println(vt.toString());// 왜  A는 네임이 안 뜨니... 왜니... 왜...
 		return datas;
 	}
 

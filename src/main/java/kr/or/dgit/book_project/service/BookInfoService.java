@@ -3,6 +3,8 @@ package kr.or.dgit.book_project.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.book_project.dao.BookInfoMapper;
@@ -25,6 +27,7 @@ public class BookInfoService {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
 			int res = bookInfoMapper.insertBookInfo(bookInfo);
 			sqlSession.commit();
+			JOptionPane.showMessageDialog(null, "도서등록완료");
 			return res;
 		}
 	}
@@ -62,10 +65,10 @@ public class BookInfoService {
 		}
 	}*/
 
-	public int selectBookInfoCountBy(Map<String, Object> param) {
+	public int countBookInfo(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			return bookInfoMapper.selectBookInfoCountBy(param);
+			return bookInfoMapper.countBookInfo(param);
 		}
 	}
 	

@@ -35,29 +35,36 @@ public class BookInfoServiceTest {
 		bookInfoService = null;
 	}
 
-	/*@Test
+	@Test
 	public void atestselectBookInfoCountBy() { ///됨
 		Map<String, Object> param = new HashMap<>();
-		param.put("searchBy", "Coden");
+		param.put("bSubCode", 0);
 		param.put("cName", "IT");
-		int res = bookInfoService.selectBookInfoCountBy(param);
+		int res = bookInfoService.countBookInfo(param);
 		System.out.println("검색 조건 : " + param);
 		System.out.println(res);
 		Assert.assertNotNull(res);
-	}*/
+	}
 
-	/*
-	 * @Test public void btestinsertBookInfo() { // 된댜!!!!!!!!!!!!!!!!
-	 * PublisherInfo pCode = new PublisherInfo(); pCode.setpCode("P022"); //
-	 * 외래키관계는 있는 데이터 선택해야함 pCode.setPublisher("다산지식하우스");
-	 * 
-	 * Coden cName = new Coden("자기계발", "D"); // 있는 데이터 선택해야함 BookInfo bookInfo =
-	 * new BookInfo("D005", 0, "필드명 테스트 중 책제목", "저자", 20000, "2017-04-02",
-	 * false, cName, pCode);
-	 * 
-	 * int res = bookInfoService.insertBookInfo(bookInfo); Assert.assertSame(1,
-	 * res); }
-	 */
+	@Test public void btestinsertBookInfo() {
+	/*	insert into bookInfo(b_code, b_sub_code, c_name, b_name,
+				author, p_code, price, insert_date) values
+				(#{bCode},#{bSubCode},#{coden.cName},
+						#{bName},#{author},#{publisherInfo.pCode},#{price}, current_date); 
+		*/
+	PublisherInfo pCode = new PublisherInfo(); 
+	 pCode.setpCode("P022"); // 외래키관계는 있는 데이터 선택해야함 
+	 pCode.setPublisher("다산지식하우스");
+	 
+	 
+	 
+	 Coden cName = new Coden("자기계발", "D"); // 있는 데이터 선택해야함 
+	 BookInfo bookInfo = 
+			 new BookInfo("D005", "0", cName, "입력테스트", "저자임", pCode, 12000); 	 
+	 
+	 int res = bookInfoService.insertBookInfo(bookInfo); Assert.assertSame(1, res); 
+	 }
+	 
 /*
 	@Test
 	public void ctestupdateBookInfo() {
@@ -126,8 +133,7 @@ public class BookInfoServiceTest {
 	public void TESTselectAllBookInfo() {
 		
 		Map<String, Object> param = new HashMap<>();
-		param.put("cName", "IT");
-		
+		param.put("isDel", true);
 		List<BookInfo> binew = bookInfoService.selectAllBookInfo(param);
 		Assert.assertNotNull(binew);
 
