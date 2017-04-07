@@ -4,15 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -20,14 +17,15 @@ import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.ui.table.CodenTable;
 
+@SuppressWarnings("serial")
 public class CodenView extends JFrame {
 
 	private JPanel contentPane;
-	private CodenTable pTable;
+	public static CodenTable pTable;
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,7 +38,7 @@ public class CodenView extends JFrame {
 			}
 		});
 	}
-
+*/
 	public CodenView() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

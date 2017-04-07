@@ -1,10 +1,8 @@
 package kr.or.dgit.book_project.ui.view;
 
-import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.table.PublisherInfoTable;
 import java.awt.GridLayout;
-import java.util.List;
 
 import kr.or.dgit.book_project.ui.component.PublisherInfoP;
 
