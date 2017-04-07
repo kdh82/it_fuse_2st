@@ -30,7 +30,7 @@ public class ComboBoxPanel<T> extends CompPanel {
 		return comboBox;
 	}
 
-	public T getCombT() {
+	public T getCombItem() {
 		return (T) comboBox.getSelectedItem();
 	}
 

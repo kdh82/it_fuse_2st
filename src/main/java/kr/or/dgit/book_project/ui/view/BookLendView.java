@@ -28,8 +28,6 @@ public class BookLendView extends AbsViewPanel {
 	private BookLendMemberDetail panel_4;
 	
 	public BookLendView() {
-		/*GridLayout gridLayout = (GridLayout) getLayout();
-		gridLayout.setVgap(10);*/
 		
 		JPanel blv1 = new JPanel();
 		pMain.add(blv1);
@@ -42,11 +40,7 @@ public class BookLendView extends AbsViewPanel {
 				mousePressedPanel_3PBCodeTfBCode(e);
 			}
 		});
-		panel_3.getpBCode().getTfBCode().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				actionPerformedPanel_3PBCodeTfBCode(arg0);
-			}
-		});
+		
 		blv1.add(panel_3);
 		
 		JPanel blv2 = new JPanel();
@@ -100,13 +94,7 @@ public class BookLendView extends AbsViewPanel {
 		
 		pMain.add(blv4);
 	}
-	protected void actionPerformedPanel_3PBCodeTfBCode(ActionEvent arg0) {
-		BookSearchView bsv = new BookSearchView();
-		/*blv4.loadData();// 테이블 끌어오는거?
-*/		JFrame jf = new JFrame();
-		/*jf.add(bsv);*/
-		jf.setVisible(true);
-	}
+
 	
 	protected void mouseClickedBlv4Table(MouseEvent e) {
 		if(e.getClickCount() == 2){

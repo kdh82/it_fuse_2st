@@ -30,7 +30,7 @@ public class Coden {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s", cName, cCode);
+		return String.format("%s(%s)", cName, cCode);
 	}
 
 	public Object[] toArray() {

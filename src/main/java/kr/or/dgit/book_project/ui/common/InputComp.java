@@ -32,6 +32,9 @@ public class InputComp extends CompPanel {
 	public void setTFValue(String str) {
 		tF.setText(str);
 	}
+	public void clear(){
+		tF.setText("");
+	}
 
 	public String getTitle() {
 		return lblTitle.getText();

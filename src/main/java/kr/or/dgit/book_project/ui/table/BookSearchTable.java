@@ -13,7 +13,7 @@ import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
 
-public class BookInfoTable extends AbsTable<BookInfo> {
+public class BookSearchTable extends AbsTable<BookInfo> {
 
 	private Map<String, Object> map;
 
