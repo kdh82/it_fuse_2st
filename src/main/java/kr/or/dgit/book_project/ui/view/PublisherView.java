@@ -72,7 +72,7 @@ public class PublisherView extends AbsViewPanel implements ActionListener {
 		panel_4.add(btnCancel);
 		
 		panel_5 = new JPanel();
-		panel_5.setBounds(0, 69, 775, 203);
+		panel_5.setBounds(0, 69, 755, 203);
 		panel_3.add(panel_5);
 		panel_5.setAlignmentY(100);
 		panel_5.setLayout(new BorderLayout(0, 0));

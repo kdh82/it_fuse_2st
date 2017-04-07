@@ -43,10 +43,10 @@ public class MemberInfoService {
 		}				
 	}
 	// 코드 하나 빼올라고 실험중임
-	public MemberInfo findMemberInfoByCode(MemberInfo memberinfo){		// 멤버 검색
+	public MemberInfo findMemberInfoByCode(MemberInfo code){		// 멤버 검색
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			return memberInfoMapper.findMemberInfoByCode(memberinfo);
+			return memberInfoMapper.findMemberInfoByCode(code);
 		}
 	}	
 	

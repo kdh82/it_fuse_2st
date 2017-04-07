@@ -13,10 +13,10 @@ import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.service.PaymentIOService;
 
-public class MemberInfoTable extends AbsTable<MemberInfo> {
+public class MemberInfoSearchTable extends AbsTable<MemberInfo> {
 
 
-	public MemberInfoTable() {
+	public MemberInfoSearchTable() {
 		loadData();
 	}
 
@@ -61,6 +61,16 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 		}
 		return datas;
 	}
+	
+		
+		
+/*		MemberInfo memberinfo = MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);		
+		Object[][] datas = new Object[memberinfo.size()][];
+		for(int i=0; i<datas.length; i++){
+			datas[i] = memberinfo.get(i).toArrayForMemberList();
+		}
+		return datas;*/
+
 	
 	@Override
 	protected Object[] getColumn() {

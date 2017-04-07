@@ -25,8 +25,9 @@ import java.awt.event.ActionEvent;
 
 public class MemberSearchComboView extends AbsViewPanel implements ActionListener {
 	private SearchComboPanel pSearch;
-	private MemberInfo memberinfo;
-
+	private MemberInfoTable pTable;
+	private MemberInfoService mdao;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -38,13 +39,13 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		gridBagLayout_2.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gridBagLayout_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pMain.setLayout(gridBagLayout_2);
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.weighty = 1.0;
-		gbc_panel_1.weightx = 1.0;
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 0;
+		GridBagConstraints gbc_pTable = new GridBagConstraints();
+		gbc_pTable.weighty = 1.0;
+		gbc_pTable.weightx = 1.0;
+		gbc_pTable.fill = GridBagConstraints.BOTH;
+		gbc_pTable.insets = new Insets(0, 0, 5, 0);
+		gbc_pTable.gridx = 0;
+		gbc_pTable.gridy = 0;
 		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -74,12 +75,12 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		gbc_pSearch.gridy = 0;
 		panel_2.add(pSearch, gbc_pSearch);
 		
-		MemberInfoTable panel_1 = new MemberInfoTable();
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 1;
-		panel_2.add(panel_1, gbc_panel_1);
-		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
+		pTable = new MemberInfoTable();
+		gbc_pTable.fill = GridBagConstraints.BOTH;
+		gbc_pTable.gridx = 0;
+		gbc_pTable.gridy = 1;
+		panel_2.add(pTable, gbc_pTable);
+		pTable.setLayout(new GridLayout(1, 0, 0, 0));
 		GridBagConstraints gbc_pTable_1 = new GridBagConstraints();
 		gbc_pTable_1.weighty = 2.0;
 		gbc_pTable_1.weightx = 1.0;
@@ -95,8 +96,8 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		}
 	}
 	protected void actionPerformedPanelBtnNewButton(ActionEvent e) {		
-		this.memberinfo = new MemberInfo();		
-		if(pSearch.gettF().equals("")){
+		MemberInfo memberinfo = new MemberInfo();		
+		if(pSearch.gettF().getText().equals("")){
 			JOptionPane.showMessageDialog(null, "검색할 내용을 입력하세요.");			
 		}else if(pSearch.getPanel().getComboBox().getSelectedIndex()==0){
 			memberinfo.setmCode((pSearch.gettF().getText()));
@@ -110,6 +111,8 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			}else{
 				JOptionPane.showMessageDialog(null, "검색결과가 없습니다");
 		}
+		pSearch.gettF().setText("");
+		
 	}
 		//공백체크해서 알림창 띄우기
 		//전화번호..... 는 검색이 -를 제외시켜야?
