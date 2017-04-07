@@ -4,8 +4,10 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
@@ -17,6 +19,8 @@ import kr.or.dgit.book_project.ui.table.MemberInfoTable;
 import java.awt.GridLayout;
 import kr.or.dgit.book_project.ui.common.SearchComboPanel;
 import javax.swing.JTextField;
+import javax.swing.Popup;
+
 import java.awt.FlowLayout;
 import java.awt.Component;
 import javax.swing.border.EmptyBorder;
@@ -26,12 +30,16 @@ import java.util.List;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ItemEvent;
 
 public class MemberSearchComboView extends AbsViewPanel implements ActionListener, ItemListener {
 	private SearchComboPanel pSearch;
 	private MemberInfoTable pTable;
 	private Map<String, Object> map;
+	private JPopupMenu popupMenu;
 
 	public MemberSearchComboView() {
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
@@ -121,16 +129,16 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			if(pTable.loadData() == false){
 				System.out.println("actionPerformedPanelBtnNewButton load false");
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");				
-				}
+			}
 			pSearch.gettF().setText("");
 		}else if(pSearch.getPanel().getComboBox().getSelectedIndex()==2){		// 콤보박스 전화번호 선택 시, 검색
-				param.put("mTel", "%"+pSearch.gettF().getText());
-				pTable.setParam(param);
-				if(pTable.loadData() == false){
-					System.out.println("actionPerformedPanelBtnNewButton load false");
-					JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");					
-				}
-				pSearch.gettF().setText("");
+			param.put("mTel", "%"+pSearch.gettF().getText());
+			pTable.setParam(param);
+			if(pTable.loadData() == false){
+				System.out.println("actionPerformedPanelBtnNewButton load false");
+				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");					
+			}
+			pSearch.gettF().setText("");
 
 		}
 	}
@@ -138,13 +146,11 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 	public MemberInfoTable getpTable() {
 		return pTable;
 	}
-	
+
 	public void setpTable(MemberInfoTable pTable) {
 		this.pTable = pTable;
-	}
-	
-	
-	
+	}	
+
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource() == pSearch.getPanel().getComboBox()) {
 			itemStateChangedPSearchPanelComboBox(e);
@@ -154,4 +160,6 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		pTable.setParam(map);
 		pTable.loadData();
 	}
+
+
 }
