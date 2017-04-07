@@ -30,7 +30,7 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	protected void cellWith() {
-	tableSetWidth(50,100,80,50,200,100);
+	tableSetWidth(50,80,50,50,50,220);
 		
 	}
 
@@ -39,7 +39,7 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 	}
 
 	@Override
-	protected Object[][] getRowData() {
+	public Object[][] getRowData() {
 		List<PublisherInfo> pub = PublisherInfoService.getInstance().selectByAll();
 		Object[][] datas = new Object[pub.size()][];
 		for(int i=0; i<datas.length;i++){
