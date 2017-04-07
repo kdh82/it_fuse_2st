@@ -2,7 +2,9 @@ package kr.or.dgit.book_project.ui.component;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,7 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.service.CodenService;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.BookCodePanel;
 import kr.or.dgit.book_project.ui.common.ComboBoxPanel;
@@ -38,10 +43,10 @@ public class BookInfoP extends JPanel {
 		JPanel panel_7 = new JPanel();
 		panel.add(panel_7);
 		panel_7.setLayout(new GridLayout(1, 1, 5, 0));
-		
+
 		pBCode = new BookCodePanel();
 		GridBagLayout gbl_pBCode = (GridBagLayout) pBCode.getLayout();
-		gbl_pBCode.columnWidths = new int[] {120, 200, 0};
+		gbl_pBCode.columnWidths = new int[] { 120, 200, 0 };
 		panel_7.add(pBCode);
 
 		JPanel panel_6 = new JPanel();
@@ -50,7 +55,7 @@ public class BookInfoP extends JPanel {
 
 		btnBookSearch = new JButton("도서검색");
 		panel_6.add(btnBookSearch);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_6.add(panel_1);
 
@@ -116,8 +121,6 @@ public class BookInfoP extends JPanel {
 
 	}
 
-	
-	
 	public JTextField getTfAddPublisher() {
 		return tfAddPublisher;
 	}
@@ -129,18 +132,18 @@ public class BookInfoP extends JPanel {
 	public JButton getBtnAddPublisher() {
 		return btnAddPublisher;
 	}
-	
-	public void setClear(){
+
+	public void setClear() {
 		pBCode.setTfBCode("");
 		pBCode.setTfBSubCode("");
 		pBName.setTFValue("");
 		pAuthor.setTFValue("");
 		pPrice.setValue(0);
 		pPublisher.setSelected(0);
-		tfAddPublisher.setText("");		
+		tfAddPublisher.setText("");
 	}
-	
-	public boolean isVaildCheck(){
+
+	public boolean isVaildCheck() {
 		try {
 			pBCode.isEmptyCheck();
 			pBName.isEmptyCheck();
@@ -152,28 +155,41 @@ public class BookInfoP extends JPanel {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			return false;
-			//e.printStackTrace();
 		}
-		
+
 	}
-
-
+	
+	public BookInfo getObject(){
+		String bCode = pBCode.getTfBCode().getText();
+		String bSubCode = pBCode.getTfBSubCode().getText();
+		String bName = pBName.getTFValue();
+		Map<String, Object> param = new HashMap<>();
+		param.put("cCode", pBCode.getTfBCode().getText().charAt(0)+"");
+		Coden coden = CodenService.getInstance().selectOne(param);
+		String author = pAuthor.getTFValue();
+		PublisherInfo publisherInfo = (PublisherInfo) pPublisher.getCombItem();
+		int price = (int) pPrice.getValue();
+		return new BookInfo(bCode, bSubCode, coden, bName, author, publisherInfo, price);
+	}
 
 	public ComboBoxPanel getpPublisher() {
 		return pPublisher;
 	}
 
-
-
 	public BookCodePanel getpBCode() {
 		return pBCode;
 	}
 
-
-
-	public void setpBCode(BookCodePanel pBCode) {
-		this.pBCode = pBCode;
+	public InputComp getpBName() {
+		return pBName;
 	}
-	
+
+	public InputComp getpAuthor() {
+		return pAuthor;
+	}
+
+	public SpinnerPanel getpPrice() {
+		return pPrice;
+	}
 
 }

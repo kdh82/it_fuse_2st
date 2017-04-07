@@ -269,76 +269,153 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (37,'T002',00,'C001','2017-03-23' , null),
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
-
-
+<<<<<<< HEAD
 -- 
-select m_name, m_code, m_tel, m_zip_code, m_address, black_date from memberinfo;
+=======
 
 
-SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
-		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
-		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
-		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
-		is_secsn
-		FROM paymentio io
-		right outer join bookinfo b on io.b_code = b.b_code and
-		io.b_sub_code = b.b_sub_code
-		left outer join memberinfo m on io.m_code = m.m_code
-		
-		
-SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
-		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
-		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
-		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
-		black_date, m_group, is_secsn
-		FROM paymentio io
-		right outer join bookinfo b on io.b_code = b.b_code and
-		io.b_sub_code = b.b_sub_code
-		right outer join memberinfo m on io.m_code = m.m_code
+--  테스트
 
+	
 		
-		select * from book_project.bookinfo where is_lending = false;
-		
-		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
-		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
-		insert_date, b_lend_count, is_lending, is_del from bookInfo b
-		right outer join publisherInfo p on b.p_code = p.p_code
-		left outer join
-		coden c on b.c_name = c.c_name
-		where is_lending = false;
-		
-		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
-		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
-		insert_date, b_lend_count, is_lending, is_del from bookInfo b
-		right outer join publisherInfo p on b.p_code = p.p_code
-		left outer join
-		coden c on b.c_name = c.c_name
-		where b.b_code= "T001" and b.b_sub_code = "2";
-		
-		select count(*) from memberinfo where m_code="C001";
+delimiter $$
+create procedure book_project.proc_paymentIO_insert(
+	in _b_code char(4),
+	in _b_sub_code int(2),
+	in _m_code char(4)
+)
+begin 
+	declare _m_now_count int;
+	declare err int default 0;
+	declare continue handler for sqlexception set err = -1;
+	
+	
+	start transaction;
+	-- <<회원대여정보>>테이블에서 [총대여권수] +1, [현재대여권수] +1,  <<도서대여정보>>테이블에서 [총대여횟수] +1, [대여여부] false
+	UPDATE bookinfo SET  b_lend_count=(b_lend_count+1), is_lending=true WHERE b_code=_b_code and b_sub_code = _b_sub_code;
+	UPDATE memberinfo SET  m_lend_count=(m_lend_count+1), m_now_count=(m_now_count+1) WHERE m_code=_m_code;
+	-- <<출납>>테이블 [회원코드],[도서코드],[대여일자(컴퓨터 현재일자): CURRENT_DATE()],[반납일자(초기화 : null)]
+	INSERT INTO paymentIO (b_code, b_sub_code, m_code, lend_date, return_date) VALUES(_b_code, _b_sub_code, _m_code, current_date, null);
+	select m_now_count into _m_now_count from memberinfo where m_code = _m_code;
+	
+	-- [대여권수] 5권되면 [대여가능여부] false로 설정
+	if _m_now_count > 4 then
+		update memberinfo set is_posbl = false where m_code = _m_code;
+	end if;
+	
+	
+	if err < 0 then
+		rollback;
+	else
+		commit;
+	end if;
+	
+end $$
+delimiter ;
 
-		
-		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
-		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
-		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
-		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
-		is_secsn
-		FROM paymentio io
-		right outer join bookinfo b on io.b_code = b.b_code and
-		io.b_sub_code = b.b_sub_code
-		left outer join memberinfo m on io.m_code = m.m_code
-		where m.m_code="C006";
-		
-		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
-		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
-		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
-		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
-		black_date, m_group, is_secsn
-		FROM paymentio io
-		right outer join bookinfo b on io.b_code = b.b_code and
-		io.b_sub_code = b.b_sub_code
-		right outer join memberinfo m on io.m_code = m.m_code
-		where m.m_code="C001";
-		
-		select m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group from memberinfo
-		where m_code="C001";
+
+delimiter $$
+CREATE PROCEDURE book_project.proc_paymentIO_update(
+   in _b_code char(4),
+   in _b_sub_code int(4),
+   in _m_code char(4),
+   in _return_date date
+)
+begin   
+   declare _delay_count int ;
+   declare _m_now_count int ;
+   declare _lend_date date;
+
+   declare _black date;
+   declare err int default 0;
+   declare continue handler for sqlexception set err = -1;
+   
+   start transaction;
+  select lend_date into _lend_date from paymentio where b_code = _b_code  and b_sub_code = _b_sub_code and m_code= _m_code and return_date is null;
+
+   UPDATE paymentIO SET return_date = _return_date 
+   where b_code = _b_code and b_sub_code = _b_sub_code and m_code= _m_code and return_date is null;
+      
+   UPDATE bookinfo SET is_lending = false WHERE b_code= _b_code and b_sub_code = _b_sub_code;
+   update memberinfo set m_now_count=(m_now_count-1) where m_code = _m_code;
+   
+   
+   if datediff(_return_date, _lend_date)>2 then 
+      update memberinfo set delay_count = (delay_count+1) where m_code=_m_code;
+   end if;
+
+   
+   select delay_count into _delay_count from memberinfo where m_code=_m_code;   
+   select m_now_count into _m_now_count from memberinfo where m_code=_m_code;   
+   if _delay_count > 2 then
+      
+      if _m_now_count = 0 then -- [연체횟수 ] 3권이상, 현재 대여 권수가 0      
+      select max(return_date) into _black from paymentio where m_code = _m_code;
+      update memberinfo set black_date = date_add(_black , INTERVAL 30 DAY) where m_code=_m_code;
+   end if; 
+   end if;
+   
+   if err < 0 then
+      rollback;
+   else
+      commit;
+   end if;
+   
+end
+delimiter ;
+
+
+delimiter $$
+create procedure book_project.proc_memberinfo_is_posbl_update(
+	in _m_code char(4)
+)
+begin 
+	declare datecnt int;
+	declare err int default 0;
+	declare continue handler for sqlexception set err = -1;
+	
+	start transaction;
+	
+	-- 연체발생시 대여불가설정
+	select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into datecnt from paymentio 
+	where return_date is null and m_code = _m_code;
+	if datecnt > 0 then 
+	 	update memberinfo set is_posbl = false where m_code = _m_code;
+	end if;
+	
+	-- 날짜경과시 블랙리스트 해제
+	select black_date into @_black from memberinfo where m_code = _m_code;
+	if @_black is not null then
+		if @_black < current_date then
+			update memberinfo set is_posbl = true, black_date = null, delay_count = 0 where m_code = _m_code;
+		end if;
+	end if;
+	
+	if err < 0 then
+		rollback;
+	else
+		commit;
+	end if;
+	
+end $$
+delimiter ;
+
+
+
+
+
+ UPDATE book_project.paymentIO SET return_date = '2017-01-01'
+   where b_code = 'T001' and b_sub_code = 1 and m_code= 'C001' and return_date is null;
+
+
+call book_project.proc_paymentIO_update('H002',0,'C009','2017-01-01');
+
+
+
+
+
+
+
+
+
+>>>>>>> refs/remotes/origin/프로시저시작

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -16,6 +17,28 @@ public class PageSub extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private SideBar pSideBar;
 	private JPanel pTabSub;
+	
+	public static void main(String[] args) {
+		try {
+	         UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+
+	      } catch (Exception e) {
+	      }
+		PageMain frame = new PageMain();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					
+					PageSub frame = new PageSub();
+					frame.setVisible(true);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public PageSub() {
 		setTitle("도서관리프로그램");

@@ -30,7 +30,7 @@ public class PageMain extends JFrame {
 	private Object ActionEvent;
 	private PageSub sub;
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 	         UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 
@@ -50,7 +50,7 @@ public class PageMain extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	public PageMain() {
 		setTitle("도서관리프로그램");

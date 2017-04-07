@@ -1,6 +1,9 @@
 package kr.or.dgit.book_project.ui.common;
 
 import javax.swing.JPanel;
+
+import java.util.List;
+
 import javax.swing.JComboBox;
 
 public class OptionSearchCmb<T> extends OptionSearchPanel {
@@ -12,6 +15,11 @@ public class OptionSearchCmb<T> extends OptionSearchPanel {
 		comboBox = new JComboBox();
 		panel.add(comboBox);
 
+	}
+	public void setComboDate(List<T> items) {
+		for (T t : items) {
+			comboBox.addItem(t);
+		}
 	}
 
 	public JComboBox<T> getComboBox() {
@@ -33,6 +41,10 @@ public class OptionSearchCmb<T> extends OptionSearchPanel {
 
 	public void setSelectedTT(T item) {
 		comboBox.setSelectedItem(item);
+	}
+	public void clear(){
+		chbTitle.setSelected(false);
+		comboBox.setSelectedIndex(0);
 	}
 
 	

@@ -17,8 +17,10 @@ import java.awt.event.ActionEvent;
 public class MemberInsertView extends AbsViewPanel implements ActionListener {
 	
 	private JButton btnCancel;
-	private MemberInfoP pContent;	
+		
 	private JButton btnSave;
+
+	private MemberInfoP memberInfoP;
 	
 	public MemberInsertView() {
 		JPanel panel_5 = new JPanel();
@@ -41,8 +43,8 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		panel_5.add(panel, gbc_panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		MemberInfoP panel_1 = new MemberInfoP();
-		panel.add(panel_1);
+		memberInfoP = new MemberInfoP();
+		panel.add(memberInfoP);
 		
 		JPanel panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -103,6 +105,6 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		
 	}
 	protected void actionPerformedBtnCancel(ActionEvent e) {
-		pContent.setClear();
+		memberInfoP.setClear();
 	}
 }
