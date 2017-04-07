@@ -80,8 +80,8 @@
 	</update> -->
 	
 	
-	 <select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
+	 <!-- <select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
 		{call proc_paymentIO_insert(#{"bCode", mode = in, jdbcType= 'char'},#{bSubCode, mode = in, jdbcType= 'char'},#{mCode, mode = in, jdbcType= 'char'})}
-	</select>
+	</select> -->
 
 </mapper>
