@@ -41,10 +41,5 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		return sqlSession.selectOne(namespace+"findMemberInfoByCode", memberinfo);
 	}
 
-	@Override
-	public List<MemberInfo> selectMemberByAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

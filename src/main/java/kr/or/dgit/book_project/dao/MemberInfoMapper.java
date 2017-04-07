@@ -13,8 +13,7 @@ public interface MemberInfoMapper {
 	
 	// 한개만 가져오는 거
 	// 출력 (조건 셋팅 시 조건에 해당되는 데이터만 끌어오기)
-
-	List<MemberInfo> selectMemberByAll();				//목록출력
+			//목록출력
 	MemberInfo findMemberInfoByCode(MemberInfo memberinfo);	//회원검색
 	
 }
