@@ -67,10 +67,35 @@ public class PublisherInfo {
 	public void setpAddress(String pAddress) {
 		this.pAddress = pAddress;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("%s(%s)", publisher, pCode);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((pCode == null) ? 0 : pCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PublisherInfo other = (PublisherInfo) obj;
+		if (pCode == null) {
+			if (other.pCode != null)
+				return false;
+		} else if (!pCode.equals(other.pCode))
+			return false;
+		return true;
 	}
 
 }

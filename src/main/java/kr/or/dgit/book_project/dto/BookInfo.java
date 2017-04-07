@@ -19,8 +19,22 @@ public class BookInfo { // 도서
 	public BookInfo() {
 	}
 
+	public BookInfo(String bCode, String bSubCode, Coden coden, String bName, String author,
+			PublisherInfo publisherInfo, int price) {
+		// 도서 입력시 사용
+		super();
+		this.bCode = bCode;
+		this.bSubCode = bSubCode;
+		this.coden = coden;
+		this.bName = bName;
+		this.author = author;
+		this.publisherInfo = publisherInfo;
+		this.price = price;
+	}
+
 	public BookInfo(String bCode, String bSubCode, String bName, String author, PublisherInfo publisherInfo, int price,
 			int bLendCount) {
+		// 도서정보 받아올 때 사용
 		super();
 		this.bCode = bCode;
 		this.bSubCode = bSubCode;
@@ -30,14 +44,6 @@ public class BookInfo { // 도서
 		this.price = price;
 		this.bLendCount = bLendCount;
 	}
-
-
-
-	/*
-	 * public Object[] toArray() { return new Object[] { bCode, bSubCode, bName,
-	 * coden.getcName(), author, publisherInfo }; return null; }
-	 */
-
 
 	public String getbCode() {
 		return bCode;
@@ -132,20 +138,14 @@ public class BookInfo { // 도서
 		return String.format("%s %s %s %s %s %s %s %s %s %s %s", bCode, bSubCode, coden, bName, author, publisherInfo,
 				price, insertDate, bLendCount, isLending, isDel);
 	}
-
-
-	/*public Object[] toArray() {
-		return new Object[] { bCode, bSubCode, bName, author, publisherInfo.getPublisher(), bLendCount };
-	}
-*/
 	public Object[] toArrayForBoookList() {
 		// "도서코드", "중복코드", "도서명", "분야", "저자", "출판사"
-		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author, String.format("%s(%s)", publisherInfo.getPublisher(),publisherInfo.getpCode())}; 
+		return new Object[] { bCode, bSubCode, bName, coden.getcName(), author,
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()) };
 	}
-
 	public Object[] toArray() {
-		// "도서코드","도서중복코드","도서명","저자","출판사","총대여 횟수"
+		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "총대여 횟수"
 		return new Object[] { bCode, bSubCode, bName, author,
-				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()),price, bLendCount };
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, bLendCount };
 	}
 }

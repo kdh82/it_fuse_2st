@@ -12,7 +12,7 @@
 	</resultMap>
 
 	<sql id="insertShortSql">
-		도서등록 페이지에서 간단한 출판사등록시
+		<!-- 도서등록 페이지에서 간단한 출판사등록시 -->
 		INSERT INTO publisherinfo (p_code, publisher)
 		VALUES(#{pCode},
 		#{publisher})

@@ -270,5 +270,3 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
 -- 
-
-
