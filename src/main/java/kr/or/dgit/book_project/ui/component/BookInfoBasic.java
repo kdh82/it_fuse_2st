@@ -18,9 +18,6 @@ public class BookInfoBasic extends JPanel {
 	private InputComp pPName;
 	private InputComp pBLendCount;
 
-	/**
-	 * Create the panel.
-	 */
 	public BookInfoBasic() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		

@@ -6,14 +6,16 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
@@ -104,10 +106,15 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		if(pContent.isVaildCheck()){
 			pContent.getObject();
 			System.out.println(pContent.getObject());
+			BookInfoService.getInstance().insertBookInfo(pContent.getObject());
+			
+			// 하단 테이블에 입력한 데이터 띄우기
+			Map<String, Object> param = new HashMap<>();
+			param.put("bCode", pContent.getObject().getbCode());
+			param.put("bSubCode", pContent.getObject().getbSubCode());
+			pTable.setMap(param);
+			pTable.loadData();
 		}
-		// 새로운 도서정보가 저장
-		// 저장확인메시지
-		// 하단에 테이블 데이터 갱신
 	}
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
@@ -115,11 +122,12 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	}
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
-		// 도서 검색창 새창으로
-		BookSearchViewFrame bookSearchFrame = new BookSearchViewFrame();
-		bookSearchFrame.setBookInsertView(this);
+		BookSearchViewFrame bookSearchFrame = null;
+		if (bookSearchFrame == null){
+			bookSearchFrame = new BookSearchViewFrame();
+		}
+		bookSearchFrame.setMyMouseListener(pContent);
 		bookSearchFrame.addBtn("신규");
-		bookSearchFrame.setMyMouseListener();
 		bookSearchFrame.setVisible(true);
 	}
 

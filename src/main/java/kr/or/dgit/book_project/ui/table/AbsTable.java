@@ -25,7 +25,7 @@ public abstract class AbsTable<T> extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		table.addMouseListener(new MouseAdapter() {
+		/*table.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -35,7 +35,7 @@ public abstract class AbsTable<T> extends JPanel {
 			}
 
 		});
-		createPopupMenu();
+		createPopupMenu();*/
 	}
 
 	
@@ -78,51 +78,6 @@ public abstract class AbsTable<T> extends JPanel {
 	
 	protected abstract void createPopupMenu();
 	
-	/*private JPopupMenu createPopupMenu() {
-		popupMenu = new JPopupMenu();
-
-		JMenuItem updateItem = new JMenuItem("수정");
-		updateItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				T t = getSelectedObject();
-				if (t == null) {
-					JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					return;
-				}
-				updateData(t);
-			}
-		});
-		popupMenu.add(updateItem);
-
-		JMenuItem deleteItem = new JMenuItem("삭제");
-		deleteItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				T t = getSelectedObject();
-				if (t == null) {
-					JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					return;
-				}
-				int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까", "", JOptionPane.YES_NO_OPTION);
-				if (res != 0) {
-					JOptionPane.showMessageDialog(null, "취소하였습니다");
-					return;
-				}
-
-				deleteItem(t);
-				loadData();
-				JOptionPane.showMessageDialog(null, "삭제되었습니다");
-
-			}
-
-		});
-		popupMenu.add(deleteItem);
-
-		return null;
-	}*/
 
 	protected abstract void updateData(T t);
 

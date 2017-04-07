@@ -119,4 +119,9 @@ public class InformDetailPanel extends InformSizePanel {
 		lblTitle.setText(title);
 		btnDel.setText(button);
 	}
+
+	public JPanel getpContent() {
+		return pContent;
+	}
+	
 }

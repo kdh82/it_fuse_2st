@@ -1,18 +1,17 @@
 package kr.or.dgit.book_project.ui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import kr.or.dgit.book_project.ui.view.BookInsertView;
-import kr.or.dgit.book_project.ui.view.BookSearchView;
+import kr.or.dgit.book_project.ui.view.BookManageView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
-import kr.or.dgit.book_project.ui.view.CodenView;
 import kr.or.dgit.book_project.ui.view.MemberInsertView;
-import kr.or.dgit.book_project.ui.view.PublisherView;
 import kr.or.dgit.book_project.ui.view.MemberSearchComboView;
-import java.awt.BorderLayout;
+import kr.or.dgit.book_project.ui.view.PublisherView;
 
 public class SubMenuPage1 extends JTabbedPane {
 
@@ -32,8 +31,8 @@ private JPanel pCoden;
 		JPanel pBookManager = new JPanel();
 		addTab("도서관리", null, pBookManager, null);
 		pBookManager.setLayout(new BorderLayout(0, 0));
-		BookSearchView bookSearchview = new BookSearchView();
-		pBookManager.add(bookSearchview);
+		BookManageView bookManageView = new BookManageView();
+		pBookManager.add(bookManageView);
 		
 		pMember = new JPanel();
 		addTab("회원등록", null, pMember, null);		
