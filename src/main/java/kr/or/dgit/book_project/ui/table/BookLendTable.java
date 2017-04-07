@@ -49,7 +49,7 @@ public class BookLendTable extends AbsTable<BookInfo> {
 		List<BookInfo> bi = BookInfoService.getInstance().selectIslending(param);
 		Object[][] datas = new Object[bi.size()][];
 		for(int i =0; i< datas.length; i++){
-			datas[i]= bi.get(i).toArrayForLend();
+			datas[i]= bi.get(i).toArray();
 		}
 		return datas;
 	}

@@ -9,15 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
@@ -28,6 +25,8 @@ public class BookLendView extends AbsViewPanel {
 	
 	private BookLendTable blv4;
 	private BookInfoBasic panel_3;
+	private BookLendMemberDetail panel_4;
+	
 	public BookLendView() {
 		/*GridLayout gridLayout = (GridLayout) getLayout();
 		gridLayout.setVgap(10);*/
@@ -59,10 +58,11 @@ public class BookLendView extends AbsViewPanel {
 		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		blv2.setLayout(gbl_panel_5);
 		
-		BookLendMemberDetail panel_4 = new BookLendMemberDetail();
-		panel_4.getpMCode().getTF().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				actionPerformedPanel_4PMCodeTF(arg0);
+		panel_4 = new BookLendMemberDetail();
+		panel_4.getpMCode().getTF().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				mousePressedPanel_4PMCodeTF(arg0);
 			}
 		});
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
@@ -94,7 +94,6 @@ public class BookLendView extends AbsViewPanel {
 		blv4.getTable().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
 				mouseClickedBlv4Table(e);
 			}
 		});
@@ -108,25 +107,32 @@ public class BookLendView extends AbsViewPanel {
 		/*jf.add(bsv);*/
 		jf.setVisible(true);
 	}
-	protected void actionPerformedPanel_4PMCodeTF(ActionEvent arg0) {
-		MemberSearchView msv = new MemberSearchView();
-		/*blv4.loadData();// 테이블 끌어오는거?
-*/		JFrame jf = new JFrame();
-		jf.setBounds(100, 100, 400, 500);
-		jf.add(msv);
-		jf.setVisible(true);
-	}
+	
 	protected void mouseClickedBlv4Table(MouseEvent e) {
 		if(e.getClickCount() == 2){
 			panel_3.setObject(blv4.getSelectedObject());
 		}
 	}
+	// 도서코드 누르면 관리뜨는거
 	protected void mousePressedPanel_3PBCodeTfBCode(MouseEvent e) {
 		BookSearchView bsv = new BookSearchView();
-		/*blv4.loadData();// 테이블 끌어오는거?
-*/		JFrame jf = new JFrame();
+		// loaddate 넣어야됨
+		JFrame jf = new JFrame();
 		jf.setBounds(100, 100, 400, 500);
-		jf.add(bsv);
+		jf.getContentPane().add(bsv);
 		jf.setVisible(true);
+	}
+	//회원코드 누르면 관리뜨는거
+	protected void mousePressedPanel_4PMCodeTF(MouseEvent arg0) {
+		MemberSearchView msv = new MemberSearchView();
+		msv.loadDate();
+		JFrame jf = new JFrame();
+		msv.setMyMouseListener(this, jf);
+		jf.setBounds(100, 100, 400, 500);
+		jf.getContentPane().add(msv);
+		jf.setVisible(true);
+	}
+	public BookLendMemberDetail getPanel_4() {
+		return panel_4;
 	}
 }

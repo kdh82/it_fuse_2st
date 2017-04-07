@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.dgit.book_project.dao.BookInfoMapper;
+import kr.or.dgit.book_project.dao.BookInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PaymentIOMapper;
 import kr.or.dgit.book_project.dao.PaymentIOMapperImpl;
 import kr.or.dgit.book_project.dto.PaymentIO;
@@ -14,20 +16,13 @@ public class PaymentIOService {
 	
 	private static final PaymentIOService instance = new PaymentIOService();
 	
-	
 	private PaymentIOService() {
 		
 	}
 	
-	
-
-
 	public static PaymentIOService getInstance() {
 		return instance;
 	}
-
-
-
 
 	public List<PaymentIO> selectAllPaymentIOInfo(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
@@ -35,4 +30,6 @@ public class PaymentIOService {
 			return paymentIOMapper.selectAllPaymentIOInfo(param);
 		}
 	}
+	
+	
 }
