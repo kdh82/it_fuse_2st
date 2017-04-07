@@ -27,6 +27,7 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	private JButton btnCancel;
 	private BookInfoP pContent;
 	private BookSearchTable pTable;
+	private BookSearchViewFrame bookSearchFrame;
 
 	public BookInsertView() {
 
@@ -122,8 +123,8 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	}
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
-		BookSearchViewFrame bookSearchFrame = null;
 		if (bookSearchFrame == null){
+			// 창 1개만 띄우기
 			bookSearchFrame = new BookSearchViewFrame();
 		}
 		bookSearchFrame.setMyMouseListener(pContent);
@@ -147,10 +148,8 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 			pContent.getpPublisher().getComboBox().removeAllItems(); // 기존목록 지우기
 			pContent.getpPublisher().setComboDate(list); // 새 목록 넣기
 			// 목록을 넣지 않고 새로 추가된 애만 additem???? 고민중
-			pContent.getpPublisher().setSelected(pis.selectCountAll() - 1); // 제일
-																			// 마지막
-																			// 출판사
-																			// 선택하기
+			// 제일 마지막 출판사 선택하기
+			pContent.getpPublisher().setSelected(pis.selectCountAll() - 1);
 			pContent.getTfAddPublisher().setText(""); // 텍스트필드 초기화
 		}
 	}

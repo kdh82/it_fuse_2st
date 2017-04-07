@@ -33,6 +33,7 @@ public class BookManageView extends AbsBookSearchView implements ActionListener 
 				}
 				BookDetailViewFrame bookDetailViewFrame = new BookDetailViewFrame();
 				bookDetailViewFrame.setBookDetailInfo(bookInfo);
+				bookDetailViewFrame.setMyActionLister();
 				bookDetailViewFrame.setVisible(true);
 			}
 		});

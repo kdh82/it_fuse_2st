@@ -3,6 +3,8 @@ package kr.or.dgit.book_project.ui.view;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
 
 public class BookSearchViewFrame extends JFrame {
@@ -38,7 +41,9 @@ public class BookSearchViewFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					BookInfo bookInfo = bookSearchView.getpTable().getSelectedObject();
-					bookInfo.setbSubCode((Integer.parseInt(bookInfo.getbSubCode())+1)+"");
+					Map <String, Object> param = new HashMap<>();
+					param.put("bCode", bookInfo.getbCode());
+					bookInfo.setbSubCode(BookInfoService.getInstance().countBookInfo(param)+"");
 					bookInfoP.setObject(bookInfo);
 					setVisible(false);
 				}
@@ -48,8 +53,11 @@ public class BookSearchViewFrame extends JFrame {
 	}
 	
 	public void addBtn(String string) {
+		if(bookSearchView.getpContent().getpBtnSub().getComponentCount() != 0){
+			// 버튼이 1개만 부착되기 위해서 사용되는 구문
+			return;
+		}
 		JButton btnAddBtn = new JButton(string);
-		bookSearchView.getpContent().getpBtnSub().add(btnAddBtn);
 		btnAddBtn.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -61,7 +69,7 @@ public class BookSearchViewFrame extends JFrame {
 
 			}
 		});
-
+		bookSearchView.getpContent().getpBtnSub().add(btnAddBtn);
 	}
 
 	

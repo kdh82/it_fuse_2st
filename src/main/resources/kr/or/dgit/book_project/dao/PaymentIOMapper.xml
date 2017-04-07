@@ -52,6 +52,9 @@
 			<if test="returnDate != null">
 				and return_date =#{returnDate}
 			</if>
+			<if test="no != null">
+				and io.no is not null
+			</if>
 
 		</where>
 	</sql>

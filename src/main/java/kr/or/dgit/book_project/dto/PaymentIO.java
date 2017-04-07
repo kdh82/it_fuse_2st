@@ -83,7 +83,7 @@ public class PaymentIO {
 
 	public Object[] toArray() {
 		return new Object[] { memberInfo.getmCode(), memberInfo.getmName(), lendDate, returnDate,
-				isDelay() ? "Y" : "N" };
+				lendDate != null ? (isDelay() ? "Y" : "N") : ""};
 	}
 
 }
