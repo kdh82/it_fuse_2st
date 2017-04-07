@@ -168,10 +168,10 @@ public class BookInfoP extends JPanel {
 		String bSubCode = pBCode.getTfBSubCode().getText();
 		String bName = pBName.getTFValue();
 		Coden coden = new Coden();
-	/*	coden.setcCode(pBCode.getTfBCode().getText().charAt(0)+"");
+		coden.setcCode(pBCode.getTfBCode().getText().charAt(0)+"");
 		Map<String, Object> param = new HashMap<>();
 		//param.put("cCode", cCode);
-		Coden codenRes = CodenService.getInstance().selectOneByCode(param);*/
+		Coden codenRes = CodenService.getInstance().selectOneByCode(param);
 		String author = pAuthor.getTFValue();
 		PublisherInfo publisherInfo = (PublisherInfo) pPublisher.getCombItem();
 		int price = (int) pPrice.getValue();
