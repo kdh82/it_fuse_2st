@@ -81,7 +81,7 @@
 				and b.b_name like #{bName}
 			</if>
 			<if test="author != null">
-				and author=#{author}
+				and author like #{author}
 			</if>
 			<if test="cName != null">
 				and b.c_name =#{cName}
