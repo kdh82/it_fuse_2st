@@ -22,15 +22,16 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 		log.debug("selectAllPaymentIOInfo()");
 		return sqlSession.selectList(namespace + "selectAllPaymentIOInfo", param);
 	}
-	@Override
-	public int getbcode(BookInfo bookinfo) {
-		log.debug("getbcode()");
-		return sqlSession.selectOne(namespace+"getbcode",bookinfo);
-	}
+	
 	@Override
 	public int insertPaymentIO(Map<String, Object> param) {
 		log.debug("insertPaymentIO()");
 		return sqlSession.update(namespace+"insertPaymentIO",param);
+	}
+	@Override
+	public int updatePaymentIO(Map<String, Object> param) {
+		log.debug("updatePaymentIO()");		
+		return sqlSession.update(namespace+"updatePaymentIO",param);
 	}
 	
 }

@@ -18,4 +18,6 @@ public interface MemberInfoMapper {
 	List<MemberInfo> selectMemberByAll();				//목록출력
 	MemberInfo findMemberInfoByCode(MemberInfo code);	//코드로 회원검색
 	
+	// 회원 프로시저
+	int updateMemberInfo(Map<String, Object> param);
 }

@@ -69,19 +69,29 @@
 	</select>
 	
 <!-- 프로시저 -->
-<!-- 	 <parameterMap type="hashmap" id="paramMap">
-		<parameter  mode="IN" property="b_code" jdbcType="char" />
-		<parameter  mode="IN" property="b_sub_code" jdbcType="int" />
-		<parameter  mode="IN" property="m_code" jdbcType="char" />
-	</parameterMap>
+ 	 <resultMap type="hashmap" id="paramMap"></resultMap>
+	<!--  <select id="procedureTest" statementType="CALLABLE">
+	 	{
+	 	CALL PROCEDURE_NAME(
+	 			#{mode=IN, b_code, javaType=bCode, resultMap=paramMap},
+	 			#{b_sub_code javaType=bSudCode},
+	 			#{m_code javaType=mCode}
+	 			)
+	 	}	
+	 </select> -->
 	
-	<update id="getbcode" statementType="CALLABLE" parameterMap="BookInfo">
-		{call proc_paymentIO_insert(#{"bCode"},#{bSubCode},#{mCode})}
-	</update> -->
 	
+<!-- 	<update id="getbcode" statementType="CALLABLE" >
+		{call proc_paymentIO_insert(?,?,?)}
+	</update>  -->
 	
-	 <!-- <select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
-		{call proc_paymentIO_insert(#{"bCode", mode = in, jdbcType= 'char'},#{bSubCode, mode = in, jdbcType= 'char'},#{mCode, mode = in, jdbcType= 'char'})}
-	</select> -->
-
+	<!-- 대여 프로시저 -->
+	<select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_paymentIO_insert(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR})}
+	</select>
+	
+	<!-- 반납 프로시저 -->
+	<select id="updatePaymentIO" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_paymentIO_update(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR},#{return_date, mode = IN, jdbcType= DATE})}
+	</select>
 </mapper>

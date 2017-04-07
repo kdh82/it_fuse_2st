@@ -32,17 +32,17 @@ public class PaymentIOService {
 		}
 	}
 	
-	public int getbcode(BookInfo bookinfo){
-		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
-			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
-			return paymentIOMapper.getbcode(bookinfo);
-		}
-	}
-	
 	public int insertPaymentIO(Map<String, Object> param){
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
 			return paymentIOMapper.insertPaymentIO(param);
+		}
+	}
+	
+	public int updatePaymentIO(Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			return paymentIOMapper.updatePaymentIO(param);
 		}
 	}
 	

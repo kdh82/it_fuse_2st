@@ -57,6 +57,10 @@
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
 	</select>
+	
+	<select id="updateMemberInfo" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_memberinfo_is_posbl_update(#{m_code, mode = IN, jdbcType= CHAR})}
+	</select>
 
 	<!-- <select id="findMemberInfoByCode" parameterType="code" resultType="MemberInfoResult" >
 

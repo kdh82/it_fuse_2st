@@ -10,7 +10,9 @@ public interface PaymentIOMapper {
 	
 	List<PaymentIO> selectAllPaymentIOInfo(Map<String, Object> param);
 	
-	int getbcode(BookInfo bookinfo);
+	//대여 프로시저
 	int insertPaymentIO(Map<String, Object> param);
+	//반납 프로시저
+	int updatePaymentIO(Map<String, Object> param);
 	
 }

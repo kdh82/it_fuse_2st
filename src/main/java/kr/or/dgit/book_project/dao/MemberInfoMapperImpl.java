@@ -52,4 +52,11 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public int updateMemberInfo(Map<String, Object> param) {
+		log.debug("updatePaymentIO()");
+		return sqlSession.update(namespace+"updateMemberInfo", param);
+		
+	}
 }
