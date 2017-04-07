@@ -1,102 +1,112 @@
 package kr.or.dgit.book_project.ui.view;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.PublisherInfoP;
+import kr.or.dgit.book_project.ui.table.PublisherInfoTable;
+import java.awt.GridLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PublisherView extends AbsViewPanel implements ActionListener {
-
-	protected JPanel panel_5;
+	private PublisherInfoTable pTable;
+	private JPanel pSub;
+	private PublisherInfoP pPub;
+	private JPanel pBtn;
 	private JButton btnSave;
 	private JButton btnCancel;
-	private PublisherInfoP panel_2;
 
 	public PublisherView() {
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{735, 0};
+		gridBagLayout.rowHeights = new int[]{200, 130, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		pMain.setLayout(gridBagLayout);
 		
-		JPanel panel = new JPanel();
-		pMain.add(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{775, 0};
-		gbl_panel.rowHeights = new int[]{300, 300, 0};
-		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
-		
-		JPanel panel_1 = new JPanel();
+		pSub = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.gridx = 0;
 		gbc_panel_1.gridy = 0;
-		panel.add(panel_1, gbc_panel_1);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+		pMain.add(pSub, gbc_panel_1);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{600, 0};
+		gbl_panel_1.rowHeights = new int[]{200, 10, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		pSub.setLayout(gbl_panel_1);
 		
-		panel_2 = new PublisherInfoP();
-		panel_1.add(panel_2);
+		pPub = new PublisherInfoP();
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
+		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 0;
+		pSub.add(pPub, gbc_panel_2);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
+		pBtn = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.anchor = GridBagConstraints.WEST;
 		gbc_panel_3.gridx = 0;
 		gbc_panel_3.gridy = 1;
-		panel.add(panel_3, gbc_panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(0, 0, 775, 65);
-		panel_3.add(panel_4);
-		panel_4.setLayout(null);
+		pSub.add(pBtn, gbc_panel_3);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+		gbl_panel_3.columnWidths = new int[] {308, 100, 100, 0};
+		gbl_panel_3.rowHeights = new int[] {39, 0};
+		gbl_panel_3.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pBtn.setLayout(gbl_panel_3);
 		
 		btnSave = new JButton("저장");
 		btnSave.addActionListener(this);
-		btnSave.setLocation(281, 5);
-		panel_4.add(btnSave);
-		btnSave.setSize(104, 55);
-		
+		GridBagConstraints gbc_btnSave = new GridBagConstraints();
+		gbc_btnSave.fill = GridBagConstraints.BOTH;
+		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
+		gbc_btnSave.gridx = 1;
+		gbc_btnSave.gridy = 0;
+		pBtn.add(btnSave, gbc_btnSave);
 		
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
-		btnCancel.setBounds(390, 5, 112, 55);
-		panel_4.add(btnCancel);
+		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
+		gbc_btnCancel.fill = GridBagConstraints.BOTH;
+		gbc_btnCancel.gridx = 2;
+		gbc_btnCancel.gridy = 0;
+		pBtn.add(btnCancel, gbc_btnCancel);
 		
-		panel_5 = new JPanel();
-		panel_5.setBounds(0, 69, 775, 203);
-		panel_3.add(panel_5);
-		panel_5.setAlignmentY(100);
-		panel_5.setLayout(new BorderLayout(0, 0));
-		
-
+		pTable = new PublisherInfoTable();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		pMain.add(pTable, gbc_panel);
 	}
-
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == btnCancel) {
-			actionPerformedBtnCancel(arg0);
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
 		}
-		if (arg0.getSource() == btnSave) {
-			actionPerformedBtnSave(arg0);
+		if (e.getSource() == btnSave) {
+			actionPerformedBtnSave(e);
 		}
 	}
-	protected void actionPerformedBtnSave(ActionEvent arg0) {
-		if(panel_2.addCheck()){
-			PublisherInfoService.insertAllPublisherInfo(panel_2.getObject());
-			JOptionPane.showMessageDialog(null, "등록완료");
-			panel_2.clear();
-			// 테이블 데이터 새로고침.. loaddate();
-		}
+	protected void actionPerformedBtnSave(ActionEvent e) {
 	}
-	protected void actionPerformedBtnCancel(ActionEvent arg0) {
-			panel_2.clear();
+	protected void actionPerformedBtnCancel(ActionEvent e) {
 	}
-}
+}	

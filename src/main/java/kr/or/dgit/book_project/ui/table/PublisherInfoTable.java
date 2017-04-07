@@ -1,7 +1,8 @@
 package kr.or.dgit.book_project.ui.table;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
+import javax.swing.SwingConstants;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
@@ -9,9 +10,6 @@ import kr.or.dgit.book_project.service.PublisherInfoService;
 public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 	
 	
-	public PublisherInfoTable() {
-	}
-
 	@Override
 	protected void createPopupMenu() {
 		// TODO Auto-generated method stub
@@ -32,21 +30,22 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	protected void cellWith() {
-		// TODO Auto-generated method stub
+	tableSetWidth(50,100,80,50,200,100);
 		
 	}
 
 	@Override
 	protected void CellAlign() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	protected Object[][] getRowData() {
-		Map<String, Object> param = new HashMap<>();/*
-		param.put(key, value)*/
-		return null;
+		List<PublisherInfo> pub = PublisherInfoService.getInstance().selectByAll();
+		Object[][] datas = new Object[pub.size()][];
+		for(int i=0; i<datas.length;i++){
+			datas[i] = pub.get(i).toArrayForPublisherList();
+		}
+		return datas;
 	}
 
 	@Override
@@ -56,14 +55,13 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	public PublisherInfo getSelectedObject() {
-		int selectedIdx = table.getSelectedRow();
+		/*int selectedIdx = table.getSelectedRow();
 		if(selectedIdx == -1){
 			return null;
 		}
-		String pCode = (String) table.getValueAt(selectedIdx, 0);
-		PublisherInfo publisherinfo = new PublisherInfo();
-		publisherinfo.setpCode(pCode);
-		return null;/*PublisherInfoService.get;*/
+		String pub = (String) table.getValueAt(selectedIdx, 0);
+		PublisherInfo pu = PublisherInfoService.getInstance().selectPublisherInfo(new PublisherInfo());*/
+		return null;
 	}
 
 	
