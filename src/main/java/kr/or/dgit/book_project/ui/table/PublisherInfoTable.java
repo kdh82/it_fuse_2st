@@ -10,6 +10,10 @@ import kr.or.dgit.book_project.service.PublisherInfoService;
 public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 	
 	
+	public PublisherInfoTable() {
+		loadData();
+	}
+
 	@Override
 	protected void createPopupMenu() {
 		// TODO Auto-generated method stub

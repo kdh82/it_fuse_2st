@@ -16,7 +16,7 @@ import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 public class PublisherInfoService {
 
 	private static final PublisherInfoService instance = new PublisherInfoService();
-	
+
 	public PublisherInfoService() {}
 	
 	public static PublisherInfoService getInstance() {

@@ -5,7 +5,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
+import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.common.InputComp;
+import kr.or.dgit.book_project.ui.table.AbsTable;
 import kr.or.dgit.book_project.ui.table.PublisherInfoTable;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
@@ -25,15 +27,11 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	private JPanel pBtn;
 	private JButton btnSave;
 	private JButton btnCancel;
-	private JPanel panelPub;
 
-	/**
-	 * Create the panel.
-	 */
 	public PublisherInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 
-		panelPub = new JPanel();
+		JPanel panelPub = new JPanel();
 		add(panelPub);
 		panelPub.setLayout(new GridLayout(0, 1, 0, 10));
 
@@ -148,9 +146,13 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			PublisherInfoService.insertAllPublisherInfo(getObject());
 			JOptionPane.showMessageDialog(null, "등록완료");
 			clear();
-			PublisherInfoTable pub = new PublisherInfoTable();
-			panelPub.add(pub);
-			pub.loadData();
+			
+			PublisherView.pTable.loadData();
+		
+			//PublisherInfoService.selectByAll();
+			/*PublisherInfoTable pub = new PublisherInfoTable();		
+			AbsViewPanel.pMain.add(pub.getTable());*/
+			//PublisherView.pTable.loadData();
 			// 테이블 데이터 새로고침.. loaddata();
 		}
 	}
