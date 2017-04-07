@@ -60,13 +60,13 @@
 	<sql id="updateSql">
 		UPDATE bookinfo
 		<set>
-			<if test="coden != null">c_name=#{coden.cName},</if>
 			<if test="bName != null">b_name=#{bName},</if>
 			<if test="author != null">author=#{author},</if>
-			<if test="publisherInfo != null">p_code=#{publisherInfo.pCode},</if>
-			<if test="price != 0">price=#{price}</if>
+			<if test="price != null">price=#{price}</if>
+			<!-- 출판사 수정방법을 고안합시다 -->
+			
 		</set>
-
+		where b_code = #{bCode} and b.b_sub_code =#{bSubCode}
 	</sql>
 	
 	<sql id="whereSql">

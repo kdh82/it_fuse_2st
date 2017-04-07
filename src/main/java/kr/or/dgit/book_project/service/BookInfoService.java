@@ -37,6 +37,7 @@ public class BookInfoService {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
 			int res = bookInfoMapper.delBookInfo(bookInfo);
 			sqlSession.commit();
+			JOptionPane.showMessageDialog(null, "도서폐기완료");
 			return res;
 		}
 	}
@@ -46,6 +47,7 @@ public class BookInfoService {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
 			int res = bookInfoMapper.updateBookInfo(bookInfo);
 			sqlSession.commit();
+			JOptionPane.showMessageDialog(null, "도서정보 수정완료");
 			return res;
 		}
 	}

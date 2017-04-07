@@ -32,6 +32,7 @@ public class BookManageView extends AbsBookSearchView implements ActionListener 
 					return;
 				}
 				BookDetailViewFrame bookDetailViewFrame = new BookDetailViewFrame();
+				bookDetailViewFrame.setBookDetailInfo(bookInfo);
 				bookDetailViewFrame.setVisible(true);
 			}
 		});
@@ -49,6 +50,7 @@ public class BookManageView extends AbsBookSearchView implements ActionListener 
 				}
 				// 대여현황 페이지 띄우기
 				BookPaymentViewFrame bookPaymentViewFrame = new BookPaymentViewFrame();
+				bookPaymentViewFrame.setBookInfo(bookInfo);
 				bookPaymentViewFrame.setVisible(true);
 			}
 

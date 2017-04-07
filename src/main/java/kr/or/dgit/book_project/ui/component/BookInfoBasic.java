@@ -76,5 +76,11 @@ public class BookInfoBasic extends JPanel {
 	public BookCodePanel getpBCode() {
 		return pBCode;
 	}
+
+	public InputComp getpBLendCount() {
+		return pBLendCount;
+	}
+	
+	
 	
 }

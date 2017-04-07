@@ -1,5 +1,7 @@
 package kr.or.dgit.book_project.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PaymentIO {
@@ -53,9 +55,35 @@ public class PaymentIO {
 		this.returnDate = returnDate;
 	}
 
+	public boolean isDelay() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		long dif = 0;
+		try {
+			Date d1 = sdf.parse(lendDate);
+			Date d2 = null;
+			if (returnDate != null) {
+				// 반납도서
+				d2 = sdf.parse(returnDate);
+			} else {
+				// 미반납도서
+				d2 = new Date();
+			}
+			dif = (d2.getTime() - d1.getTime()) / 60 / 24 / 60 / 1000;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		return dif >= 3;
+	}
+
 	@Override
 	public String toString() {
 		return String.format("%s %s %s %s %s", no, bookInfo, memberInfo, lendDate, returnDate);
+	}
+
+	public Object[] toArray() {
+		return new Object[] { memberInfo.getmCode(), memberInfo.getmName(), lendDate, returnDate,
+				isDelay() ? "Y" : "N" };
 	}
 
 }
