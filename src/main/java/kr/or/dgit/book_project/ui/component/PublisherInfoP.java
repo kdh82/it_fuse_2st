@@ -146,13 +146,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			PublisherInfoService.insertAllPublisherInfo(getObject());
 			JOptionPane.showMessageDialog(null, "등록완료");
 			clear();
-			
 			PublisherView.pTable.loadData();
-		
-			//PublisherInfoService.selectByAll();
-			/*PublisherInfoTable pub = new PublisherInfoTable();		
-			AbsViewPanel.pMain.add(pub.getTable());*/
-			//PublisherView.pTable.loadData();
 			// 테이블 데이터 새로고침.. loaddata();
 		}
 	}

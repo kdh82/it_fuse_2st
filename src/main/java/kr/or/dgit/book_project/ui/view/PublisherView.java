@@ -22,10 +22,8 @@ public class PublisherView extends AbsViewPanel {
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		pTable = new PublisherInfoTable();
-/*		pTable.loadData();*/
-		pMain.add(pTable);
-		
-		
+		/*pTable.loadData();*/
+		pMain.add(pTable);		
 	}
 
 	/*public PublisherInfoTable getpTable() {
@@ -35,8 +33,6 @@ public class PublisherView extends AbsViewPanel {
 	public void setpTable(PublisherInfoTable pTable) {
 		this.pTable = pTable;
 	}
-
-	
 	*/
 
 }
