@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
@@ -56,7 +57,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 		tabbedPane.addTab("내정보", null, pMyInfo, null);
 
 	}
-	
+
 	public void setMemberInfo(MemberInfo memberInfo) {
 		// 로그인한 회원의 정보 받기
 		this.memberInfo = memberInfo;
@@ -82,9 +83,9 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	protected void stateChangedTabbedPane(int idx) {
 		if (tabbedPane.getTitleAt(idx).equals("도서검색") && absv == null) {
 			pBookSearch.setLayout(new GridLayout(1, 0, 0, 0));
-			absv = new AbsBookSearchView() {				
+			absv = new AbsBookSearchView() {
 				@Override
-				protected void createPopupMenu() {					
+				protected void createPopupMenu() {
 				}
 			};
 			Map<String, Object> map = new HashMap<>();
@@ -96,23 +97,30 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 			// msmdvf에 해당 회원 정보 뿌리기
 			msmdvf.getPanel().setObject(memberInfo);
 			msmdvf.getPanel().getpMCode().getTF().setEnabled(false);
-			msmdvf.getBtnDel().addActionListener(new ActionListener() {
-				
+			msmdvf.getBtnModify().addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// 수정 버튼을 눌렀을때
-					/*Map<String, Object> param = new HashMap<>();
-					param.put("isDel", false);
-					MemberInfoService.getInstance().updateMemberInfo(param);*/
-					
+					MemberInfoService.getInstance().updateMemberInfo(msmdvf.getPanel().getObject());
+				}
+			});
+			msmdvf.getBtnDel().addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// 탈퇴 버튼을 눌렀을때
+					if (memberInfo.getmNowCount() != 0) {
+						// 현재 대여중인 도서가 0권이 아닐 시
+						JOptionPane.showMessageDialog(null, "도서 대여중에는 탈퇴하실 수 없습니다.");
+						return;
+					}
+					// 정말 탈퇴하시겠습니까?
+					// 탈퇴시 프로그램이 종료됩니다?????? <-- ?? 어떻게 처리를 해야 할까요??
+					MemberInfoService.getInstance().delMemberInfo(msmdvf.getPanel().getObject());
 				}
 			});
 			pMyInfo.add(msmdvf);
 		}
 
 	}
-
-
-
 
 }
