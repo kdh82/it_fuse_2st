@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
@@ -27,6 +28,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 	private SearchComboPanel pSearch;
 	private MemberInfoSearchTable pTable;
 	private Map<String, Object> map;
+	private JPopupMenu popupMenu;
 
 	public MemberSearchComboView() {
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
@@ -100,39 +102,36 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 		if (pSearch.gettF().getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "검색할 내용을 입력하세요.");
-			pTable.setParam(map); // 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운
-									// 해시맵(map)을 호출
-			pTable.loadData(); // 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이
-								// 호출되어 목록이 출력
-		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스
-																				// 회원코드
-																				// 선택
-																				// 시,
-																				// 검색
-			param.put("mCode", pSearch.gettF().getText()); // 코드 입력 받아온다.
-			pTable.setParam(param); // view에 입력창에 들어온 값으로 해시맵에게 키와 값을 set한다.
+			pTable.setParam(map); 	// 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운 해시맵(map)을 호출
+			pTable.loadData(); 		// 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이 호출되어 목록이 출력
+		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스 회원코드 선택 시,검색
+			param.put("mCode", pSearch.gettF().getText()); 						// 코드 입력 받아온다.
+			pTable.setParam(param); 					// view에 입력창에 들어온 값으로 해시맵에게 키와 값을 set한다.
 
-			if (pTable.loadData() == false) { // 입력된 값으로 검색이 안되어서 값이 없으면
-												// loadData 결과가 0이다. False다.
+			if (pTable.loadData() == false) { 			// 입력된 값으로 검색이 안되어서 값이 없으면 loadData 결과가 0이다. False다.
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
-			pSearch.gettF().setText(""); // 데이터를 입력하고 검색버튼 누르면 검색결과가 출력되고, 입력창이
-											// 지워진다.
+			pSearch.gettF().setText(""); 			// 데이터를 입력하고 검색버튼 누르면 검색결과가 출력되고, 입력창이 지워진다.
 		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 1) {
 			param.put("mName", pSearch.gettF().getText());
 			pTable.setParam(param);
+			
 			if (pTable.loadData() == false) {
-				System.out.println("actionPerformedPanelBtnNewButton load false");
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
 			pSearch.gettF().setText("");
-		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 2) { // 콤보박스
-																				// 전화번호
-																				// 선택
-																				// 시,
-																				// 검색
-			param.put("mTel", "%" + pSearch.gettF().getText());
+		} else if(pSearch.getPanel().getComboBox().getSelectedIndex()==2){		// 콤보박스 전화번호 선택 시, 검색
+			param.put("mTel", "%"+pSearch.gettF().getText());
 			pTable.setParam(param);
+			
+			if(pTable.loadData() == false){
+				System.out.println("actionPerformedPanelBtnNewButton load false");
+				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
+			} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 3) { 
+				param.put("mTel", "%" + pSearch.gettF().getText());
+			}
+			pTable.setParam(param);
+
 			if (pTable.loadData() == false) {
 				System.out.println("actionPerformedPanelBtnNewButton load false");
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
@@ -180,7 +179,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 	}
 
 	public void setpTable(MemberInfoSearchTable pTable) {
-		this.pTable = pTable;
+			this.pTable = pTable;		
 	}
 
 	// 테이블 데이터 가지고 올라고 씀
@@ -198,5 +197,6 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		pTable.setParam(map);
 		pTable.loadData();
 	}
+
 
 }
