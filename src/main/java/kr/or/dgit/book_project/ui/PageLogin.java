@@ -42,6 +42,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	private PasswordPanel pPW;
 
 	public PageLogin() {
+		setBackground(Color.WHITE);
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 400);

@@ -1,10 +1,13 @@
 package kr.or.dgit.book_project.ui.view;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,10 +21,8 @@ import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookLendMemberDetailDate;
 import kr.or.dgit.book_project.ui.table.PaymentIoTable;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class BookReturnView extends AbsViewPanel {
+public class BookReturnView extends JPanel {
 
 	private BookInfoBasic pBookinfo;
 	private JPanel pMemberinfo;
@@ -30,15 +31,13 @@ public class BookReturnView extends AbsViewPanel {
 	private JButton btnLend;
 	private PaymentIoTable pTabel;
 
-	/**
-	 * Create the panel.
-	 */
+	
 	public BookReturnView() {
-		GridLayout gridLayout = (GridLayout) getLayout();
-		gridLayout.setVgap(10);
+		setBorder(new EmptyBorder(20, 20, 20, 20));
+		setLayout(new GridLayout(0, 1, 10, 10));
 		
 		JPanel pContent = new JPanel();
-		pMain.add(pContent);
+		add(pContent);
 		pContent.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		pBookinfo = new BookInfoBasic();
@@ -91,7 +90,7 @@ public class BookReturnView extends AbsViewPanel {
 				mouseClickedPTabelTable(e);
 			}
 		});
-		pMain.add(pTabel);
+		add(pTabel);
 	}
 
 	public PaymentIoTable getpTabel() {

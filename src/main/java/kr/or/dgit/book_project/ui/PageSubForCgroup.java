@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
-public class PageSubForCGroup extends JFrame implements ActionListener {
+public class PageSubForCgroup extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JPanel pTabSub;
@@ -33,7 +33,7 @@ public class PageSubForCGroup extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					
-					PageSubForCGroup frame = new PageSubForCGroup();
+					PageSubForCgroup frame = new PageSubForCgroup();
 					frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -43,7 +43,7 @@ public class PageSubForCGroup extends JFrame implements ActionListener {
 		});
 	}
 
-	public PageSubForCGroup() {
+	public PageSubForCgroup() {
 		setTitle("도서관리프로그램");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);

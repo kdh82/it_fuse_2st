@@ -20,8 +20,10 @@ import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
 import kr.or.dgit.book_project.ui.table.BookSearchTable;
+import java.awt.BorderLayout;
+import javax.swing.border.EmptyBorder;
 
-public class BookInsertView extends AbsViewPanel implements ActionListener {
+public class BookInsertView extends JPanel implements ActionListener {
 
 	private JButton btnSave;
 	private JButton btnCancel;
@@ -30,9 +32,11 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	private BookSearchViewFrame bookSearchFrame;
 
 	public BookInsertView() {
+		setBorder(new EmptyBorder(20, 20, 20, 20));
+		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel panel_5 = new JPanel();
-		pMain.add(panel_5);
+		add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[] { 600, 0 };
 		gbl_panel_5.rowHeights = new int[] { 300, 50, 200, 0 };

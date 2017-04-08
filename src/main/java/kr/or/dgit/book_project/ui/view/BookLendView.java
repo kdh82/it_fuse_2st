@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.ui.view;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,17 +22,20 @@ import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
 import kr.or.dgit.book_project.ui.table.BookLendTable;
+import javax.swing.JLabel;
 
-public class BookLendView extends AbsViewPanel {
+public class BookLendView extends JPanel {
 
 	private BookLendTable blv4;
 	private BookInfoBasic panel_3;
 	private BookLendMemberDetail panel_4;
 
 	public BookLendView() {
+		setBorder(new EmptyBorder(20, 20, 20, 20));
+		setLayout(new GridLayout(0, 1, 10, 10));
 
 		JPanel blv1 = new JPanel();
-		pMain.add(blv1);
+		add(blv1);
 		blv1.setLayout(new GridLayout(0, 2, 0, 0));
 
 		panel_3 = new BookInfoBasic();
@@ -93,7 +97,7 @@ public class BookLendView extends AbsViewPanel {
 			}
 		});
 
-		pMain.add(blv4);
+		add(blv4);
 	}
 
 	protected void mouseClickedBlv4Table(MouseEvent e) {
