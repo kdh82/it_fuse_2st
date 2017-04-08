@@ -48,9 +48,15 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 	}
 	
 	@Override
-	public int updateMemberInfo(Map<String, Object> param) {
-		log.debug("updatePaymentIO()");
-		return sqlSession.update(namespace+"updateMemberInfo", param);
+	public int callMemberInfo(Map<String, Object> param) {
+		log.debug("callPaymentIO()");
+		return sqlSession.update(namespace+"callMemberInfo", param);
 		
+	}
+
+	@Override
+	public int updateMemberInfo(MemberInfo memberInfo) {
+		log.debug("updatePaymentIO()");
+		return sqlSession.update(namespace+"updateMemberInfo", memberInfo);
 	}
 }

@@ -1,36 +1,24 @@
 package kr.or.dgit.book_project.ui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.FlowLayout;
-import javax.swing.JComboBox;
-import java.awt.CardLayout;
-import javax.swing.border.SoftBevelBorder;
-
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 
 public class PageLogin extends JFrame implements ActionListener {
 
@@ -42,7 +30,6 @@ public class PageLogin extends JFrame implements ActionListener {
 	private PasswordPanel pPW;
 
 	public PageLogin() {
-		setBackground(Color.WHITE);
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 400);
@@ -51,8 +38,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JPanel pImage = new JPanel();
-		pImage.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
+		String path = "icon/bookImage.png"; // 경로를 어떻게...
+		JPanel pImage = new JPanel(new BorderLayout());
+		JLabel label = new JLabel(new ImageIcon(path));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		pImage.add(label); // default center section
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
@@ -106,12 +96,12 @@ public class PageLogin extends JFrame implements ActionListener {
 		} else if (ourMember != null && pw.equals(ourMember.getmPass())) {
 			// 화면을 띄움
 			JOptionPane.showMessageDialog(null, "로그인 성공");
-			showMainContent(ourMember.getmGroup());
+			showMainContent(ourMember);
 		}
 	}
 
-	public void showMainContent(char mGroup) {
-		switch (mGroup) {
+	public void showMainContent(MemberInfo ourMemberInfo) {
+		switch (ourMemberInfo.getmGroup()) {
 		case 'A':
 			// 관리자..직원메뉴까지 볼수있음
 			break;
@@ -120,6 +110,9 @@ public class PageLogin extends JFrame implements ActionListener {
 			break;
 		case 'C':
 			// 일반회원.... 뭘 해야되지.....
+			PageSubForCgroup pageSubForCgroup = new PageSubForCgroup();
+			pageSubForCgroup.setMemberInfo(ourMemberInfo);
+			pageSubForCgroup.setVisible(true);
 			break;
 		default:
 			break;

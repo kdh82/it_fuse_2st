@@ -79,6 +79,8 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 			// 검색하기
 
 			for (String key : map.keySet()) {
+				// 대여중인지.. 폐기된 도서인지.... 
+				// 창을 띄울떄 사용된 기본조건을 검색조건으로 추가합니다.
 				param.put(key, map.get(key));
 			}
 

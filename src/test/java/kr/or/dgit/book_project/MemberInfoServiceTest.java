@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.MemberInfoService;
 
@@ -25,10 +27,25 @@ public class MemberInfoServiceTest {
 	
 	//회원 프로시저 테스트
 	/*@Test
-	public void TESupdateMemberInfo() {
+	public void TEScallMemberInfo() {
 		Map<String, Object> param = new HashMap();
 		param.put("m_code", "C009");
-		int res = memberinfoservice.updateMemberInfo(param);
+		int res = memberinfoservice.callMemberInfo(param);
 		//Assert.assertSame(1, res);
 	}*/
+	
+	@Test
+	public void testinsertMemberInfo(){
+		MemberInfo mi = new MemberInfo("C100", "password", "테스트0", "010-111-1111", 12345, "주소는 이러합니다");
+		mi.setmGroup('C');
+		int res = memberinfoservice.insertMemberInfo(mi);
+		Assert.assertSame(1, res);
+	}
+	
+	@Test
+	public void testupdateMemberInfo(){
+		MemberInfo mi = new MemberInfo("C100", "pass", "테스트1", "010-111-1234", 54321, "주소주소");
+		int res = memberinfoservice.updateMemberInfo(mi);
+		Assert.assertSame(1, res);
+	}
 }

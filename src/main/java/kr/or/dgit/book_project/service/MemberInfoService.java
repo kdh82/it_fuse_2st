@@ -52,12 +52,23 @@ public class MemberInfoService {
 		}
 	}	
 	// 회원 프로시저
-	public int updateMemberInfo(Map<String, Object> param){
+	public int callMemberInfo(Map<String, Object> param){
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			return memberInfoMapper.updateMemberInfo(param);
+			return memberInfoMapper.callMemberInfo(param);
 		}
 	}
+	
+	public int updateMemberInfo(MemberInfo memberInfo){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
+			int res = memberInfoMapper.updateMemberInfo(memberInfo);
+			sqlSession.commit();
+			return res;
+		}				
+	}
+	
+	
 }
 
 
