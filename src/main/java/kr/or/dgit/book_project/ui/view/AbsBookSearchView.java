@@ -24,8 +24,10 @@ import kr.or.dgit.book_project.ui.table.BookSearchTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
 
-public abstract class AbsBookSearchView extends AbsViewPanel implements ActionListener {
+public abstract class AbsBookSearchView extends JPanel implements ActionListener {
 
 	protected BookSearchTable pTable;
 	protected BookSearchPanel pContent;
@@ -36,7 +38,7 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 	public AbsBookSearchView() {
 
 		JPanel pMainSub = new JPanel();
-		pMain.add(pMainSub);
+		pMainSub.setBorder(new EmptyBorder(20, 20, 20, 20));
 
 		pContent = new BookSearchPanel();
 		pContent.getBtnSearch().addActionListener(this);
@@ -46,9 +48,11 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 
 		map = new HashMap<>();
 		map.put("onlyBook", "onlyBook"); // join 결과물 중 도서코드 존재하는 데이터만...
+		setLayout(new BorderLayout(0, 0));
 		pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
 
 		pMainSub.add(pTable);
+		add(pMainSub);
 
 	}
 

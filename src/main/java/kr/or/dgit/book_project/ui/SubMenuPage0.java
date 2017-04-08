@@ -29,7 +29,7 @@ private JPanel pCoden;
 		
 		JPanel pBookManager = new JPanel();
 		addTab("도서관리", null, pBookManager, null);
-		pBookManager.setLayout(new BorderLayout(0, 0));
+		pBookManager.setLayout(new GridLayout(0, 1, 0, 0));
 		BookManageView bookManageView = new BookManageView();
 		pBookManager.add(bookManageView);
 		

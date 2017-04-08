@@ -17,7 +17,6 @@ public class DiscardBookManage extends AbsBookSearchView {
 	
 	public DiscardBookManage() {
 		super();
-		pMain.setBackground(new Color(255, 182, 193));
 		map.put("isDel", true);
 		loadTable();
 		addPopupMenu();
