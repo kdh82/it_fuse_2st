@@ -24,6 +24,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+
+import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
 import javax.swing.border.LineBorder;
@@ -37,19 +40,6 @@ public class PageLogin extends JFrame implements ActionListener {
 	private JButton btnEnter;
 	private InputComp pID;
 	private PasswordPanel pPW;
-
-	/*
-	 * public static void main(String[] args) { try {
-	 * UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-	 * 
-	 * } catch (Exception e) { } PageMain frame = new PageMain();
-	 * 
-	 * EventQueue.invokeLater(new Runnable() { public void run() { try {
-	 * 
-	 * PageMain frame = new PageMain(); frame.setVisible(true);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } } }); }
-	 */
 
 	public PageLogin() {
 		setTitle("로그인");
@@ -74,7 +64,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		pLoginInsert.setLayout(new GridLayout(0, 1, 0, 20));
 
 		pID = new InputComp();
-		pID.setTitle("아이디");
+		pID.setTitle("회원코드");
 		pLoginInsert.add(pID);
 
 		pPW = new PasswordPanel();
@@ -97,27 +87,41 @@ public class PageLogin extends JFrame implements ActionListener {
 		}
 	}
 
-	protected void actionPerformedBtnEnter(ActionEvent e) {
-	/*	// 입력받은 ID
-		String id = pID.getTFValue();
+	public void actionPerformedBtnEnter(ActionEvent e) {
 
-		// 입력받은 PW
-		String pw = pPW.getPwField().getPassword().toString();
+		String id = pID.getTFValue(); // 입력받은 ID
+		String pw = String.valueOf(pPW.getPwField().getPassword());// 입력받은 PW
 
 		// 로그인 버튼을 눌렀을때
-		if ("해당 회원코드 존재하지 않을 시") {
+		MemberInfo ourMember = MemberInfoService.getInstance().findMemberInfoByCode(new MemberInfo(id));
+		if (ourMember == null) {
 			JOptionPane.showMessageDialog(null, "해당 아이디가 존재하지 않습니다");
-		} else if ("해당 회원코드 존재하고 비밀번호 안 맞음") {
+			pID.clear();// 텍스트필드 초기화
+			pID.getTF().requestFocus(); // 회원번호 텍스트에 포커스
+		} else if (ourMember != null && !pw.equals(ourMember.getmPass())) {
 			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다");
-		} else{
-			//화면을 띄움
-		}
-
-		if (pID.getTFValue().equals("DB아이디 값") && pPW.getPwField().getPassword().toString().equals("비밀번호")) {
+			pPW.getPwField().setText("");// 텍스트필드 초기화
+			pPW.getPwField().requestFocus(); // 비밀번호텍스트에 포커스
+		} else if (ourMember != null && pw.equals(ourMember.getmPass())) {
 			// 화면을 띄움
+			JOptionPane.showMessageDialog(null, "로그인 성공");
+			showMainContent(ourMember.getmGroup());
+		}
+	}
 
-		} else if (!pID.getTFValue().equals("아이디 값")) {
-
-		}*/
+	public void showMainContent(char mGroup) {
+		switch (mGroup) {
+		case 'A':
+			// 관리자..직원메뉴까지 볼수있음
+			break;
+		case 'B':
+			// 사서.... 직원메뉴 제외 전부 볼 수 있음..
+			break;
+		case 'C':
+			// 일반회원.... 뭘 해야되지.....
+			break;
+		default:
+			break;
+		}
 	}
 }

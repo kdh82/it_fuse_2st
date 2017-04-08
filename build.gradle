@@ -26,9 +26,9 @@ dependencies {
 
 version = 1.0
 
-mainClassName = 'kr.or.dgit.book_project.ui.PageSub'
+mainClassName = 'kr.or.dgit.book_project.ui.PageMain'
 jar {
-	baseName = 'PageSub'
+	baseName = 'PageMain'
 	appendix = 'bin'
 	manifest{
 		attributes 'Title':baseName, 'Version':version, 'Main-Class':mainClassName

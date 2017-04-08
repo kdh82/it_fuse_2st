@@ -24,24 +24,25 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
-public class PageMain extends JFrame {
+public class PageMain extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private Object ActionEvent;
 	private PageSub sub;
+	private JButton btnNewButton;
 
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
-	         UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 
-	      } catch (Exception e) {
-	      }
+		} catch (Exception e) {
+		}
 		PageMain frame = new PageMain();
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+
 					PageMain frame = new PageMain();
 					frame.setVisible(true);
 
@@ -50,7 +51,7 @@ public class PageMain extends JFrame {
 				}
 			}
 		});
-	}*/
+	}
 
 	public PageMain() {
 		setTitle("도서관리프로그램");
@@ -59,7 +60,7 @@ public class PageMain extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(150, 80, 150, 80));
 		setContentPane(contentPane);
-		
+
 		JButton btnMenu0 = new JButton("자료관리");
 		btnMenu0.setFont(new Font("나눔고딕", Font.PLAIN, 25));
 		btnMenu0.addActionListener(new ActionListener() {
@@ -79,8 +80,6 @@ public class PageMain extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 4, 100, 0));
 
 		contentPane.add(btnMenu1);
-		
-		
 
 		JButton btnMenu2 = new JButton("출납관리");
 		btnMenu2.setFont(new Font("나눔고딕", Font.PLAIN, 25));
@@ -99,7 +98,12 @@ public class PageMain extends JFrame {
 			}
 		});
 		contentPane.add(btnMenu3);
+
+		btnNewButton = new JButton("로그인화면");
+		btnNewButton.addActionListener(this);
+		contentPane.add(btnNewButton);
 	}
+
 	protected void actionPerformedBtnMenu0(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage0());
@@ -111,14 +115,27 @@ public class PageMain extends JFrame {
 		sub.getpTabSub().add(new SubMenuPage1());
 		sub.setVisible(true);
 	}
+
 	protected void actionPerformedBtnMenu2(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage2());
-		sub.setVisible(true);	
+		sub.setVisible(true);
 	}
+
 	protected void actionPerformedBtnMenu3(ActionEvent e) {
 		sub = new PageSub();
 		sub.getpTabSub().add(new SubMenuPage3());
-		sub.setVisible(true);	
+		sub.setVisible(true);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			actionPerformedBtnNewButton(e);
+		}
+	}
+
+	protected void actionPerformedBtnNewButton(ActionEvent e) {
+		PageLogin pl = new PageLogin();
+		pl.setVisible(true);
 	}
 }
