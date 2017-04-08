@@ -59,16 +59,28 @@ public class PageMain extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(150, 80, 150, 80));
 		setContentPane(contentPane);
+		
+		JButton btnMenu0 = new JButton("자료관리");
+		btnMenu0.setFont(new Font("나눔고딕", Font.PLAIN, 25));
+		btnMenu0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnMenu0(e);
+			}
+		});
+		contentPane.add(btnMenu0);
 
-		JButton btnMenu1 = new JButton("자료관리");
+		JButton btnMenu1 = new JButton("멤버관리");
 		btnMenu1.setFont(new Font("나눔고딕", Font.PLAIN, 25));
 		btnMenu1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnMenu1(e);
 			}
 		});
-		contentPane.setLayout(new GridLayout(0, 3, 100, 0));
+		contentPane.setLayout(new GridLayout(0, 4, 100, 0));
+
 		contentPane.add(btnMenu1);
+		
+		
 
 		JButton btnMenu2 = new JButton("출납관리");
 		btnMenu2.setFont(new Font("나눔고딕", Font.PLAIN, 25));
@@ -87,6 +99,11 @@ public class PageMain extends JFrame {
 			}
 		});
 		contentPane.add(btnMenu3);
+	}
+	protected void actionPerformedBtnMenu0(ActionEvent e) {
+		sub = new PageSub();
+		sub.getpTabSub().add(new SubMenuPage0());
+		sub.setVisible(true);
 	}
 
 	protected void actionPerformedBtnMenu1(ActionEvent e) {

@@ -32,11 +32,32 @@ public class BookInfoService {
 		}
 	}
 
-	public int delBookInfo(BookInfo bookInfo) {
+	public int setDelBookInfo(BookInfo bookInfo, boolean isDel) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			int res = bookInfoMapper.delBookInfo(bookInfo);
+			bookInfo.setDel(isDel);
+			int res = bookInfoMapper.setDelBookInfo(bookInfo);
 			sqlSession.commit();
+			if(bookInfo.isDel()){
+				// 도서 삭제완료
+				JOptionPane.showMessageDialog(null, "도서폐기완료");
+			}else{
+				// 도서 복원완료
+				JOptionPane.showMessageDialog(null, "도서복원완료");
+			}
+			/*if(!bookInfo.isDel()){
+				bookInfo.setDel(true);
+				res = bookInfoMapper.setDelBookInfo(bookInfo);
+				sqlSession.commit();
+				// 도서 삭제 완료
+				JOptionPane.showMessageDialog(null, "도서폐기완료");
+			}else{
+				bookInfo.setDel(false);
+				res = bookInfoMapper.setDelBookInfo(bookInfo);
+				sqlSession.commit();
+				// 도서 복원완료
+				JOptionPane.showMessageDialog(null, "도서복원완료");
+			}*/
 			return res;
 		}
 	}
@@ -46,6 +67,7 @@ public class BookInfoService {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
 			int res = bookInfoMapper.updateBookInfo(bookInfo);
 			sqlSession.commit();
+			JOptionPane.showMessageDialog(null, "도서정보 수정완료");
 			return res;
 		}
 	}

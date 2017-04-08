@@ -30,6 +30,7 @@ public class SubMenuPage2 extends JTabbedPane {
 		
 		JPanel pPaymentUpdate = new JPanel();
 		add("반납관리",pPaymentUpdate);
+		pPaymentUpdate.setLayout(new GridLayout(0, 1, 0, 0));
 		BookReturnView bRetrunView = new BookReturnView();
 		pPaymentUpdate.add(bRetrunView);
 		
