@@ -4,6 +4,7 @@
 
 
 	<resultMap type="PaymentIO" id="PaymentIOResult">
+		<result property="no" column="no"/>
 		<result property="lendDate" column="lend_date" />
 		<result property="returnDate" column="return_date" />
 		<association property="bookInfo"
