@@ -128,9 +128,9 @@
 		where b_code = #{bCode} and b_sub_code = #{bSubCode}
 	</update>
 
-	<update id="delBookInfo" parameterType="BookInfo">
+	<update id="setDelBookInfo" parameterType="BookInfo">
 		update bookinfo set
-		is_del = true
+		is_del = #{isDel}
 		where b_code = #{bCode} and b_sub_code = #{bSubCode}
 	</update>
 

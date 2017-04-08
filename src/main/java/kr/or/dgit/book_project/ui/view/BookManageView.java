@@ -14,6 +14,9 @@ public class BookManageView extends AbsBookSearchView implements ActionListener 
 
 	public BookManageView() {
 		super();
+		// 삭제되지 않은 도서만 출력
+		map.put("isDel", false);
+		loadTable();
 		addPopupMenu();
 	}
 	
@@ -33,7 +36,7 @@ public class BookManageView extends AbsBookSearchView implements ActionListener 
 				}
 				BookDetailViewFrame bookDetailViewFrame = new BookDetailViewFrame();
 				bookDetailViewFrame.setBookDetailInfo(bookInfo);
-				bookDetailViewFrame.setMyActionLister();
+				bookDetailViewFrame.setMyActionLister(BookManageView.this);
 				bookDetailViewFrame.setVisible(true);
 			}
 		});

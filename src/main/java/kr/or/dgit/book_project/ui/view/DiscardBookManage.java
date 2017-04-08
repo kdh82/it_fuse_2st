@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
+import java.awt.Color;
 
 public class DiscardBookManage extends AbsBookSearchView {
 
@@ -15,6 +17,9 @@ public class DiscardBookManage extends AbsBookSearchView {
 	
 	public DiscardBookManage() {
 		super();
+		pMain.setBackground(new Color(255, 182, 193));
+		map.put("isDel", true);
+		loadTable();
 		addPopupMenu();
 	}
 
@@ -38,6 +43,8 @@ public class DiscardBookManage extends AbsBookSearchView {
 					return;
 				}
 				// 복원하는 메소드
+				BookInfoService.getInstance().setDelBookInfo(bookInfo, false);
+				loadTable();
 			}
 		});
 		popupMenu.add(updateItem);

@@ -9,8 +9,7 @@ import javax.swing.JTabbedPane;
 import kr.or.dgit.book_project.ui.view.BookInsertView;
 import kr.or.dgit.book_project.ui.view.BookManageView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
-import kr.or.dgit.book_project.ui.view.MemberInsertView;
-import kr.or.dgit.book_project.ui.view.MemberSearchComboView;
+import kr.or.dgit.book_project.ui.view.DiscardBookManage;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
 public class SubMenuPage0 extends JTabbedPane {
@@ -32,7 +31,13 @@ private JPanel pCoden;
 		addTab("도서관리", null, pBookManager, null);
 		pBookManager.setLayout(new BorderLayout(0, 0));
 		BookManageView bookManageView = new BookManageView();
-		pBookManager.add(bookManageView);		
+		pBookManager.add(bookManageView);
+		
+		JPanel pDiscardBook = new JPanel();
+		addTab("폐기도서", null, pDiscardBook, null);
+		pDiscardBook.setLayout(new BorderLayout(0, 0));
+		DiscardBookManage discardBookManage = new DiscardBookManage();
+		pDiscardBook.add(discardBookManage);
 		
 		pPublisher = new JPanel();
 		addTab("출판사관리", null, pPublisher, null);

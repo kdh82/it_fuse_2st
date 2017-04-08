@@ -45,9 +45,7 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 		pTable = new BookSearchTable();
 
 		map = new HashMap<>();
-		map.put("onlyBook", "onlyBook");
-		pTable.setMap(map);
-		pTable.loadData();
+		map.put("onlyBook", "onlyBook"); // join 결과물 중 도서코드 존재하는 데이터만...
 		pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
 
 		pMainSub.add(pTable);
@@ -60,6 +58,11 @@ public abstract class AbsBookSearchView extends AbsViewPanel implements ActionLi
 
 	public BookSearchPanel getpContent() {
 		return pContent;
+	}
+	
+	public void loadTable(){
+		pTable.setMap(map);
+		pTable.loadData();
 	}
 
 	public void actionPerformed(ActionEvent e) {

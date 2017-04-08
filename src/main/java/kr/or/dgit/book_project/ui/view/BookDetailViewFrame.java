@@ -42,13 +42,14 @@ public class BookDetailViewFrame extends JFrame {
 		bookInfoBasic.setObject(bookInfo);
 	}
 	
-	public void setMyActionLister(){
+	public void setMyActionLister(AbsBookSearchView bookManageView){
 		bookInformDetailPanel.getBtnModify().addActionListener(new ActionListener() {
 			
 			// 수정버튼 동작
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BookInfoService.getInstance().updateBookInfo(bookInfoBasic.getObject());
+				bookManageView.loadTable();
 			}
 		});
 		
@@ -56,8 +57,13 @@ public class BookDetailViewFrame extends JFrame {
 			// 폐기 버튼 동작
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "폐기버튼");
-				BookInfoService.getInstance().delBookInfo(bookInfoBasic.getObject());			
+				int res = JOptionPane.showConfirmDialog(null, "해당도서를 폐기하시겠습니까", "", JOptionPane.YES_NO_OPTION);
+				if (res != 0) {
+					JOptionPane.showMessageDialog(null, "취소하였습니다");
+					return;
+				}
+				BookInfoService.getInstance().setDelBookInfo(bookInfoBasic.getObject(), true);
+				bookManageView.loadTable();
 			}
 		});
 	}
