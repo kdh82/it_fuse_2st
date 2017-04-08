@@ -1,21 +1,15 @@
-package kr.or.dgit.book_project.ui.component;
+/*package kr.or.dgit.book_project.ui.component;
 
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.util.Properties;
 
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.ui.common.CompPanel;
 import kr.or.dgit.book_project.ui.common.InputComp;
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import net.sourceforge.jdatepicker.impl.UtilDateModel;
-import java.awt.BorderLayout;
-import javax.swing.SpringLayout;
 
 public class BookLendMemberDetailDate extends JPanel {
 
@@ -29,9 +23,9 @@ public class BookLendMemberDetailDate extends JPanel {
 	private JDatePanelImpl datePanel;
 	private UtilDateModel model;
 
-	/**
+	*//**
 	 * Create the panel.
-	 */
+	 *//*
 	public BookLendMemberDetailDate() {
 		setLayout(new GridLayout(0, 1, 0, 10));
 		
@@ -64,7 +58,7 @@ public class BookLendMemberDetailDate extends JPanel {
 		//pReturnDate.setpContent(datePicker);
 		pReturnDate.getpContent().add(datePicker, BorderLayout.CENTER);
 		add(pReturnDate);
-		/*//달력 창에 오늘날짜 표시
+		//달력 창에 오늘날짜 표시
 		p.put("text.today", "오늘");
 		//입력창 폰트설정
 		datePicker.getJFormattedTextField().setFont(new Font("굴림", Font.PLAIN, 12));
@@ -73,13 +67,13 @@ public class BookLendMemberDetailDate extends JPanel {
     
         model.setValue(today);
  
-		model.setSelected(true);*/
-		/*JXDatePicker dxd = new JXDatePicker();
+		model.setSelected(true);
+		JXDatePicker dxd = new JXDatePicker();
 		pReturnDate.getpContent().add(dxd);
-		add(pReturnDate);*/
+		add(pReturnDate);
 
-		/*JXDatePicker dxd = new JXDatePicker();
-	    panel.add(dxd);*/
+		JXDatePicker dxd = new JXDatePicker();
+	    panel.add(dxd);
 	}
 	
 	public PaymentIO getObject(){
@@ -98,10 +92,11 @@ public class BookLendMemberDetailDate extends JPanel {
 		pMTel.setTFValue(paymentio.getMemberInfo().getmTel());
 		pLendDate.setTFValue(paymentio.getLendDate());
 		// 필요한지 모르겟지만 일딴 뺌
-		/*pReturnDate.date(paymentio.getReturnDate());*/
+		pReturnDate.date(paymentio.getReturnDate());
 	}
 	
 	public String returnMsg(){
 		return datePicker.getJFormattedTextField().getText();
 	}
 }
+*/
