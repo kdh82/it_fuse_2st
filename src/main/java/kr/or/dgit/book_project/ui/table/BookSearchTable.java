@@ -55,7 +55,7 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 	protected Object[][] getRowData() {
 		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(map);
 		if (list.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
+			//JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			return null;
 		}
 		Object[][] datas = new Object[list.size()][];

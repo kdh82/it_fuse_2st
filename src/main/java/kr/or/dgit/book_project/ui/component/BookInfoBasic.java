@@ -62,7 +62,7 @@ public class BookInfoBasic extends JPanel {
 		int price = Integer.parseInt(pPrice.getTFValue());
 		String bName = pBName.getTFValue();
 		String author = pAuthor.getTFValue();
-		PublisherInfo publisherInfo =pPName.getCombItem();
+		PublisherInfo publisherInfo = pPName.getCombItem();
 		int bLendCount = Integer.parseInt(pBLendCount.getTFValue());
 		return new BookInfo(bCode, bSubCode, bName, author, publisherInfo, price, bLendCount);
 
@@ -84,6 +84,12 @@ public class BookInfoBasic extends JPanel {
 
 	public InputComp getpBLendCount() {
 		return pBLendCount;
+	}
+
+	public void setEnable(boolean enabled) {
+		pBCode.getTfBCode().setEnabled(enabled);
+		pBCode.getTfBSubCode().setEnabled(enabled);
+		pBLendCount.getTF().setEnabled(enabled);
 	}
 
 }

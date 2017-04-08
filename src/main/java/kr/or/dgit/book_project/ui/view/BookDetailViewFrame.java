@@ -29,22 +29,22 @@ public class BookDetailViewFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		bookInformDetailPanel = new InformDetailPanel();
 		bookInformDetailPanel.setOption("- 도서정보 -", "폐기");
 		bookInfoBasic = new BookInfoBasic();
-		bookInfoBasic.getpBLendCount().getTF().setEnabled(false);
+		bookInfoBasic.setEnable(false);
 		bookInformDetailPanel.getpContent().add(bookInfoBasic);
 		contentPane.add(bookInformDetailPanel);
 	}
-	
-	public void setBookDetailInfo(BookInfo bookInfo){
+
+	public void setBookDetailInfo(BookInfo bookInfo) {
 		bookInfoBasic.setObject(bookInfo);
 	}
-	
-	public void setMyActionLister(AbsBookSearchView bookManageView){
+
+	public void setMyActionLister(AbsBookSearchView bookManageView) {
 		bookInformDetailPanel.getBtnModify().addActionListener(new ActionListener() {
-			
+
 			// 수정버튼 동작
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -52,7 +52,7 @@ public class BookDetailViewFrame extends JFrame {
 				bookManageView.loadTable();
 			}
 		});
-		
+
 		bookInformDetailPanel.getBtnDel().addActionListener(new ActionListener() {
 			// 폐기 버튼 동작
 			@Override

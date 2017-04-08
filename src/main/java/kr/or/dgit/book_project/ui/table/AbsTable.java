@@ -19,23 +19,13 @@ public abstract class AbsTable<T> extends JPanel {
 
 	public AbsTable() {
 		setLayout(new BorderLayout(0, 0));
+//		setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane, BorderLayout.CENTER);
 		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
-
-		/*table.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON3) {
-					popupMenu.show(table, e.getX(), e.getY());
-				}
-			}
-
-		});
-		createPopupMenu();*/
+		
+		add(scrollPane);
 	}
 
 	

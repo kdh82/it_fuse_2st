@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
+import javax.swing.JLabel;
 
 public abstract class AbsBookSearchView extends JPanel implements ActionListener {
 
@@ -36,23 +37,22 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 	protected JPopupMenu popupMenu;
 
 	public AbsBookSearchView() {
-
-		JPanel pMainSub = new JPanel();
-		pMainSub.setBorder(new EmptyBorder(20, 20, 20, 20));
+		setBorder(new EmptyBorder(20, 20, 20, 20));
 
 		pContent = new BookSearchPanel();
 		pContent.getBtnSearch().addActionListener(this);
-		pMainSub.add(pContent);
+		setLayout(new GridLayout(0, 1, 0, 0));
+		add(pContent);
 
 		pTable = new BookSearchTable();
 
 		map = new HashMap<>();
-		map.put("onlyBook", "onlyBook"); // join 결과물 중 도서코드 존재하는 데이터만...
-		setLayout(new BorderLayout(0, 0));
-		pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
+		map.put("onlyBook", "onlyBook");
+		
+//		pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
 
-		pMainSub.add(pTable);
-		add(pMainSub);
+		add(pTable);
+//		add(pMainSub);
 
 	}
 
@@ -96,7 +96,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON3) {
 					createPopupMenu();
-					popupMenu.show(pTable, e.getX(), e.getY());
+					popupMenu.show(pTable.getTable(), e.getX(), e.getY());
 					// show(활성화될 컴포넌트, X좌표, Y좌표)
 				}
 			}
