@@ -271,10 +271,6 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (37,'T002',00,'C001','2017-03-23' , null),
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
-<<<<<<< HEAD
--- 
-=======
-
 
 --  테스트
 
@@ -420,4 +416,4 @@ call book_project.proc_paymentIO_update('H002',0,'C009','2017-01-01');
 
 
 
->>>>>>> refs/remotes/origin/프로시저시작
+
