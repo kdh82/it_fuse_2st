@@ -1,8 +1,10 @@
 package kr.or.dgit.book_project.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,8 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
@@ -29,10 +31,36 @@ public class PageLogin extends JFrame implements ActionListener {
 	private InputComp pID;
 	private PasswordPanel pPW;
 
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+
+		} catch (Exception e) {
+		}
+		PageLogin frame = new PageLogin();
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+
+					PageLogin frame = new PageLogin();
+					frame.setVisible(true);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
 	public PageLogin() {
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 400);
+
+		appearInTheCenter();
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
 		setContentPane(contentPane);
@@ -72,6 +100,17 @@ public class PageLogin extends JFrame implements ActionListener {
 
 	}
 
+	private void appearInTheCenter() {
+		Dimension frameSize = this.getSize();
+		// 자신의 windowscreen 사이즈 측정
+		Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
+		// 출력해보면 두 사이즈가 출력되는걸 확인할 수 있다.
+		System.out.println(frameSize + " " + windowSize);
+		// 설정할 위치에 (윈도우width-프레임width)/2, (윈도우height-프레임height)/2를 입력한다
+		this.setLocation((windowSize.width - frameSize.width) / 2, (windowSize.height - frameSize.height) / 2);
+		// 프레임창 활성화하면 현재 모니터에 중앙에 프레임이 실행되는걸 볼수 있다.
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEnter) {
 			actionPerformedBtnEnter(e);
@@ -104,15 +143,19 @@ public class PageLogin extends JFrame implements ActionListener {
 		switch (ourMemberInfo.getmGroup()) {
 		case 'A':
 			// 관리자..직원메뉴까지 볼수있음
-			break;
 		case 'B':
 			// 사서.... 직원메뉴 제외 전부 볼 수 있음..
+			PageSub pageSub = new PageSub();
+			pageSub.setmGroup(ourMemberInfo.getmGroup());
+			pageSub.setVisible(true);
+			setVisible(false);
 			break;
 		case 'C':
 			// 일반회원.... 뭘 해야되지.....
 			PageSubForCgroup pageSubForCgroup = new PageSubForCgroup();
 			pageSubForCgroup.setMemberInfo(ourMemberInfo);
 			pageSubForCgroup.setVisible(true);
+			setVisible(false);
 			break;
 		default:
 			break;

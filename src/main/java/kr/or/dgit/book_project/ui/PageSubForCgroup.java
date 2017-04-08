@@ -34,7 +34,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 
 	public PageSubForCgroup() {
 		setTitle("도서관리프로그램");
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 
 		JPanel pSideMenu = new JPanel();
@@ -91,6 +91,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 			Map<String, Object> map = new HashMap<>();
 			map.put("isDel", false);
 			absv.setMap(map);
+			
 		} else if (tabbedPane.getTitleAt(idx).equals("내정보") && msmdvf == null) {
 			pMyInfo.setLayout(new GridLayout(1, 0, 0, 0));
 			msmdvf = new MemberSearchMemberDetailViewFrame();
