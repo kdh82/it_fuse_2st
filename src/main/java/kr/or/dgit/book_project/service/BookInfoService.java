@@ -14,14 +14,14 @@ import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
 public class BookInfoService {
 	private static final BookInfoService instance = new BookInfoService();
-	
-	private BookInfoService() {}
-	
+
+	private BookInfoService() {
+	}
+
 	public static BookInfoService getInstance() {
 		return instance;
 	}
-	
-	
+
 	public int insertBookInfo(BookInfo bookInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
@@ -35,29 +35,29 @@ public class BookInfoService {
 	public int setDelBookInfo(BookInfo bookInfo, boolean isDel) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			bookInfo.setDel(isDel);
+			if (bookInfo.isLending()) {
+				JOptionPane.showMessageDialog(null, "대여중인 도서는 폐기가 불가능합니다.");
+				return 0;
+			}
+			bookInfo.setDel(isDel); // 복원이면 false 
+			bookInfo.setLending(!isDel); // 대여여부 false
 			int res = bookInfoMapper.setDelBookInfo(bookInfo);
 			sqlSession.commit();
-			if(bookInfo.isDel()){
+			if (bookInfo.isDel()) {
 				// 도서 삭제완료
 				JOptionPane.showMessageDialog(null, "도서폐기완료");
-			}else{
+			} else {
 				// 도서 복원완료
 				JOptionPane.showMessageDialog(null, "도서복원완료");
 			}
-			/*if(!bookInfo.isDel()){
-				bookInfo.setDel(true);
-				res = bookInfoMapper.setDelBookInfo(bookInfo);
-				sqlSession.commit();
-				// 도서 삭제 완료
-				JOptionPane.showMessageDialog(null, "도서폐기완료");
-			}else{
-				bookInfo.setDel(false);
-				res = bookInfoMapper.setDelBookInfo(bookInfo);
-				sqlSession.commit();
-				// 도서 복원완료
-				JOptionPane.showMessageDialog(null, "도서복원완료");
-			}*/
+			/*
+			 * if(!bookInfo.isDel()){ bookInfo.setDel(true); res =
+			 * bookInfoMapper.setDelBookInfo(bookInfo); sqlSession.commit(); //
+			 * 도서 삭제 완료 JOptionPane.showMessageDialog(null, "도서폐기완료"); }else{
+			 * bookInfo.setDel(false); res =
+			 * bookInfoMapper.setDelBookInfo(bookInfo); sqlSession.commit(); //
+			 * 도서 복원완료 JOptionPane.showMessageDialog(null, "도서복원완료"); }
+			 */
 			return res;
 		}
 	}
@@ -80,12 +80,12 @@ public class BookInfoService {
 
 	}
 
-	/*public List<BookInfo> selectBookInfoByAllBook(Boolean isDel) {
-		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
-			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			return bookInfoMapper.selectBookInfoByAllBook(isDel);
-		}
-	}*/
+	/*
+	 * public List<BookInfo> selectBookInfoByAllBook(Boolean isDel) { try
+	 * (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+	 * BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+	 * return bookInfoMapper.selectBookInfoByAllBook(isDel); } }
+	 */
 
 	public int countBookInfo(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
@@ -93,7 +93,7 @@ public class BookInfoService {
 			return bookInfoMapper.countBookInfo(param);
 		}
 	}
-	
+
 	public BookInfo selectBookInfoOne(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
@@ -107,7 +107,6 @@ public class BookInfoService {
 			return bookInfoMapper.selectAllBookInfo(param);
 		}
 	}
-
 
 	// 대여 테이블
 	public List<BookInfo> selectIslending(Map<String, Object> param) {
