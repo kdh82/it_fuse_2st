@@ -56,7 +56,9 @@
 				and lend_date is not null
 				and return_date is null
 			</if>
-
+			<if test="no != null">
+				and io.no is not null
+			</if>
 		</where>
 	</sql>
 	<!-- 반납테이블 다보이게 하는거 일딴은 -->

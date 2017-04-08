@@ -107,10 +107,7 @@ public class BookLendView extends AbsViewPanel {
 	protected void mousePressedPanel_3PBCodeTfBCode(MouseEvent e) {
 		BookSearchView bsv = new BookSearchView();
 		// loaddate 넣어야됨
-		JFrame jf = new JFrame();
-		jf.setBounds(100, 100, 400, 500);
-		jf.getContentPane().add(bsv);
-		jf.setVisible(true);
+		bsv.setVisible(true);
 	}
 	//회원코드 누르면 관리뜨는거
 	protected void mousePressedPanel_4PMCodeTF(MouseEvent arg0) {

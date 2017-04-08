@@ -54,7 +54,7 @@ public class PaymentIO {
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
 	}
-	
+
 	public boolean isDelay() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		long dif = 0;
@@ -75,14 +75,20 @@ public class PaymentIO {
 
 		return dif >= 3;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("%s %s %s %s %s", no, bookInfo, memberInfo, lendDate, returnDate);
 	}
 
 	public Object[] toArrayPayment() {
-			return new Object[]{bookInfo.getbCode(),bookInfo.getbSubCode(),bookInfo.getbName(),memberInfo.getmCode(),memberInfo.getmName(),lendDate,isDelay() ? "Y":"N"};
+		return new Object[] { bookInfo.getbCode(), bookInfo.getbSubCode(), bookInfo.getbName(), memberInfo.getmCode(),
+				memberInfo.getmName(), lendDate, isDelay() ? "Y" : "N" };
+	}
+
+	public Object[] toArray() {
+		return new Object[] { memberInfo.getmCode(), memberInfo.getmName(), lendDate, returnDate,
+				lendDate != null ? (isDelay() ? "Y" : "N") : "" };
 	}
 
 }
