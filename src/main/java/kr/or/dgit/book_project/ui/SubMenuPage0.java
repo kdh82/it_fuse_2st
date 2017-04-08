@@ -69,9 +69,8 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 			pBookManager.setLayout(new GridLayout(0, 1, 0, 0));
 			bookManageView = new BookManageView();
 			pBookManager.add(bookManageView);
-
 		} else if (this.getTitleAt(idx).equals("폐기도서") && discardBookManage == null) {
-			pDiscardBook.setLayout(new BorderLayout(0, 0));
+			pDiscardBook.setLayout(new GridLayout(0, 1, 0, 0));
 			discardBookManage = new DiscardBookManage();
 			pDiscardBook.add(discardBookManage);
 		} else if (this.getTitleAt(idx).equals("출판사관리") && publisherView == null) {
