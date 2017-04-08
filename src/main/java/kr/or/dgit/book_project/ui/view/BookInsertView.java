@@ -127,6 +127,9 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 			// 창 1개만 띄우기
 			bookSearchFrame = new BookSearchViewFrame();
 		}
+		Map<String, Object> param = new HashMap<>();
+		param.put("onlyBook", true);
+		bookSearchFrame.setTableDate(param);
 		bookSearchFrame.setMyMouseListener(pContent);
 		bookSearchFrame.addBtn("신규");
 	//	bookSearchFrame.setMyMouseListener();

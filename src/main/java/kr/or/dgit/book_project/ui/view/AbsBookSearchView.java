@@ -1,32 +1,21 @@
 package kr.or.dgit.book_project.ui.view;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-
-import kr.or.dgit.book_project.dto.BookInfo;
-import kr.or.dgit.book_project.service.BookInfoService;
-import kr.or.dgit.book_project.ui.common.AbsViewPanel;
-import kr.or.dgit.book_project.ui.component.BookSearchPanel;
-import kr.or.dgit.book_project.ui.component.CheckSearchDesign;
-import kr.or.dgit.book_project.ui.table.AbsTable;
-import kr.or.dgit.book_project.ui.table.BookSearchTable;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
 import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
+
+import kr.or.dgit.book_project.ui.component.BookSearchPanel;
+import kr.or.dgit.book_project.ui.table.BookSearchTable;
 
 public abstract class AbsBookSearchView extends JPanel implements ActionListener {
 
@@ -48,11 +37,11 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 
 		map = new HashMap<>();
 		map.put("onlyBook", "onlyBook");
-		
-//		pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
+
+		// pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
 
 		add(pTable);
-//		add(pMainSub);
+		// add(pMainSub);
 
 	}
 
@@ -63,8 +52,12 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 	public BookSearchPanel getpContent() {
 		return pContent;
 	}
-	
-	public void loadTable(){
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
+
+	public void loadTable() {
 		pTable.setMap(map);
 		pTable.loadData();
 	}
@@ -84,6 +77,11 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 			JOptionPane.showMessageDialog(null, "검색하고 싶은 항목을 선택해주세요");
 		} else {
 			// 검색하기
+
+			for (String key : map.keySet()) {
+				param.put(key, map.get(key));
+			}
+
 			((BookSearchTable) pTable).setMap(param);
 			pTable.loadData();
 			pContent.clearAll();
@@ -101,7 +99,6 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 				}
 			}
 		});
-
 	}
 
 	protected abstract void createPopupMenu();
