@@ -51,9 +51,7 @@ public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
 
 	@Override
 	protected Object[][] getRowData() {
-		System.out.println("테이블에서 맵" + map);
 		if(map == null){
-			JOptionPane.showMessageDialog(null, "ForCTable : 검색조건 Map을 set해주세요");
 		}
 		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(map);
 		/*if (list.isEmpty()) {
@@ -63,9 +61,7 @@ public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = list.get(i).toArrayForCgroup();
-			System.out.println(datas[i].toString());
 		}
-		System.out.println("테이블에서 데이터갯수" + datas.length);
 		return datas;
 	}
 
