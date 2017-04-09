@@ -7,13 +7,9 @@ import javax.swing.JOptionPane;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.Logger;
 
-import kr.or.dgit.book_project.dao.BookInfoMapper;
-import kr.or.dgit.book_project.dao.BookInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PublisherInfoMapper;
 import kr.or.dgit.book_project.dao.PublisherInfoMapperImpl;
-import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
@@ -21,12 +17,13 @@ public class PublisherInfoService {
 
 	private static final PublisherInfoService instance = new PublisherInfoService();
 
-	public PublisherInfoService() {}
-	
+	public PublisherInfoService() {
+	}
+
 	public static PublisherInfoService getInstance() {
 		return instance;
 	}
-	
+
 	public int insertPubliherShort(PublisherInfo publisherInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
@@ -102,6 +99,7 @@ public class PublisherInfoService {
 			return publisherInfoMapper.selectPublisherInfo(publisherinfo);
 		}
 	}
+
 	public PublisherInfo selectPublisherInfoOne(Map<String, Object> param) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
