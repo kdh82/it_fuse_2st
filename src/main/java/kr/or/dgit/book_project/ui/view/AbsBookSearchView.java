@@ -35,6 +35,8 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 		add(pContent);
 
 		pTable = new BookSearchTable();
+
+		System.out.println("abs에서 테이블 set 전" + pTable);
 		add(pTable);
 	}
 
@@ -43,6 +45,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 	}
 	public void setpTable(AbsTable<BookInfo> pTable) {
 		this.pTable = pTable;
+		System.out.println("abs에서 테이블 set 후" + this.pTable);
 	}
 	
 	public BookSearchPanel getpContent() {
@@ -55,6 +58,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 
 	public void loadTable() {
 		pTable.setMap(map);
+		System.out.println("abs에서 맵" + map);
 		pTable.loadData();
 	}
 

@@ -3,6 +3,7 @@ package kr.or.dgit.book_project.ui.table;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import kr.or.dgit.book_project.dto.BookInfo;
@@ -50,15 +51,21 @@ public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
 
 	@Override
 	protected Object[][] getRowData() {
+		System.out.println("테이블에서 맵" + map);
+		if(map == null){
+			JOptionPane.showMessageDialog(null, "ForCTable : 검색조건 Map을 set해주세요");
+		}
 		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(map);
-		if (list.isEmpty()) {
+		/*if (list.isEmpty()) {
 			//JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			return null;
-		}
+		}*/
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = list.get(i).toArrayForCgroup();
+			System.out.println(datas[i].toString());
 		}
+		System.out.println("테이블에서 데이터갯수" + datas.length);
 		return datas;
 	}
 

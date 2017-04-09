@@ -39,10 +39,8 @@ public abstract class AbsTable<T> extends JPanel {
 		
 		add(scrollPane);
 	}
+	
 	public boolean loadData() {
-		if(map == null){
-			JOptionPane.showMessageDialog(null, "AbsTable : 검색조건 Map을 set해주세요");
-		}
 		Object[][] rowData= getRowData();
 		
 		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력

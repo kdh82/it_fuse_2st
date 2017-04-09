@@ -88,10 +88,11 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 			absv = new BookSearchView();
 			absv.setpTable(new BookSearchTableForCgroup());
 			Map<String, Object> map = new HashMap<>();
-			map.put("onlyBook", true);
+			//map.put("onlyBook", true);
 			map.put("isDel", false);
 			absv.setMap(map);
-			absv.setVisible(true);
+			absv.loadTable();
+			pMyInfo.add(absv);
 			
 		} else if (tabbedPane.getTitleAt(idx).equals("내정보") && msmdvf == null) {
 			pMyInfo.setLayout(new GridLayout(1, 0, 0, 0));
