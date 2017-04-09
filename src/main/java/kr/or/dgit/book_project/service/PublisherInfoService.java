@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -8,8 +9,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
+import kr.or.dgit.book_project.dao.BookInfoMapper;
+import kr.or.dgit.book_project.dao.BookInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PublisherInfoMapper;
 import kr.or.dgit.book_project.dao.PublisherInfoMapperImpl;
+import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
@@ -29,7 +33,7 @@ public class PublisherInfoService {
 			int cnt = selectCountAll();
 			String pCode = String.format("P%03d", cnt + 1);
 			publisherInfo.setpCode(pCode);
-			int res = publisherInfoMapper.insertPubliherShort(publisherInfo);
+			int res = publisherInfoMapper.insertPublisherShort(publisherInfo);
 			sqlSession.commit();
 			JOptionPane.showMessageDialog(null, "추가되었습니다.");
 			return res;
@@ -60,7 +64,7 @@ public class PublisherInfoService {
 			publisherInfo.setpCode(pCode);
 			publisherInfo.setPublisher(publisher);
 
-			publisherInfoMapper.insertPubliherShort(publisherInfo);
+			publisherInfoMapper.insertPublisherShort(publisherInfo);
 			sqlSession.commit();
 			JOptionPane.showMessageDialog(null, "추가되었습니다.");
 			return publisherInfoMapper.selectByAll();
@@ -96,6 +100,12 @@ public class PublisherInfoService {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
 			return publisherInfoMapper.selectPublisherInfo(publisherinfo);
+		}
+	}
+	public PublisherInfo selectPublisherInfoOne(Map<String, Object> param) {
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
+			return publisherInfoMapper.selectPublisherInfoOne(param);
 		}
 	}
 }

@@ -3,6 +3,8 @@ package kr.or.dgit.book_project.ui.component;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
@@ -12,6 +14,8 @@ import kr.or.dgit.book_project.ui.table.PublisherInfoTable;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,8 +29,9 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	private InputComp pPZipCode;
 	private InputComp pPAddress;
 	private JPanel pBtn;
-	private JButton btnSave;
+	public JButton btnPubSave;
 	private JButton btnCancel;
+	private JPopupMenu popupMenu;
 
 	public PublisherInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -62,13 +67,17 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
 
-		btnSave = new JButton("저장");
-		btnSave.addActionListener(this);
-		pBtn.add(btnSave);
+		btnPubSave = new JButton("저장");
+		btnPubSave.addActionListener(this);
+		pBtn.add(btnPubSave);
 
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		pBtn.add(btnCancel);
+	}
+	
+	public JButton getBtnPubSave() {
+		return btnPubSave;
 	}
 
 	public void clear() {
@@ -127,10 +136,19 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		String pAddress = pPAddress.getTFValue();
 		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
+	public void setObject(PublisherInfo pubItem) {
+		pPCode.setTFValue(pubItem.getpCode());
+		pPublisher.setTFValue(pubItem.getPublisher());
+		pPName.setTFValue(pubItem.getpName());
+		pPTel.setTFValue(pubItem.getpTel());
+		pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
+		pPAddress.setTFValue(pubItem.getpAddress());
+		
+	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnSave) {
-			actionPerformedBtnSave(e);
+		if (e.getSource() == btnPubSave) {
+			actionPerformedBtnPubSave(e);
 		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
@@ -141,13 +159,22 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		clear();
 	}
 
-	protected void actionPerformedBtnSave(ActionEvent e) {
-		if (addCheck()) {
+	protected void actionPerformedBtnPubSave(ActionEvent e) {
+		if (btnPubSave.getText() == "저장") {
+			addCheck();
 			PublisherInfoService.insertAllPublisherInfo(getObject());
 			JOptionPane.showMessageDialog(null, "등록완료");
 			clear();
 			PublisherView.pTable.loadData();
 			// 테이블 데이터 새로고침.. loaddata();
+		} else if(btnPubSave.getText() == "수정") {
+			addCheck();
+			PublisherInfoService.updateSetPublisherInfo(getObject());
+			JOptionPane.showMessageDialog(null, "수정완료");
+			clear();
+			PublisherView.pTable.loadData();
+			btnPubSave.setText("저장");
 		}
 	}
+
 }
