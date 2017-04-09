@@ -18,7 +18,9 @@ import javax.swing.event.ChangeListener;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
+import kr.or.dgit.book_project.ui.table.BookSearchTableForCgroup;
 import kr.or.dgit.book_project.ui.view.AbsBookSearchView;
+import kr.or.dgit.book_project.ui.view.BookSearchView;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
 
 public class PageSubForCgroup extends JFrame implements ActionListener, ChangeListener {
@@ -83,14 +85,13 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	protected void stateChangedTabbedPane(int idx) {
 		if (tabbedPane.getTitleAt(idx).equals("도서검색") && absv == null) {
 			pBookSearch.setLayout(new GridLayout(1, 0, 0, 0));
-			absv = new AbsBookSearchView() {
-				@Override
-				protected void createPopupMenu() {
-				}
-			};
+			absv = new BookSearchView();
+			absv.setpTable(new BookSearchTableForCgroup());
 			Map<String, Object> map = new HashMap<>();
+			map.put("onlyBook", true);
 			map.put("isDel", false);
 			absv.setMap(map);
+			absv.setVisible(true);
 			
 		} else if (tabbedPane.getTitleAt(idx).equals("내정보") && msmdvf == null) {
 			pMyInfo.setLayout(new GridLayout(1, 0, 0, 0));

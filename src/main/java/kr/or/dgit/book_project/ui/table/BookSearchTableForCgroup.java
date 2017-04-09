@@ -1,22 +1,20 @@
 package kr.or.dgit.book_project.ui.table;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
 
-public class BookSearchTable extends AbsTable<BookInfo> {
-	public BookSearchTable() {
+public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
+
+	public BookSearchTableForCgroup() {
 	}
 
+	private Map<String, Object> map;
 
 	private JPopupMenu popupMenu;
 
@@ -59,14 +57,14 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 		}
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
-			datas[i] = list.get(i).toArray();
+			datas[i] = list.get(i).toArrayForCgroup();
 		}
 		return datas;
 	}
 
 	@Override
 	protected Object[] getColumn() {
-		return new String[] { "도서코드", "도서중복코드", "도서명", "저자", "출판사", "가격", "총대여 횟수" };
+		return new String[] { "도서코드", "도서중복코드", "도서명", "저자", "출판사", "가격", "대여여부" };
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
@@ -14,12 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.ui.component.BookSearchPanel;
+import kr.or.dgit.book_project.ui.table.AbsTable;
 import kr.or.dgit.book_project.ui.table.BookSearchTable;
 
 public abstract class AbsBookSearchView extends JPanel implements ActionListener {
 
-	protected BookSearchTable pTable;
+	protected AbsTable<BookInfo> pTable;
 	protected BookSearchPanel pContent;
 	protected Map<String, Object> map;
 	protected BookInsertView bookInsertView;
@@ -30,25 +31,20 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 
 		pContent = new BookSearchPanel();
 		pContent.getBtnSearch().addActionListener(this);
-		setLayout(new GridLayout(0, 1, 0, 0));
+		setLayout(new GridLayout(0, 1, 0, 20));
 		add(pContent);
 
 		pTable = new BookSearchTable();
-
-		map = new HashMap<>();
-		map.put("onlyBook", "onlyBook");
-
-		// pMainSub.setLayout(new GridLayout(0, 1, 0, 20));
-
 		add(pTable);
-		// add(pMainSub);
-
 	}
 
-	public BookSearchTable getpTable() {
+	public AbsTable<BookInfo> getpTable() {
 		return pTable;
 	}
-
+	public void setpTable(AbsTable<BookInfo> pTable) {
+		this.pTable = pTable;
+	}
+	
 	public BookSearchPanel getpContent() {
 		return pContent;
 	}
@@ -72,7 +68,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 		Map<String, Object> param = pContent.getValueForSearch();
 		if (param.isEmpty()) {
 			// 검색 조건이 체크되어있지 않은 경우
-			((BookSearchTable) pTable).setMap(map);
+			pTable.setMap(map);
 			pTable.loadData();
 			JOptionPane.showMessageDialog(null, "검색하고 싶은 항목을 선택해주세요");
 		} else {
@@ -84,7 +80,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 				param.put(key, map.get(key));
 			}
 
-			((BookSearchTable) pTable).setMap(param);
+			pTable.setMap(param);
 			pTable.loadData();
 			pContent.clearAll();
 		}
@@ -104,4 +100,6 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 	}
 
 	protected abstract void createPopupMenu();
+
+	
 }

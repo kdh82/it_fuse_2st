@@ -110,7 +110,6 @@ public class BookInsertView extends JPanel implements ActionListener {
 		// 모두 입력되었는지 확인 후
 		if(pContent.isVaildCheck()){
 			pContent.getObject();
-			System.out.println(pContent.getObject());
 			BookInfoService.getInstance().insertBookInfo(pContent.getObject());
 			
 			// 하단 테이블에 입력한 데이터 띄우기
@@ -136,7 +135,6 @@ public class BookInsertView extends JPanel implements ActionListener {
 		bookSearchFrame.setTableDate(param);
 		bookSearchFrame.setMyMouseListener(pContent);
 		bookSearchFrame.addBtn("신규");
-	//	bookSearchFrame.setMyMouseListener();
 		bookSearchFrame.setVisible(true);
 	}
 

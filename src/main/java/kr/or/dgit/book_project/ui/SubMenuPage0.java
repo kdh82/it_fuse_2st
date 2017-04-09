@@ -12,7 +12,7 @@ import javax.swing.JTabbedPane;
 import kr.or.dgit.book_project.ui.view.BookInsertView;
 import kr.or.dgit.book_project.ui.view.BookManageView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
-import kr.or.dgit.book_project.ui.view.DiscardBookManage;
+import kr.or.dgit.book_project.ui.view.BookManageForDelBookView;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 import java.awt.Dimension;
 import javax.swing.event.ChangeListener;
@@ -29,7 +29,7 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 	private JPanel pDiscardBook;
 	private BookManageView bookManageView;
 	private PublisherView publisherView;
-	private DiscardBookManage discardBookManage;
+	private BookManageForDelBookView discardBookManage;
 	private CodenManageView codenManagerView;
 
 	public SubMenuPage0() {
@@ -71,7 +71,7 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 			pBookManager.add(bookManageView);
 		} else if (this.getTitleAt(idx).equals("폐기도서") && discardBookManage == null) {
 			pDiscardBook.setLayout(new GridLayout(0, 1, 0, 0));
-			discardBookManage = new DiscardBookManage();
+			discardBookManage = new BookManageForDelBookView();
 			pDiscardBook.add(discardBookManage);
 		} else if (this.getTitleAt(idx).equals("출판사관리") && publisherView == null) {
 			pPublisher.setLayout(new GridLayout(0, 1, 0, 0));
